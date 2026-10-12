@@ -1,20 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="ms" data-en-title="Eduvia | Tuition Centre, Standard 2 to SPM">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eduvia Tuition Centre | Primary &amp; Secondary Tuition</title>
-  <meta name="description" content="Eduvia Tuition Centre offers small-group tuition for primary and secondary students in Malaysia, from Standard 1 to SPM.">
+  <title>Eduvia | Pusat Tuisyen Tahun 2 hingga SPM</title>
+  <meta name="description" content="Eduvia ialah pusat tuisyen untuk Tahun 2 hingga SPM. Kami kenal pasti keperluan setiap pelajar, bantu mereka belajar dan pantau perkembangan mereka, langkah demi langkah.">
   <link rel="canonical" href="https://eduvia.my/">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <meta name="theme-color" content="#12195f">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Eduvia Tuition Centre">
-  <meta property="og:description" content="Small-group tuition for primary and secondary students, from Standard 1 to SPM.">
+  <meta property="og:title" content="Eduvia | Pusat Tuisyen Tahun 2 hingga SPM">
+  <meta property="og:description" content="Kenal pasti keperluan pelajar, bantu mereka belajar, dan pantau perkembangan mereka, langkah demi langkah.">
   <meta property="og:url" content="https://eduvia.my/">
   <meta property="og:image" content="https://eduvia.my/assets/img/og-image.png">
+  <meta property="og:locale" content="ms_MY">
+  <meta property="og:locale:alternate" content="en_MY">
 
   <link rel="preload" href="assets/fonts/claston.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,25 +25,36 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <!--
+    Bahasa Melayu is the default text. Each translatable element carries its
+    English text in data-en (and data-en-placeholder / data-en-aria-label);
+    assets/js/main.js swaps them when the BM / EN switch is used.
+  -->
+  <a class="skip-link" href="#main" data-en="Skip to content">Langkau ke kandungan</a>
 
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="brand" href="#top">
         <img src="assets/img/logo-wordmark.svg" alt="Eduvia" width="130" height="34">
       </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
-        <span class="sr-only">Menu</span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Main">
+      <div class="header-actions">
+        <div class="lang-switch" role="group" aria-label="Bahasa / Language" data-en-aria-label="Language">
+          <button type="button" data-lang="ms" aria-pressed="true">BM</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+          <span class="sr-only">Menu</span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+      <nav class="site-nav" id="site-nav" aria-label="Utama" data-en-aria-label="Main">
         <ul>
-          <li><a href="#programmes">Programmes</a></li>
-          <li><a href="#subjects">Subjects</a></li>
-          <li><a href="#why">Why Eduvia</a></li>
-          <li><a href="#fees">Fees</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a class="btn btn-small" href="#contact">Book a free trial</a></li>
+          <li><a href="#approach" data-en="Our approach">Pendekatan</a></li>
+          <li><a href="#learning-dna">Learning DNA</a></li>
+          <li><a href="#programmes" data-en="Programmes">Program</a></li>
+          <li><a href="#fees" data-en="Fees">Yuran</a></li>
+          <li><a href="#faq" data-en="FAQ">Soalan lazim</a></li>
+          <li><a class="btn btn-small" href="#contact" data-en="Contact us">Hubungi kami</a></li>
         </ul>
       </nav>
     </div>
@@ -52,32 +65,180 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">Tuition centre · Standard 1 to SPM</p>
-          <h1>Small classes. <span class="accent">Big progress.</span></h1>
-          <p class="lead">Eduvia helps primary and secondary students build strong foundations, close learning gaps and walk into exams with confidence, with experienced teachers and classes small enough for every child to be noticed.</p>
+          <p class="eyebrow" data-en="Tuition centre · Standard 2 to SPM">Pusat tuisyen · Tahun 2 hingga SPM</p>
+          <h1>
+            <span data-en="Every child can move forward,">Setiap anak boleh maju,</span>
+            <span class="accent" data-en="step by step.">langkah demi langkah.</span>
+          </h1>
+          <p class="lead" data-en="At Eduvia, we identify what each student needs, help them learn, then track their progress. So children feel brave enough to try, and parents know clearly how to help.">Di Eduvia, kami kenal pasti keperluan setiap pelajar, bantu mereka belajar, kemudian pantau perkembangan mereka. Supaya anak berani mencuba, dan ibu bapa tahu dengan jelas bagaimana untuk membantu.</p>
           <div class="hero-actions">
-            <a class="btn" href="#contact">Book a free trial class</a>
-            <a class="btn btn-ghost btn-ghost-light" href="#programmes">See programmes</a>
+            <a class="btn" href="#contact" data-en="Contact us">Hubungi kami</a>
+            <a class="btn btn-ghost btn-ghost-light" href="#approach" data-en="See our approach">Lihat pendekatan kami</a>
           </div>
           <ul class="hero-points">
-            <li>Small groups</li>
-            <li>KSSR &amp; KSSM syllabus</li>
-            <li>Regular progress updates for parents</li>
+            <li data-en="Standard 2 to Form 5 (SPM)">Tahun 2 hingga Tingkatan 5 (SPM)</li>
+            <li data-en="Diagnostics &amp; monthly tests">Diagnostik &amp; ujian bulanan</li>
+            <li data-en="Bilingual modules">Modul dwibahasa</li>
           </ul>
         </div>
         <div class="hero-art" aria-hidden="true">
-          <img class="hero-mark" src="assets/img/logo-icon-light.svg" alt="" width="340" height="340">
-          <div class="hero-card hero-card-main">
-            <span class="hero-card-label">This week</span>
-            <strong>Form 4 Add Maths</strong>
-            <span>Quadratic functions · Practice set 3</span>
-            <div class="progress"><span style="width: 72%"></span></div>
-          </div>
+          <img class="hero-mark" src="assets/img/logo-icon-light.svg" alt="" width="260" height="260">
           <div class="hero-card hero-card-float">
             <span class="dot"></span>
-            <span>Progress report sent to parents</span>
+            <span data-en="Follow-up practice planned">Latihan susulan dirancang</span>
+          </div>
+          <div class="hero-card hero-card-main">
+            <span class="hero-card-label" data-en="Sample · Learning DNA">Contoh · Learning DNA</span>
+            <strong data-en="Fractions">Pecahan</strong>
+            <ul class="skill-list">
+              <li class="is-ok" data-en="Fraction concepts">Konsep pecahan</li>
+              <li class="is-ok" data-en="Times tables">Sifir</li>
+              <li class="is-help" data-en="Word problems: needs help">Ayat soalan: perlu bantuan</li>
+            </ul>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- What we believe -->
+    <section class="section" id="belief">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-en="What we believe">Apa yang kami percaya</p>
+          <h2 data-en="A low mark isn't the end. It's a clue.">Markah rendah bukan penamat. Ia petunjuk.</h2>
+          <p data-en="Two students can get the same mark for different reasons. One may not have mastered the basic operations yet. Another can calculate, but struggles to understand problem-solving questions. Giving them both the same help may not be precise enough.">Dua pelajar boleh mendapat markah yang sama, tetapi masalah mereka berbeza. Seorang mungkin belum menguasai operasi asas. Seorang lagi boleh mengira, tetapi tidak memahami soalan penyelesaian masalah. Bantuan yang sama untuk kedua-duanya mungkin tidak cukup tepat.</p>
+        </div>
+        <div class="cards cards-3">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+            </div>
+            <h3 data-en="Today's marks don't decide a child's ability">Markah semasa tidak menentukan kebolehan anak</h3>
+            <p data-en="A low mark tells us something needs help. We find the part that hasn't been mastered yet and give the child a chance to rebuild it.">Markah rendah memberitahu kita ada sesuatu yang perlu dibantu. Kami cari bahagian yang belum dikuasai dan beri peluang kepada anak untuk membinanya semula.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3Z"/></svg>
+            </div>
+            <h3 data-en="Understanding, not just more practice">Faham, bukan sekadar banyak latihan</h3>
+            <p data-en="Attendance and finished worksheets matter. But what matters more is whether a child truly understands what they are learning.">Kehadiran dan jumlah latihan yang siap memang penting. Tetapi yang lebih penting ialah sama ada anak itu benar-benar faham apa yang dia belajar.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9L12 3Z"/></svg>
+            </div>
+            <h3 data-en="Enjoyable learning can be serious learning">Belajar seronok boleh jadi belajar serius</h3>
+            <p data-en="Characters and challenges help children pay attention, as long as every activity has a clear learning goal.">Karakter dan cabaran boleh membantu anak memberi perhatian, asalkan setiap aktiviti mempunyai tujuan pembelajaran yang jelas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="section section-tint" id="approach">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-en="Our approach">Pendekatan kami</p>
+          <h2 data-en="Identify. Help. Track.">Kenal pasti. Bantu. Pantau.</h2>
+          <p data-en="Eduvia's strength is how everything connects: tuition classes, learning diagnosis and our modules work together as one path for each student.">Kekuatan Eduvia ialah bagaimana semuanya dihubungkan: kelas tuisyen, diagnosis pembelajaran dan modul kami bergerak sebagai satu laluan untuk setiap pelajar.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3 data-en="Identify">Kenal pasti</h3>
+            <p data-en="Diagnostics and monthly tests show which skills a student has mastered, where they are still weak and what help they need.">Diagnostik dan ujian bulanan menunjukkan kemahiran yang sudah dikuasai, bahagian yang masih lemah dan bantuan yang diperlukan.</p>
+          </li>
+          <li>
+            <h3 data-en="Help">Bantu</h3>
+            <p data-en="Teachers plan practice and support that fit each student, using our modules with notes, worked examples and bilingual exercises.">Guru merancang latihan dan intervensi yang sesuai untuk setiap pelajar, dengan modul yang mengandungi nota, contoh jalan kerja dan latihan dwibahasa.</p>
+          </li>
+          <li>
+            <h3 data-en="Track">Pantau</h3>
+            <p data-en="We check progress again and share it with parents: what has been mastered, what is still challenging and the next step.">Kami semak semula perkembangan dan kongsikan dengan ibu bapa: apa yang sudah dikuasai, apa yang masih mencabar dan langkah seterusnya.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Learning DNA -->
+    <section class="section" id="learning-dna">
+      <div class="container split">
+        <div class="split-copy">
+          <p class="eyebrow">Eduvia Learning DNA</p>
+          <h2 data-en="Find the cause, not just the score">Cari puncanya, bukan sekadar markahnya</h2>
+          <p data-en="If a student is still struggling after doing the same exercises again and again, we need to find out why. Have they not understood the concept? Are the basics from the previous year still shaky? Or is it the wording of the question that's hard?">Kalau seorang pelajar masih lemah selepas berulang kali membuat latihan, kita perlu mencari puncanya. Adakah dia belum faham konsep? Adakah asas tahun sebelumnya masih belum kukuh? Atau dia sukar memahami ayat soalan?</p>
+          <p data-en="Eduvia Learning DNA connects diagnostics, monthly tests, reports and follow-up support. It helps teachers plan more precise practice, and helps parents understand how their child is progressing.">Eduvia Learning DNA menghubungkan diagnostik, ujian bulanan, laporan dan intervensi. Maklumat ini membantu guru merancang latihan yang lebih tepat, dan membantu ibu bapa memahami perkembangan anak mereka.</p>
+          <ul class="ticks">
+            <li data-en="What your child has already mastered">Apa yang anak anda sudah kuasai</li>
+            <li data-en="What is still challenging">Apa yang masih mencabar</li>
+            <li data-en="How we can help, together">Bagaimana kita boleh membantu bersama-sama</li>
+          </ul>
+        </div>
+        <figure class="example-card">
+          <figcaption>
+            <span class="example-label" data-en="Example approach">Contoh pendekatan</span>
+            <strong data-en="A student who struggles with fraction questions">Pelajar yang sukar menjawab soalan pecahan</strong>
+          </figcaption>
+          <ol class="example-steps">
+            <li>
+              <b data-en="Check first">Semak dahulu</b>
+              <span data-en="Is the problem the fraction concept, times tables, or understanding the question?">Adakah masalahnya pada konsep pecahan, sifir atau pemahaman ayat soalan?</span>
+            </li>
+            <li>
+              <b data-en="Give the right practice">Beri latihan yang sesuai</b>
+              <span data-en="Practice that targets the actual cause, not just more of the same.">Latihan yang menyasarkan punca sebenar, bukan sekadar lebih banyak latihan yang sama.</span>
+            </li>
+            <li>
+              <b data-en="Check progress again">Semak semula perkembangan</b>
+              <span data-en="See whether the gap has closed, then plan the next step.">Lihat sama ada jurang itu sudah dirapatkan, kemudian rancang langkah seterusnya.</span>
+            </li>
+          </ol>
+          <p class="example-note" data-en="This illustrates our approach; it is not a real student's result.">Ini contoh pendekatan, bukan keputusan pelajar sebenar.</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Modules -->
+    <section class="section section-tint" id="modules">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow" data-en="Eduvia modules">Modul Eduvia</p>
+          <h2 data-en="Learning materials made for students">Bahan yang mesra pelajar</h2>
+          <p data-en="Our modules are arranged around what students need, so learning feels easier to approach.">Modul kami disusun mengikut keperluan pelajar supaya pembelajaran lebih mudah didekati.</p>
+        </div>
+        <div class="cards cards-4">
+          <article class="feature">
+            <div class="feature-num">01</div>
+            <h3 data-en="Clear notes">Nota yang jelas</h3>
+            <p data-en="Key ideas explained simply, so students can revise on their own.">Idea utama diterangkan dengan mudah, supaya pelajar boleh mengulang kaji sendiri.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-num">02</div>
+            <h3 data-en="Worked examples">Contoh jalan kerja</h3>
+            <p data-en="Step-by-step solutions that show how to get to the answer, not just the answer.">Penyelesaian langkah demi langkah yang menunjukkan cara mendapat jawapan, bukan jawapan sahaja.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-num">03</div>
+            <h3 data-en="Bilingual practice">Latihan dwibahasa</h3>
+            <p data-en="Exercises in Bahasa Melayu and English, so language doesn't get in the way of understanding.">Latihan dalam Bahasa Melayu dan Bahasa Inggeris, supaya bahasa tidak menghalang kefahaman.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-num">04</div>
+            <h3 data-en="Learning characters">Karakter pembelajaran</h3>
+            <p data-en="Friendly characters that make the material warmer and more engaging for students.">Karakter yang mesra menjadikan bahan lebih dekat dan menarik untuk pelajar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section class="section section-navy" id="founder">
+      <div class="container container-narrow founder">
+        <img class="founder-mark" src="assets/img/logo-icon-light.svg" alt="" width="72" height="72">
+        <blockquote>
+          <p data-en="“I want more children to feel: ‘Oh, now I understand. Turns out I can do this.’”">“Saya nak lebih ramai anak dapat merasai, ‘Oh, sekarang saya faham. Rupanya saya boleh buat.’”</p>
+        </blockquote>
+        <p class="founder-body" data-en="I built Eduvia so that more children get the chance to understand their lessons and build self-confidence. I want Eduvia to be a place where children dare to ask, dare to try, and feel the joy of finally understanding.">Saya membina Eduvia supaya lebih ramai anak mendapat peluang untuk faham pelajaran dan membina keyakinan diri. Saya nak Eduvia menjadi tempat anak-anak berani bertanya, berani mencuba dan rasa seronok apabila mereka mula faham.</p>
+        <p class="founder-name"><strong>Sir Naim</strong> <span data-en="Founder, Eduvia">Pengasas Eduvia</span></p>
       </div>
     </section>
 
@@ -85,206 +246,98 @@
     <section class="section" id="programmes">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Programmes</p>
-          <h2>Tuition for every stage of school</h2>
-          <p>Classes follow the national KSSR (primary) and KSSM (secondary) syllabus, so what your child learns with us supports what they learn in school.</p>
+          <p class="eyebrow" data-en="Programmes">Program</p>
+          <h2 data-en="From Standard 2 to SPM">Dari Tahun 2 hingga SPM</h2>
+          <p data-en="Classes follow the national KSSR and KSSM syllabus, and every programme uses the same approach: identify, help, track.">Kelas mengikut sukatan kebangsaan KSSR dan KSSM, dan setiap program menggunakan pendekatan yang sama: kenal pasti, bantu, pantau.</p>
         </div>
         <div class="cards cards-3">
           <article class="card">
             <div class="card-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12"/></svg>
             </div>
-            <h3>Primary</h3>
-            <p class="card-sub">Standard 1 – 6</p>
-            <p>Strong basics in reading, writing and numbers, with patient teaching that builds good study habits early.</p>
-            <ul class="ticks">
-              <li>Bahasa Melayu, English, Mathematics, Science</li>
-              <li>Phonics and reading support for lower primary</li>
-              <li>Homework guidance</li>
-            </ul>
-          </article>
-          <article class="card card-feature">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4Zm4 2v5c0 1.7 2.2 3 5 3s5-1.3 5-3V9"/></svg>
-            </div>
-            <h3>Lower Secondary</h3>
-            <p class="card-sub">Form 1 – 3</p>
-            <p>A smooth move from primary to secondary school, with focus on understanding concepts rather than memorising.</p>
-            <ul class="ticks">
-              <li>Core subjects plus Sejarah</li>
-              <li>Preparation for school assessments</li>
-              <li>Study skills and time management</li>
-            </ul>
+            <h3 data-en="Primary">Sekolah Rendah</h3>
+            <p class="card-sub" data-en="Standard 2 – 6">Tahun 2 – 6</p>
+            <p data-en="Strong foundations and good study habits, so children feel confident to take on the next topic.">Membina asas yang kukuh dan tabiat belajar yang baik, supaya anak yakin untuk memahami topik seterusnya.</p>
           </article>
           <article class="card">
             <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9L12 3Z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4Zm4 2v5c0 1.7 2.2 3 5 3s5-1.3 5-3V9"/></svg>
             </div>
-            <h3>Upper Secondary &amp; SPM</h3>
-            <p class="card-sub">Form 4 – 5</p>
-            <p>Focused SPM preparation in core and elective subjects, with exam technique, past-year papers and timed practice.</p>
-            <ul class="ticks">
-              <li>Science and Arts stream subjects</li>
-              <li>Past-year paper drills</li>
-              <li>Intensive revision before SPM</li>
-            </ul>
+            <h3 data-en="Lower Secondary">Menengah Rendah</h3>
+            <p class="card-sub" data-en="Form 1 – 3">Tingkatan 1 – 3</p>
+            <p data-en="A smooth move into secondary school, focused on understanding concepts rather than memorising.">Peralihan yang lancar ke sekolah menengah, dengan fokus kepada kefahaman konsep, bukan menghafal.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+            </div>
+            <h3 data-en="Upper Secondary &amp; SPM">Menengah Atas &amp; SPM</h3>
+            <p class="card-sub" data-en="Form 4 – 5">Tingkatan 4 – 5</p>
+            <p data-en="Structured SPM preparation, finding and fixing weak areas early, with exam technique and past-year practice.">Persediaan SPM yang tersusun: kenal pasti bahagian yang lemah lebih awal, dengan teknik menjawab dan latihan soalan tahun lepas.</p>
           </article>
         </div>
-      </div>
-    </section>
-
-    <!-- Subjects -->
-    <section class="section section-tint" id="subjects">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Subjects</p>
-          <h2>What we teach</h2>
-          <p>Not sure which subjects your child needs? Book a free trial class and we will help you decide.</p>
-        </div>
-        <ul class="subject-grid">
-          <li>Bahasa Melayu</li>
-          <li>English</li>
-          <li>Mathematics</li>
-          <li>Science</li>
-          <li>Sejarah</li>
-          <li>Additional Mathematics</li>
-          <li>Physics</li>
-          <li>Chemistry</li>
-          <li>Biology</li>
-          <li>Accounting</li>
-          <li>Economics</li>
-          <li>Business</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Why Eduvia -->
-    <section class="section" id="why">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Why Eduvia</p>
-          <h2>Learning that fits your child</h2>
-        </div>
-        <div class="cards cards-4">
-          <article class="feature">
-            <div class="feature-num">01</div>
-            <h3>Small groups</h3>
-            <p>Every student gets attention, can ask questions freely and is never left behind.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-num">02</div>
-            <h3>Experienced teachers</h3>
-            <p>Teachers who know the syllabus, the exam format and how to explain things clearly.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-num">03</div>
-            <h3>Progress you can see</h3>
-            <p>Regular topical tests and updates, so parents always know how their child is doing.</p>
-          </article>
-          <article class="feature">
-            <div class="feature-num">04</div>
-            <h3>Exam-ready practice</h3>
-            <p>Structured notes, exercises and past-year questions that build confidence before every exam.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- How it works -->
-    <section class="section section-tint" id="how">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Getting started</p>
-          <h2>Three simple steps</h2>
-        </div>
-        <ol class="steps">
-          <li>
-            <h3>Contact us</h3>
-            <p>Send an enquiry through the form below or on WhatsApp, and tell us your child's level and subjects.</p>
-          </li>
-          <li>
-            <h3>Try a free class</h3>
-            <p>Your child joins a trial class so you can see how we teach before you commit.</p>
-          </li>
-          <li>
-            <h3>Enrol and start</h3>
-            <p>Choose a schedule that works for you, and we take it from there with regular progress updates.</p>
-          </li>
-        </ol>
       </div>
     </section>
 
     <!-- Fees -->
-    <!-- TODO: replace the [RM __] placeholders with the centre's actual monthly fees. -->
-    <section class="section" id="fees">
+    <!-- TODO: replace the [RM __] placeholders with the actual monthly fees. -->
+    <section class="section section-tint" id="fees">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Fees</p>
-          <h2>Simple monthly fees</h2>
-          <p>Fees are per subject, per month, and include notes and practice materials. Ask us about sibling discounts.</p>
+          <p class="eyebrow" data-en="Fees">Yuran</p>
+          <h2 data-en="Monthly fees">Yuran bulanan</h2>
+          <p data-en="Contact us for the latest fees and class schedule.">Hubungi kami untuk maklumat yuran dan jadual kelas terkini.</p>
         </div>
         <div class="cards cards-3">
           <article class="card price-card">
-            <h3>Primary</h3>
-            <p class="card-sub">Standard 1 – 6</p>
-            <p class="price"><span>[RM __]</span> / subject / month</p>
-            <ul class="ticks">
-              <li>4 classes a month</li>
-              <li>Notes and exercises included</li>
-            </ul>
-            <a class="btn btn-ghost btn-block" href="#contact">Enquire</a>
-          </article>
-          <article class="card price-card card-feature">
-            <h3>Lower Secondary</h3>
-            <p class="card-sub">Form 1 – 3</p>
-            <p class="price"><span>[RM __]</span> / subject / month</p>
-            <ul class="ticks">
-              <li>4 classes a month</li>
-              <li>Topical tests</li>
-            </ul>
-            <a class="btn btn-block" href="#contact">Enquire</a>
+            <h3 data-en="Primary">Sekolah Rendah</h3>
+            <p class="card-sub" data-en="Standard 2 – 6">Tahun 2 – 6</p>
+            <p class="price"><span>[RM __]</span> <em data-en="/ month">/ bulan</em></p>
+            <a class="btn btn-ghost btn-block" href="#contact" data-en="Ask about fees">Tanya tentang yuran</a>
           </article>
           <article class="card price-card">
-            <h3>Upper Secondary &amp; SPM</h3>
-            <p class="card-sub">Form 4 – 5</p>
-            <p class="price"><span>[RM __]</span> / subject / month</p>
-            <ul class="ticks">
-              <li>4 classes a month</li>
-              <li>Past-year paper practice</li>
-            </ul>
-            <a class="btn btn-ghost btn-block" href="#contact">Enquire</a>
+            <h3 data-en="Lower Secondary">Menengah Rendah</h3>
+            <p class="card-sub" data-en="Form 1 – 3">Tingkatan 1 – 3</p>
+            <p class="price"><span>[RM __]</span> <em data-en="/ month">/ bulan</em></p>
+            <a class="btn btn-ghost btn-block" href="#contact" data-en="Ask about fees">Tanya tentang yuran</a>
+          </article>
+          <article class="card price-card">
+            <h3 data-en="Upper Secondary &amp; SPM">Menengah Atas &amp; SPM</h3>
+            <p class="card-sub" data-en="Form 4 – 5">Tingkatan 4 – 5</p>
+            <p class="price"><span>[RM __]</span> <em data-en="/ month">/ bulan</em></p>
+            <a class="btn btn-ghost btn-block" href="#contact" data-en="Ask about fees">Tanya tentang yuran</a>
           </article>
         </div>
       </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section section-tint" id="faq">
+    <section class="section" id="faq">
       <div class="container container-narrow">
         <div class="section-head">
-          <p class="eyebrow">FAQ</p>
-          <h2>Questions parents ask</h2>
+          <p class="eyebrow" data-en="FAQ">Soalan lazim</p>
+          <h2 data-en="Questions parents ask">Soalan daripada ibu bapa</h2>
         </div>
         <div class="faq">
           <details>
-            <summary>How big are the classes?</summary>
-            <p>We keep classes small so that teachers can give each student attention and follow their progress closely.</p>
+            <summary data-en="What is Eduvia Learning DNA?">Apakah Eduvia Learning DNA?</summary>
+            <p data-en="It's how we identify what each student needs. Through diagnostics and monthly tests, we see which skills have been mastered and which need help, then teachers plan the right practice and support.">Ia cara kami mengenal pasti keperluan setiap pelajar. Melalui diagnostik dan ujian bulanan, kami lihat kemahiran yang sudah dikuasai dan bahagian yang perlu dibantu, kemudian guru merancang latihan dan intervensi yang sesuai.</p>
           </details>
           <details>
-            <summary>Is the trial class really free?</summary>
-            <p>Yes. Your child can join one trial class at no cost and with no obligation to enrol.</p>
+            <summary data-en="My child is weak in a subject. How can Eduvia help?">Anak saya lemah dalam satu subjek. Bagaimana Eduvia boleh membantu?</summary>
+            <p data-en="We start by finding the cause: the concept itself, basics from a previous year, or understanding the question. From there we give practice that fits, and check progress again.">Kami mulakan dengan mencari puncanya: konsep itu sendiri, asas tahun sebelumnya atau pemahaman ayat soalan. Dari situ, kami beri latihan yang sesuai dan semak semula perkembangannya.</p>
           </details>
           <details>
-            <summary>Which syllabus do you follow?</summary>
-            <p>We follow the national KSSR syllabus for primary and KSSM for secondary, including SPM preparation for Form 4 and 5.</p>
+            <summary data-en="How will I know how my child is doing?">Bagaimana saya tahu perkembangan anak saya?</summary>
+            <p data-en="We share what your child has mastered, what is still challenging and the next step, so we can help your child together. Not just “do more practice”, but which practice and why.">Kami kongsikan apa yang sudah dikuasai, apa yang masih mencabar dan langkah seterusnya, supaya kita boleh membantu anak bersama-sama. Bukan sekadar “kena banyakkan latihan”, tetapi latihan apa yang diperlukan dan kenapa.</p>
           </details>
           <details>
-            <summary>How will I know how my child is doing?</summary>
-            <p>Students sit regular topical tests, and we share their progress with parents so you always know where they stand.</p>
+            <summary data-en="Which levels does Eduvia teach?">Peringkat apa yang Eduvia ajar?</summary>
+            <p data-en="Standard 2 to Form 5, including SPM preparation.">Tahun 2 hingga Tingkatan 5, termasuk persediaan SPM.</p>
           </details>
           <details>
-            <summary>What if my child misses a class?</summary>
-            <p>Let us know in advance and we will help arrange a replacement class where possible.</p>
+            <summary data-en="What language are the learning materials in?">Bahan pembelajaran dalam bahasa apa?</summary>
+            <p data-en="Our modules include bilingual exercises in Bahasa Melayu and English, with notes and worked examples that are easy to follow.">Modul kami mengandungi latihan dwibahasa dalam Bahasa Melayu dan Bahasa Inggeris, dengan nota dan contoh jalan kerja yang mudah diikuti.</p>
           </details>
         </div>
       </div>
@@ -292,68 +345,68 @@
 
     <!-- Contact -->
     <!-- TODO: replace the bracketed placeholders below with the centre's real details. -->
-    <section class="section" id="contact">
+    <section class="section section-tint" id="contact">
       <div class="container contact-grid">
         <div class="contact-info">
-          <p class="eyebrow">Contact</p>
-          <h2>Book a free trial class</h2>
-          <p>Fill in the form and we will get back to you on WhatsApp, usually within one working day.</p>
+          <p class="eyebrow" data-en="Contact">Hubungi kami</p>
+          <h2 data-en="Let's talk about your child's needs">Mari bincang keperluan anak anda</h2>
+          <p data-en="Fill in the form and we will get back to you on WhatsApp.">Isi borang ini dan kami akan menghubungi anda melalui WhatsApp.</p>
           <dl class="contact-list">
             <div>
-              <dt>Address</dt>
-              <dd>[Centre address, Town, State]</dd>
+              <dt data-en="Address">Alamat</dt>
+              <dd>[Alamat pusat, Bandar, Negeri]</dd>
             </div>
             <div>
-              <dt>Phone / WhatsApp</dt>
+              <dt data-en="Phone / WhatsApp">Telefon / WhatsApp</dt>
               <dd>[+60 1X-XXX XXXX]</dd>
             </div>
             <div>
-              <dt>Email</dt>
+              <dt data-en="Email">E-mel</dt>
               <dd>[hello@eduvia.my]</dd>
             </div>
             <div>
-              <dt>Opening hours</dt>
-              <dd>[Mon – Fri 2pm – 9pm · Sat – Sun 9am – 5pm]</dd>
+              <dt data-en="Opening hours">Waktu operasi</dt>
+              <dd>[Isnin – Jumaat ... · Sabtu – Ahad ...]</dd>
             </div>
           </dl>
         </div>
 
         <form class="enquiry-form" id="enquiry-form" novalidate>
           <div class="field">
-            <label for="parent-name">Your name</label>
+            <label for="parent-name" data-en="Your name">Nama anda</label>
             <input id="parent-name" name="parentName" type="text" autocomplete="name" required>
           </div>
           <div class="field">
-            <label for="student-name">Student's name</label>
+            <label for="student-name" data-en="Student's name">Nama pelajar</label>
             <input id="student-name" name="studentName" type="text">
           </div>
           <div class="field-row">
             <div class="field">
-              <label for="level">Level</label>
+              <label for="level" data-en="Level">Peringkat</label>
               <select id="level" name="level" required>
-                <option value="">Choose a level</option>
-                <option>Standard 1 – 3</option>
-                <option>Standard 4 – 6</option>
-                <option>Form 1 – 3</option>
-                <option>Form 4 – 5 (SPM)</option>
+                <option value="" data-en="Choose a level">Pilih peringkat</option>
+                <option value="std2-3" data-en="Standard 2 – 3">Tahun 2 – 3</option>
+                <option value="std4-6" data-en="Standard 4 – 6">Tahun 4 – 6</option>
+                <option value="f1-3" data-en="Form 1 – 3">Tingkatan 1 – 3</option>
+                <option value="f4-5" data-en="Form 4 – 5 (SPM)">Tingkatan 4 – 5 (SPM)</option>
               </select>
             </div>
             <div class="field">
-              <label for="phone">Phone number</label>
+              <label for="phone" data-en="Phone number">No. telefon</label>
               <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
             </div>
           </div>
           <div class="field">
-            <label for="subjects-input">Subjects of interest</label>
-            <input id="subjects-input" name="subjects" type="text" placeholder="e.g. Mathematics, Science">
+            <label for="subjects-input" data-en="Subjects of interest">Subjek yang diminati</label>
+            <input id="subjects-input" name="subjects" type="text" placeholder="cth. Matematik, Sains" data-en-placeholder="e.g. Mathematics, Science">
           </div>
           <div class="field">
-            <label for="message">Message (optional)</label>
+            <label for="message" data-en="Message (optional)">Mesej (pilihan)</label>
             <textarea id="message" name="message" rows="3"></textarea>
           </div>
           <p class="form-error" id="form-error" role="alert" hidden></p>
-          <button class="btn btn-block" type="submit">Send enquiry on WhatsApp</button>
-          <p class="form-note">This opens WhatsApp with your details filled in. Nothing is sent until you press send there.</p>
+          <button class="btn btn-block" type="submit" data-en="Send on WhatsApp">Hantar melalui WhatsApp</button>
+          <p class="form-note" data-en="This opens WhatsApp with your details filled in. Nothing is sent until you press send there.">Ini akan membuka WhatsApp dengan maklumat anda. Tiada apa yang dihantar sehingga anda tekan hantar di sana.</p>
         </form>
       </div>
     </section>
@@ -364,12 +417,12 @@
       <a class="brand" href="#top">
         <img src="assets/img/logo-wordmark-light.svg" alt="Eduvia" width="115" height="30">
       </a>
-      <p>&copy; <span id="year">2026</span> Eduvia Tuition Centre. All rights reserved.</p>
-      <a href="#top">Back to top</a>
+      <p>&copy; <span id="year">2026</span> Eduvia. <span data-en="All rights reserved.">Hak cipta terpelihara.</span></p>
+      <a href="#top" data-en="Back to top">Kembali ke atas</a>
     </div>
   </footer>
 
-  <a class="whatsapp-fab" id="whatsapp-fab" href="#contact" aria-label="Chat with us on WhatsApp">
+  <a class="whatsapp-fab" id="whatsapp-fab" href="#contact" aria-label="Hubungi kami di WhatsApp" data-en-aria-label="Chat with us on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>
   </a>
 

@@ -1,11 +1,11 @@
 # Eduvia Tuition Centre website
 
-The website for **eduvia.my**: a static, single-page site (HTML, CSS and a little JavaScript). There is no build step; the files in this repository are uploaded to Hostinger as they are.
+The website for **eduvia.my**, the Eduvia tuition centre (Standard 2 to SPM): a static, single-page site (HTML, CSS and a little JavaScript) in Bahasa Melayu and English. There is no build step; the files in this repository are uploaded to Hostinger as they are.
 
 ```
 index.html            page content
 assets/css/styles.css styles
-assets/js/main.js     mobile menu and the WhatsApp enquiry form
+assets/js/main.js     BM / EN switch, mobile menu and the WhatsApp enquiry form
 assets/img/           logos, favicon, home-screen icon and social share image
 assets/fonts/         Claston brand font (WOFF2)
 ```
@@ -33,11 +33,23 @@ Logo files (SVG, traced from the brand artwork):
 - **Claston** (brand font, by Drizy Studio) for the wordmark, headings and other display text. It has a single weight, so it is always set at `font-weight: 400`. Using it on a public website needs a web/webfont licence from Drizy Studio.
 - **Plus Jakarta Sans** (Google Fonts) for body text, buttons and forms.
 
+## Languages
+
+Bahasa Melayu is the default. Every piece of text in `index.html` is written in BM, with its English version beside it in a `data-en` attribute:
+
+```html
+<h2 data-en="Our approach">Pendekatan kami</h2>
+```
+
+Placeholders and accessibility labels use `data-en-placeholder` and `data-en-aria-label`. When you edit a sentence, update both. Text that the script writes itself (the form's error message and the WhatsApp message) is in the `STRINGS` object at the top of `assets/js/main.js`.
+
+The visitor's choice is remembered, and `https://eduvia.my/?lang=en` opens the English version directly.
+
 ## Before going live
 
 Replace the placeholders:
 
-- `index.html`: every `[ ... ]` value in the **Fees** and **Contact** sections (fees, address, phone, email, opening hours).
+- `index.html`: every `[ ... ]` value in the **Yuran** (fees) and **Hubungi kami** (contact) sections: fees, address, phone, email, opening hours.
 - `assets/js/main.js`: set `WHATSAPP_NUMBER` (digits only, e.g. `60123456789`). Until it is set, the enquiry form opens an email to `ENQUIRY_EMAIL` instead.
 
 ## Preview locally
