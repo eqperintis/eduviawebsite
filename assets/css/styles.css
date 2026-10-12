@@ -1,5 +1,14 @@
 /* Eduvia Tuition Centre */
 
+/* Brand display font (single weight) */
+@font-face {
+  font-family: "Claston";
+  src: url("../fonts/claston.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --navy: #13294b;
   --navy-2: #1d3a66;
@@ -17,6 +26,7 @@
   --shadow: 0 10px 30px rgba(19, 41, 75, 0.08);
   --shadow-lg: 0 20px 50px rgba(19, 41, 75, 0.14);
   --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Claston", var(--font);
   --header-h: 72px;
 }
 
@@ -41,10 +51,17 @@ body {
 
 img, svg { display: block; max-width: 100%; }
 
-h1, h2, h3 { line-height: 1.2; color: var(--navy); margin: 0 0 0.5em; }
-h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
-h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.015em; }
-h3 { font-size: 1.2rem; font-weight: 700; }
+/* Claston has a single weight, so display text stays at 400 to avoid faux bold */
+h1, h2, h3,
+.brand, .hero-card-main strong, .price span, .feature-num, .steps li::before {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+h1, h2, h3 { line-height: 1.15; color: var(--navy); margin: 0 0 0.5em; }
+h1 { font-size: clamp(2.5rem, 5.5vw, 4rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); }
+h3 { font-size: 1.3rem; }
 p { margin: 0 0 1em; }
 a { color: var(--teal-dark); }
 
@@ -97,7 +114,7 @@ a { color: var(--teal-dark); }
 .site-header.is-scrolled { border-color: var(--line); box-shadow: 0 4px 20px rgba(19, 41, 75, 0.05); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); }
 
-.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 1.35rem; color: var(--navy); letter-spacing: -0.01em; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1.6rem; color: var(--navy); }
 .brand-light { color: #fff; }
 
 .site-nav ul { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
@@ -215,7 +232,7 @@ a { color: var(--teal-dark); }
 
 /* Features */
 .feature { padding: 8px 4px; }
-.feature-num { font-size: 0.9rem; font-weight: 800; color: var(--amber); letter-spacing: 0.08em; margin-bottom: 10px; }
+.feature-num { font-size: 1.4rem; color: var(--amber); margin-bottom: 10px; }
 .feature p { color: var(--muted); }
 
 /* Steps */
@@ -223,14 +240,14 @@ a { color: var(--teal-dark); }
 .steps li { background: #fff; border-radius: var(--radius); padding: 28px; border: 1px solid var(--line); counter-increment: step; }
 .steps li::before {
   content: counter(step); display: grid; place-items: center;
-  width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 800; margin-bottom: 16px;
+  width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 1.1rem; margin-bottom: 16px;
 }
 .steps p { color: var(--muted); margin: 0; }
 @media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
 
 /* Fees */
 .price { font-size: 0.95rem; color: var(--muted); margin: 6px 0 18px; }
-.price span { display: block; font-size: 2rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; }
+.price span { display: block; font-size: 2.1rem; color: var(--navy); }
 .price-card .ticks { margin: 0 0 24px; }
 .price-card .btn { margin-top: auto; }
 

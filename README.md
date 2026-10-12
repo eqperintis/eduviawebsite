@@ -7,7 +7,13 @@ index.html            page content
 assets/css/styles.css styles
 assets/js/main.js     mobile menu and the WhatsApp enquiry form
 assets/img/           logo and favicon
+assets/fonts/         Claston brand font (WOFF2)
 ```
+
+## Typography
+
+- **Claston** (brand font, by Drizy Studio) for the wordmark, headings and other display text. It has a single weight, so it is always set at `font-weight: 400`. Using it on a public website needs a web/webfont licence from Drizy Studio.
+- **Plus Jakarta Sans** (Google Fonts) for body text, buttons and forms.
 
 ## Before going live
 
