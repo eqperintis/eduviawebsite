@@ -6,9 +6,27 @@ The website for **eduvia.my**: a static, single-page site (HTML, CSS and a littl
 index.html            page content
 assets/css/styles.css styles
 assets/js/main.js     mobile menu and the WhatsApp enquiry form
-assets/img/           logo and favicon
+assets/img/           logos, favicon, home-screen icon and social share image
 assets/fonts/         Claston brand font (WOFF2)
 ```
+
+## Brand
+
+| Colour | Hex       | Used for                                        |
+| ------ | --------- | ----------------------------------------------- |
+| Navy   | `#12195F` | Hero and footer backgrounds, headings, text     |
+| Yellow | `#EBC35B` | Main buttons, highlights, logo on dark          |
+| Blue   | `#5EB6FF` | The logo's square, bullets and focus rings      |
+| White  | `#FFFFFF` | Page background, text on navy                   |
+
+The colours are defined once as CSS variables at the top of `assets/css/styles.css`.
+
+Logo files (SVG, traced from the brand artwork):
+
+- `logo-wordmark.svg`: navy wordmark for light backgrounds
+- `logo-wordmark-light.svg`: yellow and white wordmark for navy backgrounds
+- `logo-icon.svg` / `logo-icon-light.svg`: the "v" mark on its own
+- `favicon.svg`, `apple-touch-icon.png`, `og-image.png`: browser tab, phone home screen and link previews
 
 ## Typography
 
