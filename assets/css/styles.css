@@ -2,7 +2,7 @@
    Layout: light product site. White page with navy type, floating glass nav,
    hero photo that fades into the page, levels strip, Uji / Semak / Bantu demo on
    a laptop, timetable. Navy is kept for the
-   founder band and the footer (.on-dark). */
+   levels strip and the footer (.on-dark). */
 
 /* Brand display font (single weight) */
 @font-face {
@@ -539,23 +539,25 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .viewer-btn:disabled { opacity: 0.35; cursor: default; }
 .viewer-stage { min-height: 0; flex: 1; overflow: auto; background: var(--bg-alt); padding: 16px; }
 .viewer-img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: var(--shadow); background: var(--white); }
-/* Founder (navy band) */
-.founder-section { overflow: hidden; }
-.founder-section::before {
-  content: ""; position: absolute; left: 50%; top: 50%; width: 700px; height: 420px; transform: translate(-50%, -50%);
-  background: radial-gradient(closest-side, rgba(94, 182, 255, 0.16), transparent); pointer-events: none;
-}
-.founder { position: relative; max-width: 880px; text-align: center; }
-.founder-mark { width: 64px; height: auto; margin: 0 auto 32px; }
-.founder blockquote { margin: 0; }
-.founder blockquote p { font-family: var(--font-display); font-size: clamp(1.7rem, 3.8vw, 2.8rem); line-height: 1.22; color: var(--fg); margin: 0; text-wrap: balance; }
-.founder-body { color: var(--muted); max-width: 40em; margin: 28px auto 30px; }
-.founder-name { margin: 0; }
-.founder-name strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; color: var(--yellow); }
-.founder-name span { color: var(--faint); font-size: 0.9rem; }
-
 /* Programmes and fees */
 .programmes, .prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.programmes { grid-template-columns: repeat(4, 1fr); }
+
+/* Preschool card: warm yellow, star badge */
+.programme-preschool {
+  border: 2px solid var(--yellow);
+  background:
+    radial-gradient(260px 180px at 100% 0%, rgba(235, 195, 91, 0.45), transparent 70%),
+    linear-gradient(160deg, #fff8e6, var(--surface) 70%);
+}
+.programme-preschool .mono-label { color: var(--help-ink); }
+.programme-badge {
+  position: absolute; top: -16px; right: 22px; display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--navy); color: var(--yellow);
+  font-family: var(--font-display); font-size: 1rem; box-shadow: var(--shadow);
+}
+.programme-badge svg { width: 18px; height: 18px; fill: var(--yellow); }
+.programme-preschool:hover { border-color: #ddb043; }
 .programme, .price-card { padding: 30px; display: flex; flex-direction: column; min-width: 0; }
 .programme:hover, .price-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
 .programme .mono-label, .price-card .mono-label { color: var(--accent-ink); }
@@ -565,6 +567,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .price span { display: block; font-family: var(--font-display); font-size: 2.4rem; color: var(--fg); line-height: 1.1; }
 .price em { font-style: normal; font-size: 0.9rem; }
 .price-card .btn { margin-top: auto; }
+@media (max-width: 1100px) { .programmes { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 860px) { .programmes, .prices { grid-template-columns: 1fr; } }
 
 /* Jadual 2027 (timetable): age dropdown, group toggle, list of days */
