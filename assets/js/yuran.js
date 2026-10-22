@@ -5,7 +5,7 @@
 // When a level has only one choice (Asas 3M), its subjects are ticked for the visitor.
 
 (() => {
-  const REGISTRATION = 300; // RM, paid once with the first month
+  const REGISTRATION = 300; // RM, yearly, paid with the first month
 
   // Subject names are the same in Bahasa Melayu and English, except 3M
   const SUBJECTS = {
@@ -36,25 +36,25 @@
     ms: {
       level: "Peringkat", subjects: "Subjek",
       range: (min, max) => `Pilih ${min} hingga ${max}`,
-      first: "Bayaran bulan pertama", monthly: "Yuran bulanan", perMonth: "/ bulan",
-      registration: "Pendaftaran (sekali sahaja)", fee: "Yuran bulanan",
+      first: "Bayaran bulan pertama", monthly: "Bulan Ke-2 & Seterusnya", perMonth: "/ bulan",
+      registration: "Pendaftaran (Tahunan)", fee: "Yuran bulanan",
       need: (min) => `Pilih sekurang-kurangnya ${min} subjek.`,
       book: "Join Free Trial Class",
       message: (level, subjects, first, fee) =>
         `Hai Eduvia, saya nak daftar kelas percubaan percuma.\n\nPeringkat: ${level}\nSubjek: ${subjects}\n` +
-        `Bayaran bulan pertama: RM${first}\nYuran bulanan: RM${fee}`,
+        `Bayaran bulan pertama: RM${first}\nBulan ke-2 & seterusnya: RM${fee}`,
       messageLevel: (level) => `Hai Eduvia, saya nak daftar kelas percubaan percuma untuk ${level}.`,
     },
     en: {
       level: "Level", subjects: "Subjects",
       range: (min, max) => `Choose ${min} to ${max}`,
-      first: "First month", monthly: "Monthly fee", perMonth: "/ month",
-      registration: "Registration (one-off)", fee: "Monthly fee",
+      first: "First month", monthly: "Month 2 Onwards", perMonth: "/ month",
+      registration: "Registration (Yearly)", fee: "Monthly fee",
       need: (min) => `Choose at least ${min} subjects.`,
       book: "Join Free Trial Class",
       message: (level, subjects, first, fee) =>
         `Hi Eduvia, I'd like to book a free trial class.\n\nLevel: ${level}\nSubjects: ${subjects}\n` +
-        `First month: RM${first}\nMonthly fee: RM${fee}`,
+        `First month: RM${first}\nMonth 2 onwards: RM${fee}`,
       messageLevel: (level) => `Hi Eduvia, I'd like to book a free trial class for ${level}.`,
     },
   };
