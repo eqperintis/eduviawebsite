@@ -82,7 +82,7 @@
           </h1>
           <p class="hero-lead" data-en="At Eduvia, Eco Grandeur, we help students with their studies based on the Ministry of Education (KPM) syllabus, KSSR and KSSM. We also help students with Reading, Writing and Arithmetic (3M).">Di Eduvia, Eco Grandeur, kami bantu pelajar dalam akademik berdasarkan silibus KPM (KSSR/KSSM). Kami juga bantu pelajar Membaca, Menulis, &amp; Mengira (3M).</p>
           <div class="hero-actions">
-            <a class="btn btn-arrow" href="#contact">
+            <a class="btn btn-arrow" href="#contact" data-contact="trial">
               <span>Join Free Trial Class</span>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
@@ -409,35 +409,18 @@
       </div>
     </section>
 
-    <!-- Fees -->
-    <!-- TODO: replace the [RM __] placeholders with the actual monthly fees. -->
+    <!-- Fees: the calculator is rendered by assets/js/yuran.js (the fees live there) -->
     <section class="section section-tight" id="fees">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow" data-en="Fees">Yuran</p>
-          <h2 class="display" data-en="Monthly fees">Yuran bulanan</h2>
-          <p class="body-lg" data-en="Contact us for the latest fees and class schedule.">Hubungi kami untuk maklumat yuran dan jadual kelas terkini.</p>
+          <p class="eyebrow" data-en="Fees 2027">Yuran 2027</p>
+          <h2 class="display" data-en="Fee Calculator">Kira Yuran</h2>
+          <p class="body-lg" data-en="Choose the level and subjects to see the first month's payment and the monthly fee.">Pilih peringkat dan subjek untuk lihat bayaran bulan pertama dan yuran bulanan.</p>
         </div>
-        <div class="prices">
-          <article class="price-card reveal">
-            <span class="mono-label" data-en="Standard 2 – 6">Darjah 2 – 6</span>
-            <h3 data-en="Primary">Sekolah Rendah</h3>
-            <p class="price"><span>[RM __]</span> <em data-en="/ month">/ bulan</em></p>
-            <a class="btn btn-glass btn-block" href="#contact" data-en="Ask about fees">Tanya tentang yuran</a>
-          </article>
-          <article class="price-card reveal">
-            <span class="mono-label" data-en="Form 1 – 3">Tingkatan 1 – 3</span>
-            <h3 data-en="Lower Secondary">Menengah Rendah</h3>
-            <p class="price"><span>[RM __]</span> <em data-en="/ month">/ bulan</em></p>
-            <a class="btn btn-glass btn-block" href="#contact" data-en="Ask about fees">Tanya tentang yuran</a>
-          </article>
-          <article class="price-card reveal">
-            <span class="mono-label" data-en="Form 4 – 5">Tingkatan 4 – 5</span>
-            <h3 data-en="Upper Secondary &amp; SPM">Menengah Atas &amp; SPM</h3>
-            <p class="price"><span>[RM __]</span> <em data-en="/ month">/ bulan</em></p>
-            <a class="btn btn-glass btn-block" href="#contact" data-en="Ask about fees">Tanya tentang yuran</a>
-          </article>
+        <div class="fee-calc reveal" id="fee-calc">
+          <noscript><p class="fc-empty">Sila hidupkan JavaScript untuk mengira yuran. / Please turn on JavaScript to use the fee calculator.</p></noscript>
         </div>
+        <p class="fee-extra" data-en="Asas 3M (Age 5 – Standard 1): contact us for the fees.">Asas 3M (5 Tahun – Darjah 1): hubungi kami untuk yuran.</p>
       </div>
     </section>
 
@@ -481,65 +464,30 @@
           <div class="contact-info">
             <p class="eyebrow" data-en="Contact">Hubungi kami</p>
             <h2 class="display" data-en="Let's talk about your child's needs">Mari bincang keperluan anak anda</h2>
-            <p class="body-lg" data-en="Fill in the form and we will get back to you on WhatsApp.">Isi borang ini dan kami akan menghubungi anda melalui WhatsApp.</p>
-            <dl class="contact-list">
-              <div>
-                <dt data-en="Address">Alamat</dt>
-                <dd>[Alamat pusat, Bandar, Negeri]</dd>
-              </div>
-              <div>
-                <dt data-en="Phone / WhatsApp">Telefon / WhatsApp</dt>
-                <dd>[+60 1X-XXX XXXX]</dd>
-              </div>
-              <div>
-                <dt data-en="Email">E-mel</dt>
-                <dd>[hello@eduvia.my]</dd>
-              </div>
-              <div>
-                <dt data-en="Opening hours">Waktu operasi</dt>
-                <dd>[Isnin – Jumaat ... · Sabtu – Ahad ...]</dd>
-              </div>
-            </dl>
+            <p class="body-lg" data-en="Message us on WhatsApp to ask a question or book a free trial class.">WhatsApp kami untuk bertanya atau daftar kelas percubaan percuma.</p>
+            <a class="btn btn-arrow contact-cta" href="#contact" data-contact="greeting">
+              <span data-en="Chat on WhatsApp">WhatsApp kami</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
           </div>
-
-          <form class="enquiry-form" id="enquiry-form" novalidate>
-            <div class="field">
-              <label for="parent-name" data-en="Your name">Nama anda</label>
-              <input id="parent-name" name="parentName" type="text" autocomplete="name" required>
+          <dl class="contact-list">
+            <div>
+              <dt data-en="Address">Alamat</dt>
+              <dd>[Alamat pusat, Bandar, Negeri]</dd>
             </div>
-            <div class="field">
-              <label for="student-name" data-en="Student's name">Nama pelajar</label>
-              <input id="student-name" name="studentName" type="text">
+            <div>
+              <dt data-en="Phone / WhatsApp">Telefon / WhatsApp</dt>
+              <dd>[+60 1X-XXX XXXX]</dd>
             </div>
-            <div class="field-row">
-              <div class="field">
-                <label for="level" data-en="Level">Peringkat</label>
-                <select id="level" name="level" required>
-                  <option value="" data-en="Choose a level">Pilih peringkat</option>
-                  <option value="prek" data-en="Age 5 – Standard 1 (3M)">5 Tahun – Darjah 1 (3M)</option>
-                  <option value="d2-3" data-en="Standard 2 – 3">Darjah 2 – 3</option>
-                  <option value="d4-6" data-en="Standard 4 – 6">Darjah 4 – 6</option>
-                  <option value="f1-3" data-en="Form 1 – 3">Tingkatan 1 – 3</option>
-                  <option value="f4-5" data-en="Form 4 – 5 (SPM)">Tingkatan 4 – 5 (SPM)</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="phone" data-en="Phone number">No. telefon</label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
-              </div>
+            <div>
+              <dt data-en="Email">E-mel</dt>
+              <dd>[hello@eduvia.my]</dd>
             </div>
-            <div class="field">
-              <label for="subjects-input" data-en="Subjects of interest">Subjek yang diminati</label>
-              <input id="subjects-input" name="subjects" type="text" placeholder="cth. Matematik, Sains" data-en-placeholder="e.g. Mathematics, Science">
+            <div>
+              <dt data-en="Opening hours">Waktu operasi</dt>
+              <dd>[Isnin – Jumaat ... · Sabtu – Ahad ...]</dd>
             </div>
-            <div class="field">
-              <label for="message" data-en="Message (optional)">Mesej (pilihan)</label>
-              <textarea id="message" name="message" rows="3"></textarea>
-            </div>
-            <p class="form-error" id="form-error" role="alert" hidden></p>
-            <button class="btn btn-block" type="submit" data-en="Send on WhatsApp">Hantar melalui WhatsApp</button>
-            <p class="form-note" data-en="This opens WhatsApp with your details filled in. Nothing is sent until you press send there.">Ini akan membuka WhatsApp dengan maklumat anda. Tiada apa yang dihantar sehingga anda tekan hantar di sana.</p>
-          </form>
+          </dl>
         </div>
       </div>
     </section>
@@ -564,11 +512,12 @@
     </div>
   </footer>
 
-  <a class="whatsapp-fab" id="whatsapp-fab" href="#contact" aria-label="Hubungi kami di WhatsApp" data-en-aria-label="Chat with us on WhatsApp">
+  <a class="whatsapp-fab" href="#contact" data-contact="greeting" aria-label="Hubungi kami di WhatsApp" data-en-aria-label="Chat with us on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>
   </a>
 
   <script src="assets/js/jadual.js" defer></script>
+  <script src="assets/js/yuran.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>

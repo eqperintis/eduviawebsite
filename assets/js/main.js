@@ -1,24 +1,35 @@
 // Eduvia
 
 // TODO: set this to the centre's WhatsApp number in international format,
-// digits only (e.g. "60123456789"). While it is empty, enquiries fall back to email.
+// digits only (e.g. "60123456789"). While it is empty, the buttons open an email instead.
 const WHATSAPP_NUMBER = "";
 const ENQUIRY_EMAIL = "hello@eduvia.my";
 
-// Text used by the script itself, per language
+// Messages filled in for the visitor, per language. Links with data-contact="greeting"
+// or data-contact="trial" open WhatsApp with that message.
 const STRINGS = {
   ms: {
-    formError: "Sila isi nama anda, peringkat pelajar dan nombor telefon.",
     greeting: "Hai Eduvia, saya ingin tahu lebih lanjut tentang kelas tuisyen.",
+    trial: "Hai Eduvia, saya nak daftar kelas percubaan percuma.",
     emailSubject: "Pertanyaan tentang kelas tuisyen",
-    labels: { parentName: "Nama", studentName: "Pelajar", level: "Peringkat", subjects: "Subjek", phone: "Telefon", message: "Mesej" },
   },
   en: {
-    formError: "Please fill in your name, the student's level and a phone number.",
     greeting: "Hi Eduvia, I would like to know more about your tuition classes.",
+    trial: "Hi Eduvia, I'd like to book a free trial class.",
     emailSubject: "Tuition class enquiry",
-    labels: { parentName: "Name", studentName: "Student", level: "Level", subjects: "Subjects", phone: "Phone", message: "Message" },
   },
+};
+
+// WhatsApp link with a message filled in (an email until WHATSAPP_NUMBER is set)
+function contactUrl(text) {
+  return WHATSAPP_NUMBER
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
+    : `mailto:${ENQUIRY_EMAIL}?subject=${encodeURIComponent(STRINGS[lang].emailSubject)}&body=${encodeURIComponent(text)}`;
+}
+
+// The timetable and the fee calculator build their buttons with this
+window.EduviaContact = {
+  link: (text) => `href="${contactUrl(text)}"${WHATSAPP_NUMBER ? ' target="_blank" rel="noopener"' : ""}`,
 };
 
 // ---------------------------------------------------------------------------
@@ -55,8 +66,9 @@ function setLanguage(next) {
   document.querySelectorAll(".lang-switch button").forEach((btn) => {
     btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
   });
-  updateWhatsAppButton();
+  updateContactLinks();
   window.EduviaJadual?.render(lang);
+  window.EduviaYuran?.render(lang);
   try { localStorage.setItem("eduvia-lang", lang); } catch (e) { /* storage unavailable */ }
 }
 
@@ -208,7 +220,7 @@ if (viewer && previews.length && typeof viewer.showModal === "function") {
 // ---------------------------------------------------------------------------
 // Soft spotlight that follows the pointer over cards
 
-const spotCards = document.querySelectorAll(".module, .programme, .price-card");
+const spotCards = document.querySelectorAll(".module, .programme");
 spotCards.forEach((card) => {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();
@@ -222,58 +234,14 @@ spotCards.forEach((card) => {
 });
 
 // ---------------------------------------------------------------------------
-// Floating WhatsApp button
+// WhatsApp links: the floating button, the hero and the contact section
 
-function updateWhatsAppButton() {
-  if (!WHATSAPP_NUMBER) return;
-  const fab = document.getElementById("whatsapp-fab");
-  fab.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(STRINGS[lang].greeting)}`;
-  fab.target = "_blank";
-  fab.rel = "noopener";
+function updateContactLinks() {
+  document.querySelectorAll("[data-contact]").forEach((link) => {
+    link.href = contactUrl(STRINGS[lang][link.dataset.contact]);
+    if (WHATSAPP_NUMBER) { link.target = "_blank"; link.rel = "noopener"; }
+  });
 }
-
-// ---------------------------------------------------------------------------
-// Enquiry form: builds a message and opens WhatsApp (or email)
-
-const form = document.getElementById("enquiry-form");
-const formError = document.getElementById("form-error");
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const t = STRINGS[lang];
-
-  const required = ["parentName", "level", "phone"];
-  let firstInvalid = null;
-  for (const name of required) {
-    const el = form.elements[name];
-    const invalid = !el.value.trim();
-    el.setAttribute("aria-invalid", String(invalid));
-    if (invalid && !firstInvalid) firstInvalid = el;
-  }
-
-  if (firstInvalid) {
-    formError.textContent = t.formError;
-    formError.hidden = false;
-    firstInvalid.focus();
-    return;
-  }
-  formError.hidden = true;
-
-  const data = Object.fromEntries(new FormData(form));
-  const levelSelect = form.elements.level;
-  data.level = levelSelect.options[levelSelect.selectedIndex].textContent;
-
-  const details = Object.keys(t.labels)
-    .filter((key) => data[key] && data[key].trim())
-    .map((key) => `${t.labels[key]}: ${data[key].trim()}`);
-  const text = [t.greeting, "", ...details].join("\n");
-
-  const url = WHATSAPP_NUMBER
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
-    : `mailto:${ENQUIRY_EMAIL}?subject=${encodeURIComponent(t.emailSubject)}&body=${encodeURIComponent(text)}`;
-
-  window.open(url, "_blank", "noopener");
-});
 
 // ---------------------------------------------------------------------------
 // Initial language: ?lang=en in the URL, then the visitor's last choice, else BM
