@@ -459,6 +459,28 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   display: grid; gap: 20px;
 }
 .jv-card h3 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+
+/* Kumpulan colours: A yellow, B blue (card tint, top bar, toggle) */
+.jv-card { position: relative; overflow: hidden; }
+.jv-card[data-group]::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; }
+.jv-card[data-group="A"] { border-color: rgba(235, 195, 91, 0.75); background: linear-gradient(180deg, var(--help-bg), var(--surface) 220px); }
+.jv-card[data-group="A"]::before { background: var(--yellow); }
+.jv-card[data-group="B"] { border-color: rgba(94, 182, 255, 0.75); background: linear-gradient(180deg, var(--ok-bg), var(--surface) 220px); }
+.jv-card[data-group="B"]::before { background: var(--blue); }
+.jv-card[data-group] .jv-dayblock { background: rgba(255, 255, 255, 0.7); }
+.jv-groups button[data-group="A"][aria-pressed="true"] { background: var(--yellow); color: var(--navy); }
+.jv-groups button[data-group="B"][aria-pressed="true"] { background: var(--blue); color: var(--navy); }
+
+/* Group descriptions (5 Tahun – Darjah 1 only) */
+.jv-notes { list-style: none; margin: -6px 0 0; padding: 0; display: grid; gap: 8px; }
+.jv-notes li {
+  padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
+  font-size: 0.92rem; color: var(--muted); opacity: 0.7;
+}
+.jv-notes b { color: var(--fg); margin-right: 4px; }
+.jv-notes li.is-current { opacity: 1; color: var(--text); }
+.jv-card[data-group="A"] .jv-notes li.is-current { border-color: var(--yellow); box-shadow: inset 4px 0 0 var(--yellow); }
+.jv-card[data-group="B"] .jv-notes li.is-current { border-color: var(--blue); box-shadow: inset 4px 0 0 var(--blue); }
 .jv-days { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
 .jv-dayblock { padding: 16px; border-radius: 18px; background: var(--bg-alt); border: 1px solid var(--line); min-width: 0; }
 .jv-dayblock h4 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--fg); }

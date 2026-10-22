@@ -16,26 +16,32 @@ const SUBJECTS = {
   acc:   { ms: "Accounting", en: "Accounting", color: "#c98a1e" },
 };
 
-// age: what parents pick in the dropdown
 // stage: "rendah" (preschool and primary) or "menengah" (secondary)
 // level: value of the matching option in the enquiry form's level dropdown
 const CLASSES = [
-  { id: "prek", age: { ms: "5 – 7 tahun", en: "Age 5 – 7" }, stage: "rendah", level: "prek",
+  { id: "prek", stage: "rendah", level: "prek",
     name: { ms: "5 Tahun – Darjah 1", en: "Age 5 – Standard 1" },
+    // Shown under the class name to help parents pick a group
+    notes: {
+      A: { ms: "Untuk pelajar yang baru bermula atau masih sangat lemah dalam 3M.",
+           en: "For students who are just starting out or still find 3M very difficult." },
+      B: { ms: "Untuk pelajar yang lemah hingga sederhana dalam 3M.",
+           en: "For students who are weak to average in 3M." },
+    },
     groups: {
       A: [["sat", "09:30", "11:30", "3m"]],
       B: [["sat", "09:30", "11:30", "3m"]],
     } },
-  { id: "d2", age: { ms: "8 tahun", en: "Age 8" }, stage: "rendah", level: "d2-3",
+  { id: "d2", stage: "rendah", level: "d2-3",
     name: { ms: "Darjah 2", en: "Standard 2" },
     groups: { "": [["fri", "20:00", "21:00", "math"], ["fri", "21:00", "22:00", "sci"]] } },
-  { id: "d3", age: { ms: "9 tahun", en: "Age 9" }, stage: "rendah", level: "d2-3",
+  { id: "d3", stage: "rendah", level: "d2-3",
     name: { ms: "Darjah 3", en: "Standard 3" },
     groups: { "": [
       ["mon", "20:00", "21:00", "bm"], ["mon", "21:00", "22:00", "eng"],
       ["fri", "20:00", "21:00", "sci"], ["fri", "21:00", "22:00", "math"],
     ] } },
-  { id: "d4", age: { ms: "10 tahun", en: "Age 10" }, stage: "rendah", level: "d4-6",
+  { id: "d4", stage: "rendah", level: "d4-6",
     name: { ms: "Darjah 4", en: "Standard 4" },
     groups: {
       A: [["tue", "20:00", "21:00", "math"], ["tue", "21:00", "22:00", "sci"],
@@ -43,7 +49,7 @@ const CLASSES = [
       B: [["mon", "20:00", "21:00", "eng"], ["mon", "21:00", "22:00", "bm"],
           ["sat", "09:30", "10:30", "math"], ["sat", "10:30", "11:30", "sci"]],
     } },
-  { id: "d5", age: { ms: "11 tahun", en: "Age 11" }, stage: "rendah", level: "d4-6",
+  { id: "d5", stage: "rendah", level: "d4-6",
     name: { ms: "Darjah 5", en: "Standard 5" },
     groups: {
       A: [["tue", "20:00", "21:00", "sci"], ["tue", "21:00", "22:00", "math"],
@@ -51,7 +57,7 @@ const CLASSES = [
       B: [["mon", "20:00", "21:00", "sci"], ["mon", "21:00", "22:00", "math"],
           ["sat", "11:30", "12:30", "eng"], ["sat", "12:30", "13:30", "bm"]],
     } },
-  { id: "d6", age: { ms: "12 tahun", en: "Age 12" }, stage: "rendah", level: "d4-6",
+  { id: "d6", stage: "rendah", level: "d4-6",
     name: { ms: "Darjah 6", en: "Standard 6" },
     groups: {
       A: [["mon", "20:00", "21:00", "math"], ["mon", "21:00", "22:00", "sci"],
@@ -59,19 +65,19 @@ const CLASSES = [
       B: [["thu", "20:00", "21:00", "bm"], ["thu", "21:00", "22:00", "eng"],
           ["sat", "09:30", "10:30", "math"], ["sat", "10:30", "11:30", "sci"]],
     } },
-  { id: "t1", age: { ms: "13 tahun", en: "Age 13" }, stage: "menengah", level: "f1-3",
+  { id: "t1", stage: "menengah", level: "f1-3",
     name: { ms: "Tingkatan 1", en: "Form 1" },
     groups: { "": [
       ["thu", "20:00", "21:00", "eng"], ["thu", "21:00", "22:00", "bm"],
       ["sat", "11:30", "12:30", "math"], ["sat", "12:30", "13:30", "sci"],
     ] } },
-  { id: "t2", age: { ms: "14 tahun", en: "Age 14" }, stage: "menengah", level: "f1-3",
+  { id: "t2", stage: "menengah", level: "f1-3",
     name: { ms: "Tingkatan 2", en: "Form 2" },
     groups: { "": [
       ["wed", "20:00", "21:00", "math"], ["wed", "20:00", "21:00", "sej"], ["wed", "21:00", "22:00", "sci"],
       ["fri", "20:00", "21:00", "bm"], ["fri", "21:00", "22:00", "eng"],
     ] } },
-  { id: "t3", age: { ms: "15 tahun", en: "Age 15" }, stage: "menengah", level: "f1-3",
+  { id: "t3", stage: "menengah", level: "f1-3",
     name: { ms: "Tingkatan 3", en: "Form 3" },
     groups: {
       A: [["wed", "20:00", "21:00", "sci"], ["wed", "21:00", "22:00", "math"], ["wed", "21:00", "22:00", "sej"],
@@ -80,7 +86,7 @@ const CLASSES = [
           ["fri", "20:00", "21:00", "eng"], ["fri", "21:00", "22:00", "bm"],
           ["sat", "11:30", "12:30", "sci"], ["sat", "12:30", "13:30", "math"]],
     } },
-  { id: "t4", age: { ms: "16 tahun", en: "Age 16" }, stage: "menengah", level: "f4-5",
+  { id: "t4", stage: "menengah", level: "f4-5",
     name: { ms: "Tingkatan 4", en: "Form 4" },
     groups: {
       A: [["tue", "20:00", "21:15", "bm"], ["tue", "21:15", "22:30", "eng"],
@@ -91,7 +97,7 @@ const CLASSES = [
           ["wed", "17:00", "18:15", "math"], ["wed", "18:15", "19:30", "sci"], ["wed", "20:00", "21:15", "sej"],
           ["thu", "17:00", "18:15", "addm"], ["thu", "18:15", "19:30", "acc"]],
     } },
-  { id: "t5", age: { ms: "17 tahun", en: "Age 17" }, stage: "menengah", level: "f4-5",
+  { id: "t5", stage: "menengah", level: "f4-5",
     name: { ms: "Tingkatan 5", en: "Form 5" },
     groups: {
       A: [["tue", "20:00", "21:15", "eng"], ["tue", "21:15", "22:30", "bm"],
@@ -114,11 +120,11 @@ const DAY_NAMES = {
 
 const T = {
   ms: {
-    pick: "Umur anak", group: "Kumpulan", book: "Join Free Trial Class", sameTime: "Masa yang sama",
+    pick: "Umur Pelajar", group: "Kumpulan", book: "Join Free Trial Class", sameTime: "Masa yang sama",
     message: (c) => `Saya berminat dengan kelas ${c}.`,
   },
   en: {
-    pick: "Child's age", group: "Group", book: "Join Free Trial Class", sameTime: "Same time",
+    pick: "Student's Age", group: "Group", book: "Join Free Trial Class", sameTime: "Same time",
     message: (c) => `I'm interested in the ${c} class.`,
   },
 };
@@ -163,7 +169,7 @@ function render() {
   const sessions = cls.groups[state.group];
 
   const options = CLASSES.map((c) =>
-    `<option value="${c.id}"${c.id === cls.id ? " selected" : ""}>${c.age[lang]} · ${c.name[lang]}</option>`).join("");
+    `<option value="${c.id}"${c.id === cls.id ? " selected" : ""}>${c.name[lang]}</option>`).join("");
 
   const days = DAYS.filter((d) => sessions.some((s) => s[0] === d)).map((d) => {
     const rows = sessions.filter((s) => s[0] === d).sort((a, b) => toMin(a[1]) - toMin(b[1]));
@@ -191,8 +197,11 @@ function render() {
       </div>` : ""}
     </div>
 
-    <article class="jv-card" aria-live="polite">
+    <article class="jv-card"${groups.length > 1 ? ` data-group="${state.group}"` : ""} aria-live="polite">
       <h3>${className(cls, groups.length > 1 ? state.group : "", lang)}</h3>
+      ${cls.notes ? `<ul class="jv-notes">${groups.map((g) => `
+        <li${g === state.group ? ' class="is-current"' : ""}><b>${t.group} ${g}</b> ${cls.notes[g][lang]}</li>`).join("")}
+      </ul>` : ""}
       <div class="jv-days">${days}</div>
       <a class="btn btn-arrow jv-book" href="#contact" data-book>
         <span>${t.book}</span>
