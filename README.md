@@ -65,7 +65,7 @@ The fee calculator reads the fees at the top of `assets/js/yuran.js`: `REGISTRAT
 fees: { 2: 200, 3: 260, 4: 300 },   // 2 subjects RM200, 3 subjects RM260, ...
 ```
 
-The first month is the registration fee plus the monthly fee. The FAQ answer on fees in `index.html` quotes the registration fees and the lowest monthly fee, so update it too when they change. Asas 3M is a single class (`fees: { 1: 250 }`), so the calculator ticks it automatically.
+The first month is the registration fee plus the monthly fee. The FAQ answer on fees in `index.html` quotes the lowest monthly fee (RM200), so update it too if that changes. Asas 3M is a single class (`fees: { 1: 250 }`), so the calculator ticks it automatically.
 
 ## Before going live
 
