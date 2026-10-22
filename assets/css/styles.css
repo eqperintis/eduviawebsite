@@ -625,26 +625,25 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 @media (max-width: 860px) { .fee-calc { grid-template-columns: 1fr; max-width: 560px; } }
 @media (max-width: 560px) { .fc-levels { grid-template-columns: repeat(2, 1fr); } }
 
-/* Registration gifts: the tote bag and tumbler float on their own, with a soft shadow below */
-.gifts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; max-width: 860px; margin: 0 auto; }
-.gift { display: grid; justify-items: center; gap: 30px; min-width: 0; text-align: center; }
-.gift-media { position: relative; height: clamp(260px, 32vw, 360px); display: flex; align-items: center; justify-content: center; }
-.gift-media img {
+/* Registration gifts: the tote bag and tumbler float side by side, leaning away from each other
+   (the images are tilted to mirror one another), and bob together over a soft shadow */
+.gifts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; max-width: 820px; margin: 0 auto; }
+.gift { --tilt: -1; position: relative; min-width: 0; height: clamp(200px, 36vw, 360px); display: flex; align-items: center; justify-content: center; }
+.gift + .gift { --tilt: 1; }
+.gift img {
   position: relative; z-index: 1; width: auto; height: auto; max-width: 100%; max-height: 100%;
   filter: drop-shadow(0 18px 20px rgba(18, 25, 95, 0.16));
   animation: gift-float 4s ease-in-out infinite alternate;
 }
-.gift-media::after {
-  content: ""; position: absolute; left: 50%; bottom: -18px; width: 62%; height: 22px;
+.gift::after {
+  content: ""; position: absolute; left: 50%; bottom: -22px; width: 58%; height: 22px;
   border-radius: 50%; background: radial-gradient(closest-side, rgba(18, 25, 95, 0.2), transparent);
   transform: translateX(-50%); animation: gift-shadow 4s ease-in-out infinite alternate;
 }
-.gift:nth-child(2) .gift-media img, .gift:nth-child(2) .gift-media::after { animation-delay: -2s; }
-@keyframes gift-float { from { transform: translateY(0) rotate(-1deg); } to { transform: translateY(-14px) rotate(1.5deg); } }
-@keyframes gift-shadow { from { opacity: 1; transform: translateX(-50%) scale(1); } to { opacity: 0.55; transform: translateX(-50%) scale(0.82); } }
-.gift h3 { margin: 0; font-size: 1.35rem; }
-.gifts-cta { margin-top: 48px; text-align: center; }
-@media (max-width: 640px) { .gifts { grid-template-columns: 1fr; gap: 56px; } }
+@keyframes gift-float { to { transform: translateY(-14px) rotate(calc(var(--tilt) * 1.5deg)); } }
+@keyframes gift-shadow { to { opacity: 0.55; transform: translateX(-50%) scale(0.82); } }
+.gifts-cta { margin-top: 56px; text-align: center; }
+@media (max-width: 640px) { .gifts { gap: 16px; } }
 
 /* Jadual 2027 (timetable): age dropdown, group toggle, list of days */
 .jadual { max-width: 860px; margin: 0 auto; }
