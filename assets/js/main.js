@@ -172,6 +172,40 @@ if (demo) {
 }
 
 // ---------------------------------------------------------------------------
+// Module page viewer: the previews open the full page, with previous / next
+
+const viewer = document.getElementById("page-viewer");
+const previews = [...document.querySelectorAll(".module-preview")];
+if (viewer && previews.length && typeof viewer.showModal === "function") {
+  const img = document.getElementById("viewer-img");
+  const title = document.getElementById("viewer-title");
+  const count = document.getElementById("viewer-count");
+  let index = 0;
+
+  const show = (i) => {
+    index = (i + previews.length) % previews.length;
+    const btn = previews[index];
+    const card = btn.closest(".module");
+    img.src = btn.dataset.full;
+    img.alt = btn.querySelector("img").alt;
+    title.textContent = card.querySelector("h3").textContent;
+    count.textContent = `${index + 1} / ${previews.length}`;
+    viewer.querySelector(".viewer-stage").scrollTop = 0;
+  };
+
+  previews.forEach((btn, i) => btn.addEventListener("click", () => { show(i); viewer.showModal(); }));
+  viewer.addEventListener("click", (event) => {
+    if (event.target === viewer || event.target.closest("[data-close]")) viewer.close();
+    const step = event.target.closest("[data-step]");
+    if (step) show(index + Number(step.dataset.step));
+  });
+  viewer.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") show(index + 1);
+    if (event.key === "ArrowLeft") show(index - 1);
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Soft spotlight that follows the pointer over cards
 
 const spotCards = document.querySelectorAll(".module, .programme, .price-card");

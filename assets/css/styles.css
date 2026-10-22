@@ -488,17 +488,57 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   .demo-step-text strong { font-size: 1.2rem; }
 }
 
-/* Modules */
-.modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.module { padding: 26px; min-width: 0; }
-.module svg {
-  width: 48px; height: 48px; padding: 11px; border-radius: 14px; background: var(--ok-bg);
-  fill: none; stroke: var(--navy); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+/* Modules: page previews from the real module, opening a full-page viewer */
+.modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.module { padding: 0; overflow: hidden; min-width: 0; display: flex; flex-direction: column; }
+.module-preview {
+  position: relative; display: block; width: 100%; padding: 18px 18px 0; border: 0; cursor: zoom-in;
+  background: linear-gradient(180deg, var(--ok-bg), var(--bg-alt)); overflow: hidden;
 }
-.module h3 { font-size: 1.3rem; margin: 20px 0 8px; }
+.module-preview img {
+  display: block; width: 100%; height: 230px; object-fit: cover; object-position: top center;
+  border-radius: 10px 10px 0 0; background: var(--white);
+  box-shadow: 0 -2px 0 rgba(18, 25, 95, 0.04), 0 12px 30px -12px rgba(18, 25, 95, 0.35);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.module-preview:hover img, .module-preview:focus-visible img { transform: translateY(-6px) scale(1.02); }
+.module-zoom {
+  position: absolute; right: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; border-radius: 999px; background: var(--navy); color: var(--white);
+  font-size: 0.8rem; font-weight: 600; box-shadow: var(--shadow-lg);
+}
+.module-zoom svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+.module-body { padding: 22px 24px 26px; border-top: 1px solid var(--line); }
+.module-ref { display: block; color: var(--accent-ink); margin-bottom: 8px; }
+.module h3 { font-size: 1.3rem; margin: 0 0 8px; }
 .module p { color: var(--muted); font-size: 0.95rem; margin: 0; }
-@media (max-width: 760px) { .modules { grid-template-columns: 1fr; } }
+.modules-note { margin: 24px 0 0; text-align: center; font-family: var(--font-mono); font-size: 0.74rem; color: var(--faint); }
+@media (max-width: 900px) { .modules { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; } }
 
+/* Full-page viewer */
+.page-viewer {
+  width: min(760px, 100vw - 24px); max-height: calc(100vh - 24px); padding: 0; border: 0; border-radius: 20px;
+  background: var(--white); color: var(--text); box-shadow: var(--shadow-lg); overflow: hidden;
+}
+.page-viewer::backdrop { background: rgba(12, 17, 80, 0.72); backdrop-filter: blur(4px); }
+.page-viewer[open] { display: flex; flex-direction: column; animation: pane-in 0.3s ease both; }
+.viewer-bar { display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 20px; border-bottom: 1px solid var(--line); }
+.viewer-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; color: var(--fg); }
+.viewer-count { white-space: nowrap; }
+@media (max-width: 560px) {
+  .viewer-bar { gap: 6px; padding: 10px 10px 10px 14px; }
+  .viewer-title { font-size: 1rem; }
+  .viewer-btn { width: 34px; height: 34px; }
+  .viewer-stage { padding: 8px; }
+}
+.viewer-btn {
+  width: 38px; height: 38px; border: 0; border-radius: 50%; cursor: pointer; flex: none;
+  background: var(--surface-2); color: var(--fg); font-size: 1.4rem; line-height: 1;
+}
+.viewer-btn:hover:not(:disabled) { background: var(--navy); color: var(--white); }
+.viewer-btn:disabled { opacity: 0.35; cursor: default; }
+.viewer-stage { min-height: 0; flex: 1; overflow: auto; background: var(--bg-alt); padding: 16px; }
+.viewer-img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: var(--shadow); background: var(--white); }
 /* Founder (navy band) */
 .founder-section { overflow: hidden; }
 .founder-section::before {

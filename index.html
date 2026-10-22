@@ -290,21 +290,69 @@
         </div>
         <div class="modules">
           <article class="module reveal">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M8 8h6M8 12h4"/></svg>
-            <h3 data-en="Clear notes">Nota yang jelas</h3>
-            <p data-en="Key ideas explained simply, so students can revise on their own.">Idea utama diterangkan dengan mudah, supaya pelajar boleh mengulang kaji sendiri.</p>
+            <button type="button" class="module-preview" data-page="0" data-full="assets/img/modul/nota.webp"
+                    aria-label="Lihat halaman: Nota yang jelas" data-en-aria-label="View page: Clear notes">
+              <img src="assets/img/modul/nota-preview.webp" width="720" height="509" loading="lazy"
+                   alt="Halaman nota Sains Tingkatan 3 tentang sistem saraf manusia, dengan rajah dan kotak INGAT!" data-en-alt="A Science Form 3 notes page on the human nervous system, with diagrams and a key-points box">
+              <span class="module-zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
+                <span data-en="View page">Lihat halaman</span>
+              </span>
+            </button>
+            <div class="module-body">
+              <span class="module-ref mono-label" data-en="Chapter 1 · Human Nervous System">Bab 1 · Sistem Saraf Manusia</span>
+              <h3 data-en="Clear notes">Nota yang jelas</h3>
+              <p data-en="Key ideas explained simply, so students can revise on their own.">Idea utama diterangkan dengan mudah, supaya pelajar boleh mengulang kaji sendiri.</p>
+            </div>
           </article>
           <article class="module reveal">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h6M17 15l2 2 3-4"/></svg>
-            <h3 data-en="Worked examples">Contoh jalan kerja</h3>
-            <p data-en="Step-by-step solutions that show how to reach the answer, not just the answer.">Penyelesaian langkah demi langkah yang menunjukkan cara mendapat jawapan, bukan jawapan sahaja.</p>
+            <button type="button" class="module-preview" data-page="1" data-full="assets/img/modul/contoh.webp"
+                    aria-label="Lihat halaman: Contoh jalan kerja" data-en-aria-label="View page: Worked examples">
+              <img src="assets/img/modul/contoh-preview.webp" width="720" height="489" loading="lazy"
+                   alt="Halaman Sains Tingkatan 3 tentang tenaga kinetik, dengan contoh masalah numerikal yang diselesaikan langkah demi langkah" data-en-alt="A Science Form 3 page on kinetic energy, with numerical examples solved step by step">
+              <span class="module-zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
+                <span data-en="View page">Lihat halaman</span>
+              </span>
+            </button>
+            <div class="module-body">
+              <span class="module-ref mono-label" data-en="Chapter 7 · Kinetic Energy">Bab 7 · Tenaga Kinetik</span>
+              <h3 data-en="Worked examples">Contoh jalan kerja</h3>
+              <p data-en="Step-by-step solutions that show how to reach the answer, not just the answer.">Penyelesaian langkah demi langkah yang menunjukkan cara mendapat jawapan, bukan jawapan sahaja.</p>
+            </div>
           </article>
           <article class="module reveal">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h8v8H3zM13 11h8v8h-8zM7 13v3a2 2 0 0 0 2 2h2M17 11V8a2 2 0 0 0-2-2h-2"/></svg>
-            <h3 data-en="Bilingual practice">Latihan dwibahasa</h3>
-            <p data-en="Exercises in Bahasa Melayu and English, so language doesn't get in the way of understanding.">Latihan dalam Bahasa Melayu dan Bahasa Inggeris, supaya bahasa tidak menghalang kefahaman.</p>
+            <button type="button" class="module-preview" data-page="2" data-full="assets/img/modul/latihan.webp"
+                    aria-label="Lihat halaman: Latihan dwibahasa" data-en-aria-label="View page: Bilingual practice">
+              <img src="assets/img/modul/latihan-preview.webp" width="720" height="509" loading="lazy"
+                   alt="Halaman latihan Sains Tingkatan 3 dengan soalan dalam Bahasa Melayu dan Bahasa Inggeris" data-en-alt="A Science Form 3 exercise page with every question in Bahasa Melayu and English">
+              <span class="module-zoom" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14ZM21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>
+                <span data-en="View page">Lihat halaman</span>
+              </span>
+            </button>
+            <div class="module-body">
+              <span class="module-ref mono-label" data-en="Exercise 1.1 · Human Nervous System">Latihan 1.1 · Sistem Saraf Manusia</span>
+              <h3 data-en="Bilingual practice">Latihan dwibahasa</h3>
+              <p data-en="Exercises in Bahasa Melayu and English, so language doesn't get in the way of understanding.">Latihan dalam Bahasa Melayu dan Bahasa Inggeris, supaya bahasa tidak menghalang kefahaman.</p>
+            </div>
           </article>
         </div>
+        <p class="modules-note" data-en="Sample pages from the Eduvia Science Form 3 module.">Contoh halaman daripada modul Sains Tingkatan 3 Eduvia.</p>
+
+        <!-- Full-page viewer for the module previews -->
+        <dialog class="page-viewer" id="page-viewer" aria-label="Halaman modul" data-en-aria-label="Module page">
+          <div class="viewer-bar">
+            <strong class="viewer-title" id="viewer-title"></strong>
+            <span class="viewer-count mono-label" id="viewer-count"></span>
+            <button type="button" class="viewer-btn" data-step="-1" aria-label="Halaman sebelum" data-en-aria-label="Previous page">‹</button>
+            <button type="button" class="viewer-btn" data-step="1" aria-label="Halaman seterusnya" data-en-aria-label="Next page">›</button>
+            <button type="button" class="viewer-btn" data-close aria-label="Tutup" data-en-aria-label="Close">×</button>
+          </div>
+          <div class="viewer-stage">
+            <img class="viewer-img" id="viewer-img" alt="" width="1200" height="1696">
+          </div>
+        </dialog>
       </div>
     </section>
 
