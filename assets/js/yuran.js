@@ -21,7 +21,7 @@
   const LEVELS = [
     { id: "asas-3m", name: { ms: "Asas 3M", en: "3M Foundations" },
       subjects: ["3m"],
-      fees: { 1: 250 }, registration: 100 },
+      fees: { 1: 250 }, registration: 150 },
     { id: "rendah", name: { ms: "Darjah 2 – 6", en: "Standard 2 – 6" },
       subjects: ["bm", "eng", "math", "sci"],
       fees: { 2: 200, 3: 260, 4: 300 } },
