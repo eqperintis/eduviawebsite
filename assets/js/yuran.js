@@ -5,7 +5,8 @@
 // When a level has only one choice (Asas 3M), its subjects are ticked for the visitor.
 
 (() => {
-  const REGISTRATION = 300; // RM, yearly, paid with the first month
+  // RM, yearly, paid with the first month; a level can set its own `registration`
+  const REGISTRATION = 300;
 
   // Subject names are the same in Bahasa Melayu and English, except 3M
   const SUBJECTS = {
@@ -20,7 +21,7 @@
   const LEVELS = [
     { id: "asas-3m", name: { ms: "Asas 3M", en: "3M Foundations" },
       subjects: ["3m"],
-      fees: { 1: 250 } },
+      fees: { 1: 250 }, registration: 100 },
     { id: "rendah", name: { ms: "Darjah 2 – 6", en: "Standard 2 – 6" },
       subjects: ["bm", "eng", "math", "sci"],
       fees: { 2: 200, 3: 260, 4: 300 } },
@@ -78,7 +79,8 @@
     const fixed = level.subjects.length === min; // nothing to choose: all subjects are ticked
     const picked = fixed ? level.subjects : level.subjects.filter((s) => state.picked.has(s));
     const fee = level.fees[picked.length]; // undefined until enough subjects are picked
-    const first = fee && fee + REGISTRATION;
+    const registration = level.registration ?? REGISTRATION;
+    const first = fee && fee + registration;
 
     const message = fee
       ? t.message(level.name[lang], picked.map((s) => subjectName(s, lang)).join(", "), first, fee)
@@ -107,7 +109,7 @@
           <span class="mono-label">${t.first}</span>
           <p class="fc-amount">${fee ? `RM${first}` : "RM —"}</p>
           ${fee ? `<dl class="fc-breakdown">
-            <div><dt>${t.registration}</dt><dd>RM${REGISTRATION}</dd></div>
+            <div><dt>${t.registration}</dt><dd>RM${registration}</dd></div>
             <div><dt>${t.fee}</dt><dd>RM${fee}</dd></div>
           </dl>` : `<p class="fc-note">${t.need(min)}</p>`}
         </div>

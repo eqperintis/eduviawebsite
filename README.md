@@ -59,7 +59,7 @@ Days are `mon tue wed thu fri sat sun`; subjects are the keys in `SUBJECTS` (`3m
 
 ## Fees (Yuran 2027)
 
-The fee calculator reads the fees at the top of `assets/js/yuran.js`: `REGISTRATION` (yearly, paid with the first month) and, for each level, the subjects on offer and the monthly fee by number of subjects:
+The fee calculator reads the fees at the top of `assets/js/yuran.js`: `REGISTRATION` (yearly, paid with the first month; Asas 3M sets its own `registration: 100`) and, for each level, the subjects on offer and the monthly fee by number of subjects:
 
 ```js
 fees: { 2: 200, 3: 260, 4: 300 },   // 2 subjects RM200, 3 subjects RM260, ...
