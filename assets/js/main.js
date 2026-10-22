@@ -33,6 +33,7 @@ const TRANSLATED = [
   ["data-en", null],
   ["data-en-placeholder", "placeholder"],
   ["data-en-aria-label", "aria-label"],
+  ["data-en-alt", "alt"],
 ];
 
 function setLanguage(next) {

@@ -206,7 +206,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 
 /* ---------- Hero ---------- */
 
-.hero { position: relative; overflow: hidden; padding: calc(var(--nav-top) + 120px) 0 96px; text-align: center; }
+.hero { position: relative; overflow: hidden; padding: calc(var(--nav-top) + 120px) 0 120px; text-align: center; }
 .hero-bg {
   position: absolute; inset: 0; pointer-events: none;
   background-image:
@@ -242,56 +242,67 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .hero-lead { max-width: 40rem; margin: 26px auto 0; font-size: 1.15rem; color: var(--muted); }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 34px; }
 
-/* Sample dashboard */
-.dash {
-  position: relative; max-width: 980px; margin: 72px auto 0; text-align: left; border-radius: 22px;
-  background: var(--surface); box-shadow: var(--shadow-lg);
+/* Hero photo with floating sample report */
+.hero-visual { position: relative; max-width: 1120px; margin: 64px auto 0; text-align: left; }
+.hero-photo {
+  width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 32%;
+  border-radius: 28px; box-shadow: var(--shadow-lg);
 }
+
+.dash, .float-card {
+  position: absolute; z-index: 1; background: var(--surface); border-radius: 20px; box-shadow: var(--shadow-lg);
+  animation: bob 6s ease-in-out infinite alternate;
+}
+@keyframes bob { to { transform: translateY(-8px); } }
+
+.dash { right: -28px; bottom: -48px; width: min(430px, 46%); }
 .dash::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
-  background: linear-gradient(140deg, rgba(94, 182, 255, 0.7), var(--line) 35%, var(--line) 65%, rgba(235, 195, 91, 0.8));
+  background: linear-gradient(140deg, rgba(94, 182, 255, 0.8), var(--line) 35%, var(--line) 65%, rgba(235, 195, 91, 0.9));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
 }
-.dash-bar { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.dash-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
 .dash-dots { display: flex; gap: 6px; }
-.dash-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
-.dash-title { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+.dash-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
+.dash-title { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
 .tag {
-  margin-left: auto; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-left: auto; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
   padding: 4px 10px; border-radius: 999px; color: var(--help-ink); background: var(--help-bg);
 }
-.dash-body { display: grid; grid-template-columns: 1.45fr 1fr; gap: 16px; padding: 18px; }
-.dash-panel { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 16px; padding: 20px; min-width: 0; }
-.dash-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.dash-panel { padding: 16px 18px 10px; min-width: 0; }
+.dash-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 6px; }
 .dash-head > .mono-label { white-space: nowrap; }
-.dash-head strong { display: block; margin-top: 4px; font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; color: var(--fg); }
+.dash-head strong { display: block; margin-top: 4px; font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--fg); }
 
 .skills { list-style: none; margin: 0; padding: 0; }
-.skills li { display: grid; grid-template-columns: 9.5rem 1fr auto; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
-.skill-name { font-size: 0.92rem; color: var(--fg); }
-.skill-track { height: 8px; border-radius: 99px; background: var(--track); overflow: hidden; }
+.skills li { display: grid; grid-template-columns: 7.6rem 1fr auto; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.skill-name { font-size: 0.88rem; color: var(--fg); }
+.skill-track { height: 7px; border-radius: 99px; background: var(--track); overflow: hidden; }
 .skill-fill { display: block; height: 100%; width: var(--w); border-radius: inherit; background: linear-gradient(90deg, #8ccbff, var(--blue)); animation: grow 1.4s 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .skill-fill.is-low { background: linear-gradient(90deg, #f3d891, var(--yellow)); }
 @keyframes grow { from { width: 0; } }
-.skill-state { font-family: var(--font-mono); font-size: 0.7rem; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.skill-state { font-family: var(--font-mono); font-size: 0.66rem; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
 .skill-state.ok { color: var(--ok-ink); background: var(--ok-bg); }
 .skill-state.help { color: var(--help-ink); background: var(--help-bg); }
 
-.dash-next ol { list-style: none; margin: 14px 0 0; padding: 0; counter-reset: next; display: grid; gap: 12px; }
-.dash-next li { position: relative; padding-left: 34px; font-size: 0.93rem; color: var(--fg); counter-increment: next; }
-.dash-next li::before {
-  content: counter(next); position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 7px;
-  display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.72rem; background: var(--surface); border: 1px solid var(--line-strong);
-}
-.dash-note { display: flex; align-items: center; gap: 8px; margin: 18px 0 0; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ok-ink); }
+.float-card { left: -28px; bottom: 40px; width: 270px; padding: 16px 18px; border: 1px solid var(--line); display: grid; gap: 4px; animation-delay: -3s; }
+.float-card strong { font-family: var(--font-display); font-weight: 400; font-size: 1.12rem; line-height: 1.25; color: var(--fg); }
+.dash-note { display: flex; align-items: center; gap: 8px; margin: 6px 0 0; font-family: var(--font-mono); font-size: 0.7rem; color: var(--ok-ink); }
 .dash-note::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
 
+@media (max-width: 1200px) {
+  .dash { right: -8px; }
+  .float-card { left: -8px; }
+}
 @media (max-width: 760px) {
-  .dash-body { grid-template-columns: 1fr; padding: 12px; }
+  .hero-visual { margin-top: 48px; }
+  .hero-photo { aspect-ratio: 4 / 3; border-radius: 22px; }
+  .dash, .float-card { position: relative; right: auto; left: auto; bottom: auto; width: calc(100% - 24px); margin-inline: auto; animation: none; }
+  .dash { margin-top: -64px; }
+  .float-card { margin-top: 12px; }
   .skills li { grid-template-columns: 1fr auto; row-gap: 8px; }
   .skill-track { grid-column: 1 / -1; grid-row: 2; }
-  .dash-head strong { font-size: 1.15rem; }
 }
 
 /* ---------- Levels marquee ---------- */
