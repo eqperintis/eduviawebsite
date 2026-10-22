@@ -64,74 +64,54 @@
   <main id="main">
     <!-- Hero -->
     <section class="hero" id="top">
-      <div class="hero-bg" aria-hidden="true">
-        <span class="orb orb-blue"></span>
-        <span class="orb orb-yellow"></span>
-      </div>
+      <div class="hero-bg" aria-hidden="true"></div>
       <div class="container hero-inner">
-        <p class="pill">
-          <span class="pill-dot" aria-hidden="true"></span>
-          <span data-en="Tuition centre · Standard 2 to SPM">Pusat tuisyen · Tahun 2 hingga SPM</span>
-        </p>
-        <h1 class="hero-title">
-          <span data-en="Every child can move forward,">Setiap anak boleh maju,</span>
-          <span class="mark" data-en="step by step.">langkah demi langkah.</span>
-        </h1>
-        <p class="hero-lead" data-en="At Eduvia, we identify what each student needs, help them learn, then track their progress. So children feel brave enough to try, and parents know clearly how to help.">Di Eduvia, kami kenal pasti keperluan setiap pelajar, bantu mereka belajar, kemudian pantau perkembangan mereka. Supaya anak berani mencuba, dan ibu bapa tahu dengan jelas bagaimana untuk membantu.</p>
-        <div class="hero-actions">
-          <a class="btn" href="#contact" data-en="Contact us">Hubungi kami</a>
-          <a class="btn btn-glass" href="#learning-dna" data-en="See how Learning DNA works">Lihat cara Learning DNA berfungsi</a>
+        <div class="hero-copy">
+          <p class="pill">
+            <span class="pill-dot" aria-hidden="true"></span>
+            <span data-en="Tuition centre · Standard 2 to SPM">Pusat tuisyen · Tahun 2 hingga SPM</span>
+          </p>
+          <h1 class="hero-title">
+            <span data-en="Every child can move forward,">Setiap anak boleh maju,</span>
+            <span class="mark" data-en="step by step.">langkah demi langkah.</span>
+          </h1>
+          <p class="hero-lead" data-en="At Eduvia, we identify what each student needs, help them learn, then track their progress. So children feel brave enough to try, and parents know clearly how to help.">Di Eduvia, kami kenal pasti keperluan setiap pelajar, bantu mereka belajar, kemudian pantau perkembangan mereka. Supaya anak berani mencuba, dan ibu bapa tahu dengan jelas bagaimana untuk membantu.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#contact" data-en="Contact us">Hubungi kami</a>
+            <a class="btn btn-glass" href="#learning-dna" data-en="How Learning DNA works">Cara Learning DNA berfungsi</a>
+          </div>
+          <ul class="hero-points">
+            <li data-en="Standard 2 to Form 5 (SPM)">Tahun 2 hingga Tingkatan 5 (SPM)</li>
+            <li data-en="Diagnostics &amp; monthly tests">Diagnostik &amp; ujian bulanan</li>
+            <li data-en="Bilingual modules">Modul dwibahasa</li>
+          </ul>
         </div>
 
-        <!-- Hero photo with the sample Learning DNA report floating over it -->
+        <!-- Photo in an arch frame, with shapes from the logo and one sample report card -->
         <div class="hero-visual">
-          <img class="hero-photo"
-               src="assets/img/hero-students-1536.webp"
-               srcset="assets/img/hero-students-900.webp 900w, assets/img/hero-students-1536.webp 1536w"
-               sizes="(max-width: 1160px) calc(100vw - 32px), 1120px"
-               width="1536" height="1024" fetchpriority="high"
-               alt="Sekumpulan pelajar sekolah berpakaian seragam berbual dan tersenyum di kawasan sekolah"
-               data-en-alt="A group of students in school uniform chatting and smiling in a school courtyard">
-
-          <!-- Sample report (illustration, not real student data) -->
-          <div class="dash" aria-label="Contoh laporan Learning DNA" data-en-aria-label="Sample Learning DNA report" role="img">
-            <div class="dash-bar">
-              <span class="dash-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="dash-title">Learning DNA</span>
-              <span class="tag" data-en="Sample data">Data contoh</span>
-            </div>
-            <div class="dash-panel">
-              <div class="dash-head">
-                <div>
-                  <span class="mono-label" data-en="Topic">Topik</span>
-                  <strong data-en="Fractions · Standard 5">Pecahan · Tahun 5</strong>
-                </div>
-                <span class="mono-label" data-en="Monthly test">Ujian bulanan</span>
-              </div>
-              <ul class="skills">
-                <li>
-                  <span class="skill-name" data-en="Fraction concepts">Konsep pecahan</span>
-                  <span class="skill-track"><span class="skill-fill" style="--w: 86%"></span></span>
-                  <span class="skill-state ok" data-en="Mastered">Dikuasai</span>
-                </li>
-                <li>
-                  <span class="skill-name" data-en="Times tables">Sifir</span>
-                  <span class="skill-track"><span class="skill-fill" style="--w: 92%"></span></span>
-                  <span class="skill-state ok" data-en="Mastered">Dikuasai</span>
-                </li>
-                <li>
-                  <span class="skill-name" data-en="Word problems">Ayat soalan</span>
-                  <span class="skill-track"><span class="skill-fill is-low" style="--w: 38%"></span></span>
-                  <span class="skill-state help" data-en="Needs help">Perlu bantuan</span>
-                </li>
-              </ul>
-            </div>
+          <span class="shape shape-square" aria-hidden="true"></span>
+          <svg class="shape shape-chevron" viewBox="0 0 54 57" aria-hidden="true"><path d="M50 4 6 24.5a4 4 0 0 0 0 7.3L50 52" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="photo-frame">
+            <img class="hero-photo"
+                 src="assets/img/hero-students-1536.webp"
+                 srcset="assets/img/hero-students-900.webp 900w, assets/img/hero-students-1536.webp 1536w"
+                 sizes="(max-width: 900px) calc(100vw - 32px), 560px"
+                 width="1536" height="1024" fetchpriority="high"
+                 alt="Sekumpulan pelajar sekolah berpakaian seragam berbual dan tersenyum di kawasan sekolah"
+                 data-en-alt="A group of students in school uniform chatting and smiling in a school courtyard">
           </div>
 
-          <div class="float-card" aria-hidden="true">
-            <span class="mono-label" data-en="Next step">Langkah seterusnya</span>
-            <strong data-en="Targeted practice on word problems">Latihan bersasar untuk ayat soalan</strong>
-            <p class="dash-note" data-en="Shared with parents">Dikongsi dengan ibu bapa</p>
+          <!-- Sample report (illustration, not real student data) -->
+          <div class="mini-report" aria-label="Contoh laporan Learning DNA" data-en-aria-label="Sample Learning DNA report" role="img">
+            <div class="mini-head">
+              <strong>Learning DNA</strong>
+              <span class="tag" data-en="Sample">Contoh</span>
+            </div>
+            <ul class="mini-skills">
+              <li><span data-en="Fraction concepts">Konsep pecahan</span> <em class="ok" data-en="Mastered">Dikuasai</em></li>
+              <li><span data-en="Times tables">Sifir</span> <em class="ok" data-en="Mastered">Dikuasai</em></li>
+              <li><span data-en="Word problems">Ayat soalan</span> <em class="help" data-en="Needs help">Perlu bantuan</em></li>
+            </ul>
           </div>
         </div>
       </div>
