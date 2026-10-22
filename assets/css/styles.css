@@ -550,7 +550,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
     radial-gradient(260px 180px at 100% 0%, rgba(235, 195, 91, 0.45), transparent 70%),
     linear-gradient(160deg, #fff8e6, var(--surface) 70%);
 }
-.programme-preschool .mono-label { color: var(--help-ink); }
+.programme-preschool .mono-label { letter-spacing: 0.04em; }
 .programme-badge {
   position: absolute; top: -16px; right: 22px; display: inline-flex; align-items: center; gap: 6px;
   padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--navy); color: var(--yellow);
