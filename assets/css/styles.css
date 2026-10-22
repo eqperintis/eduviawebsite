@@ -489,7 +489,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 }
 
 /* Modules */
-.modules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.modules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .module { padding: 26px; min-width: 0; }
 .module svg {
   width: 48px; height: 48px; padding: 11px; border-radius: 14px; background: var(--ok-bg);
@@ -497,8 +497,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 }
 .module h3 { font-size: 1.3rem; margin: 20px 0 8px; }
 .module p { color: var(--muted); font-size: 0.95rem; margin: 0; }
-@media (max-width: 960px) { .modules { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .modules { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .modules { grid-template-columns: 1fr; } }
 
 /* Founder (navy band) */
 .founder-section { overflow: hidden; }
