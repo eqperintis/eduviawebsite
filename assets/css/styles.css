@@ -277,14 +277,13 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 
 /* ---------- Levels and subjects strip (navy band, white text) ---------- */
 
-.marquee { display: grid; gap: 14px; padding: 24px 0; background: var(--navy); overflow: hidden; }
+.marquee { padding: 22px 0; background: var(--navy); overflow: hidden; }
 .marquee-row {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
-.marquee-track { display: flex; width: max-content; animation: marquee 45s linear infinite; }
-.marquee-subjects .marquee-track { animation-direction: reverse; animation-duration: 50s; }
+.marquee-track { display: flex; width: max-content; animation: marquee 60s linear infinite; }
 .marquee-group { display: flex; align-items: center; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
@@ -296,7 +295,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .marquee-group span::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--yellow); }
 
 /* Subjects: same type as the levels, blue square instead of yellow */
-.marquee-subjects .marquee-group span::before { background: var(--blue); }
+.marquee-group .subject::before { background: var(--blue); }
 
 /* ---------- Sections ---------- */
 
