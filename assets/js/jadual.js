@@ -197,7 +197,7 @@ function render() {
     </div>
 
     <article class="jv-card"${groups.length > 1 ? ` data-group="${state.group}"` : ""} aria-live="polite">
-      <h3>${className(cls, groups.length > 1 ? state.group : "", lang)}</h3>
+      <h3>${cls.name[lang]}</h3>
       ${cls.notes ? `<ul class="jv-notes">${groups.map((g) => `
         <li${g === state.group ? ' class="is-current"' : ""}><b>${t.group} ${g}</b> ${cls.notes[g][lang]}</li>`).join("")}
       </ul>` : ""}
