@@ -2,18 +2,25 @@
 //
 // To change the fees, edit REGISTRATION and LEVELS below. Each level lists the
 // subjects a student can take and the monthly fee for each number of subjects.
+// When a level has only one choice (Asas 3M), its subjects are ticked for the visitor.
 
 (() => {
   const REGISTRATION = 300; // RM, paid once with the first month
 
-  // Subject names are the same in Bahasa Melayu and English
+  // Subject names are the same in Bahasa Melayu and English, except 3M
   const SUBJECTS = {
+    "3m": { ms: "3M · Membaca, Menulis, Mengira", en: "3M · Reading, Writing, Arithmetic" },
     bm: "Bahasa Melayu", eng: "English", sej: "Sejarah", math: "Mathematics",
     sci: "Science", addm: "Add Maths", acc: "Accounting",
   };
 
+  const subjectName = (key, lang) => (typeof SUBJECTS[key] === "string" ? SUBJECTS[key] : SUBJECTS[key][lang]);
+
   // fees: { number of subjects: RM per month }
   const LEVELS = [
+    { id: "asas-3m", name: { ms: "Asas 3M", en: "3M Foundations" },
+      subjects: ["3m"],
+      fees: { 1: 250 } },
     { id: "rendah", name: { ms: "Darjah 2 – 6", en: "Standard 2 – 6" },
       subjects: ["bm", "eng", "math", "sci"],
       fees: { 2: 200, 3: 260, 4: 300 } },
@@ -27,9 +34,8 @@
 
   const T = {
     ms: {
-      level: "Peringkat", subjects: "Subjek", count: (n) => `${n} Subjek`,
+      level: "Peringkat", subjects: "Subjek",
       range: (min, max) => `Pilih ${min} hingga ${max}`,
-      table: (level) => `Yuran bulanan ${level}`,
       first: "Bayaran bulan pertama", monthly: "Yuran bulanan", perMonth: "/ bulan",
       registration: "Pendaftaran (sekali sahaja)", fee: "Yuran bulanan",
       need: (min) => `Pilih sekurang-kurangnya ${min} subjek.`,
@@ -40,9 +46,8 @@
       messageLevel: (level) => `Hai Eduvia, saya nak daftar kelas percubaan percuma untuk ${level}.`,
     },
     en: {
-      level: "Level", subjects: "Subjects", count: (n) => `${n} Subjects`,
+      level: "Level", subjects: "Subjects",
       range: (min, max) => `Choose ${min} to ${max}`,
-      table: (level) => `Monthly fees, ${level}`,
       first: "First month", monthly: "Monthly fee", perMonth: "/ month",
       registration: "Registration (one-off)", fee: "Monthly fee",
       need: (min) => `Choose at least ${min} subjects.`,
@@ -70,12 +75,13 @@
     const level = LEVELS.find((l) => l.id === state.levelId);
     const counts = Object.keys(level.fees).map(Number);
     const min = Math.min(...counts), max = Math.max(...counts);
-    const picked = level.subjects.filter((s) => state.picked.has(s));
+    const fixed = level.subjects.length === min; // nothing to choose: all subjects are ticked
+    const picked = fixed ? level.subjects : level.subjects.filter((s) => state.picked.has(s));
     const fee = level.fees[picked.length]; // undefined until enough subjects are picked
     const first = fee && fee + REGISTRATION;
 
     const message = fee
-      ? t.message(level.name[lang], picked.map((s) => SUBJECTS[s]).join(", "), first, fee)
+      ? t.message(level.name[lang], picked.map((s) => subjectName(s, lang)).join(", "), first, fee)
       : t.messageLevel(level.name[lang]);
     const link = window.EduviaContact ? window.EduviaContact.link(message) : 'href="#contact"';
 
@@ -88,17 +94,11 @@
           </div>
         </div>
         <div class="fc-field">
-          <span class="fc-label" id="fc-subject-label">${t.subjects} <span class="fc-hint">${t.range(min, max)}</span></span>
+          <span class="fc-label" id="fc-subject-label">${t.subjects}${fixed ? "" : ` <span class="fc-hint">${t.range(min, max)}</span>`}</span>
           <div class="fc-subjects" role="group" aria-labelledby="fc-subject-label">
-            ${level.subjects.map((s) => `<button type="button" class="fc-subject" data-subject="${s}" aria-pressed="${state.picked.has(s)}">
-              <span class="fc-check">${CHECK}</span>${SUBJECTS[s]}</button>`).join("")}
+            ${level.subjects.map((s) => `<button type="button" class="fc-subject" data-subject="${s}" aria-pressed="${picked.includes(s)}"${fixed ? " disabled" : ""}>
+              <span class="fc-check">${CHECK}</span>${subjectName(s, lang)}</button>`).join("")}
           </div>
-        </div>
-        <div class="fc-field">
-          <span class="fc-label">${t.table(level.name[lang])}</span>
-          <ul class="fc-table">
-            ${counts.map((n) => `<li${n === picked.length ? ' class="is-current"' : ""}>${t.count(n)} · RM${level.fees[n]}</li>`).join("")}
-          </ul>
         </div>
       </div>
 
