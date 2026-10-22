@@ -23,10 +23,8 @@ const CLASSES = [
     name: { ms: "5 Tahun – Darjah 1", en: "Age 5 – Standard 1" },
     // Shown under the class name to help parents pick a group
     notes: {
-      A: { ms: "Untuk pelajar yang baru bermula atau masih sangat lemah dalam 3M.",
-           en: "For students who are just starting out or still find 3M very difficult." },
-      B: { ms: "Untuk pelajar yang lemah hingga sederhana dalam 3M.",
-           en: "For students who are weak to average in 3M." },
+      A: { ms: "Pelajar baru mula & sangat lemah", en: "New starters & very weak students" },
+      B: { ms: "Pelajar lemah hingga sederhana", en: "Weak to average students" },
     },
     groups: {
       A: [["sat", "09:30", "11:30", "3m"]],
@@ -199,7 +197,7 @@ function render() {
     <article class="jv-card"${groups.length > 1 ? ` data-group="${state.group}"` : ""} aria-live="polite">
       <h3>${cls.name[lang]}</h3>
       ${cls.notes ? `<ul class="jv-notes">${groups.map((g) => `
-        <li${g === state.group ? ' class="is-current"' : ""}><b>${t.group} ${g}</b> ${cls.notes[g][lang]}</li>`).join("")}
+        <li data-group="${g}"${g === state.group ? ' class="is-current"' : ""}><b>${t.group} ${g}</b> ${cls.notes[g][lang]}</li>`).join("")}
       </ul>` : ""}
       <div class="jv-days">${days}</div>
       <a class="btn btn-arrow jv-book" href="#contact" data-book>

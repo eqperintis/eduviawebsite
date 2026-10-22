@@ -618,15 +618,15 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .jv-groups button[data-group="B"][aria-pressed="true"] { background: var(--blue); color: var(--navy); }
 
 /* Group descriptions (5 Tahun – Darjah 1 only) */
-.jv-notes { list-style: none; margin: -6px 0 0; padding: 0; display: grid; gap: 8px; }
-.jv-notes li {
-  padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
-  font-size: 0.92rem; color: var(--muted); opacity: 0.7;
+.jv-notes { list-style: none; margin: -6px 0 0; padding: 0; display: grid; gap: 6px; }
+.jv-notes li { position: relative; padding-left: 20px; font-size: 0.95rem; color: var(--muted); }
+.jv-notes li::before {
+  content: ""; position: absolute; left: 2px; top: 0.5em; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--yellow);
 }
+.jv-notes li[data-group="B"]::before { background: var(--blue); }
 .jv-notes b { color: var(--fg); margin-right: 4px; }
-.jv-notes li.is-current { opacity: 1; color: var(--text); }
-.jv-card[data-group="A"] .jv-notes li.is-current { border-color: var(--yellow); box-shadow: inset 4px 0 0 var(--yellow); }
-.jv-card[data-group="B"] .jv-notes li.is-current { border-color: var(--blue); box-shadow: inset 4px 0 0 var(--blue); }
+.jv-notes li.is-current { color: var(--text); }
 .jv-days { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
 .jv-dayblock { padding: 16px; border-radius: 18px; background: var(--bg-alt); border: 1px solid var(--line); min-width: 0; }
 .jv-dayblock h4 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--fg); }
