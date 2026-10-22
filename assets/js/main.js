@@ -118,7 +118,7 @@ tabs.forEach((tab, i) => {
 // ---------------------------------------------------------------------------
 // Soft spotlight that follows the pointer over cards
 
-const spotCards = document.querySelectorAll(".bento-card, .module, .programme, .price-card, .compare-card, .stepper");
+const spotCards = document.querySelectorAll(".bento-card, .module, .programme, .price-card, .stepper");
 spotCards.forEach((card) => {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();
