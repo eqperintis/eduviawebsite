@@ -120,11 +120,11 @@ const DAY_NAMES = {
 
 const T = {
   ms: {
-    pick: "Umur Pelajar", group: "Kumpulan", book: "Join Free Trial Class", sameTime: "Masa yang sama",
+    pick: "Umur Pelajar", group: "Kumpulan", book: "Join Free Trial Class",
     message: (c) => `Saya berminat dengan kelas ${c}.`,
   },
   en: {
-    pick: "Student's Age", group: "Group", book: "Join Free Trial Class", sameTime: "Same time",
+    pick: "Student's Age", group: "Group", book: "Join Free Trial Class",
     message: (c) => `I'm interested in the ${c} class.`,
   },
 };
@@ -177,9 +177,8 @@ function render() {
         <h4>${DAY_NAMES[lang][d]}</h4>
         <ul>${rows.map((s) => {
           const subj = SUBJECTS[s[3]];
-          const same = rows.some((r) => r !== s && r[1] === s[1] && r[2] === s[2]);
           return `<li class="jv-session" style="--c:${subj.color}">
-              <span class="jv-subject">${subj[lang]}${same ? ` <em class="jv-note">${t.sameTime}</em>` : ""}</span>
+              <span class="jv-subject">${subj[lang]}</span>
               <span class="jv-time">${timeRange(s[1], s[2], lang)}</span>
             </li>`;
         }).join("")}</ul>

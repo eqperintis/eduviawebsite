@@ -492,7 +492,6 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .jv-session::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--c); }
 .jv-subject { font-weight: 700; color: var(--fg); font-size: 0.95rem; }
 .jv-time { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
-.jv-note { font-style: normal; font-weight: 500; font-size: 0.72rem; color: var(--help-ink); background: var(--help-bg); padding: 2px 8px; border-radius: 999px; margin-left: 4px; white-space: nowrap; }
 .jv-book { justify-self: start; }
 .jv-empty { color: var(--muted); margin: 0; text-align: center; }
 
