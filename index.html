@@ -102,65 +102,152 @@
       </div>
     </div>
 
-    <!-- Approach: bento grid -->
+    <!-- Approach: Uji, Semak, Bantu shown on a laptop screen (sample screens, not real data) -->
     <section class="section section-alt" id="approach">
       <div class="container">
         <div class="section-head reveal">
           <p class="eyebrow" data-en="Our approach">Pendekatan kami</p>
-          <h2 class="display" data-en="Identify. Help. Track.">Kenal pasti. Bantu. Pantau.</h2>
-          <p class="body-lg" data-en="Tuition classes, learning diagnosis and our modules connect into one path for each student.">Kelas tuisyen, diagnosis pembelajaran dan modul kami dihubungkan menjadi satu laluan untuk setiap pelajar.</p>
+          <h2 class="display" data-en="Test. Review. Help.">Uji. Semak. Bantu.</h2>
+          <p class="body-lg" data-en="Diagnostic tests, monthly tests and tuition classes to help students progress in the right direction.">Ujian diagnosis, ujian bulanan &amp; kelas tuisyen untuk bantu pelajar progres ke arah yang betul.</p>
         </div>
 
-        <div class="bento">
-          <article class="bento-card bento-identify reveal">
-            <span class="step-chip">01</span>
-            <h3 data-en="Identify">Kenal pasti</h3>
-            <p data-en="Diagnostics and monthly tests show which skills a student has mastered, where they are still weak and what help they need.">Diagnostik dan ujian bulanan menunjukkan kemahiran yang sudah dikuasai, bahagian yang masih lemah dan bantuan yang diperlukan.</p>
-            <div class="chips" aria-hidden="true">
-              <span class="chip ok" data-en="Concept ✓">Konsep ✓</span>
-              <span class="chip ok" data-en="Basics ✓">Asas ✓</span>
-              <span class="chip help" data-en="Question wording !">Ayat soalan !</span>
+        <div class="demo" id="demo">
+          <div class="demo-steps" role="tablist" aria-label="Langkah" data-en-aria-label="Steps">
+            <button type="button" role="tab" id="demo-tab-1" aria-controls="demo-pane-1" aria-selected="true">
+              <span class="demo-num">01</span>
+              <span class="demo-step-text">
+                <strong data-en="Test">Uji</strong>
+                <span data-en="Diagnostic and monthly tests show where each student really stands.">Ujian diagnosis dan ujian bulanan menunjukkan tahap sebenar setiap pelajar.</span>
+              </span>
+              <span class="demo-progress" aria-hidden="true"><i></i></span>
+            </button>
+            <button type="button" role="tab" id="demo-tab-2" aria-controls="demo-pane-2" aria-selected="false" tabindex="-1">
+              <span class="demo-num">02</span>
+              <span class="demo-step-text">
+                <strong data-en="Review">Semak</strong>
+                <span data-en="We review the results: what has been mastered and what is still weak.">Kami semak keputusan: apa yang sudah dikuasai dan apa yang masih lemah.</span>
+              </span>
+              <span class="demo-progress" aria-hidden="true"><i></i></span>
+            </button>
+            <button type="button" role="tab" id="demo-tab-3" aria-controls="demo-pane-3" aria-selected="false" tabindex="-1">
+              <span class="demo-num">03</span>
+              <span class="demo-step-text">
+                <strong data-en="Help">Bantu</strong>
+                <span data-en="Tuition classes and practice that target the weak areas, then we test again.">Kelas tuisyen dan latihan yang menyasarkan bahagian lemah, kemudian kami uji semula.</span>
+              </span>
+              <span class="demo-progress" aria-hidden="true"><i></i></span>
+            </button>
+          </div>
+
+          <div class="laptop">
+            <div class="laptop-screen">
+              <div class="app">
+                <div class="app-bar">
+                  <span class="app-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <span class="app-url">eduvia.my/learning-dna</span>
+                  <span class="tag" data-en="Sample screen">Contoh paparan</span>
+                </div>
+                <div class="app-body">
+                  <nav class="app-side" aria-hidden="true">
+                    <img src="assets/img/logo-wordmark.svg" alt="" width="80" height="21">
+                    <span class="app-nav" data-step="0" data-en="Test">Uji</span>
+                    <span class="app-nav" data-step="1" data-en="Review">Semak</span>
+                    <span class="app-nav" data-step="2" data-en="Help">Bantu</span>
+                  </nav>
+
+                  <div class="app-main">
+                    <!-- 1. Uji: a diagnostic test question -->
+                    <section class="pane is-active" id="demo-pane-1" role="tabpanel" aria-labelledby="demo-tab-1">
+                      <div class="pane-head">
+                        <div>
+                          <span class="mono-label" data-en="Diagnostic test">Ujian diagnosis</span>
+                          <h4 data-en="Fractions · Standard 5">Pecahan · Darjah 5</h4>
+                        </div>
+                        <span class="pill-soft" data-en="Question 3 of 10">Soalan 3 / 10</span>
+                      </div>
+                      <div class="q-progress"><i></i></div>
+                      <div class="q-card">
+                        <p class="q-text">1/2 + 1/4 = ?</p>
+                        <div class="q-options">
+                          <span>2/6</span>
+                          <span class="is-picked">3/4</span>
+                          <span>1/8</span>
+                          <span>2/4</span>
+                        </div>
+                      </div>
+                      <p class="pane-foot" data-en="Answer saved · next question">Jawapan disimpan · soalan seterusnya</p>
+                    </section>
+
+                    <!-- 2. Semak: results -->
+                    <section class="pane" id="demo-pane-2" role="tabpanel" aria-labelledby="demo-tab-2" hidden>
+                      <div class="pane-head">
+                        <div>
+                          <span class="mono-label" data-en="Results">Keputusan</span>
+                          <h4 data-en="Fractions · Standard 5">Pecahan · Darjah 5</h4>
+                        </div>
+                        <span class="score-big">7<small>/10</small></span>
+                      </div>
+                      <ul class="skill-rows">
+                        <li>
+                          <span data-en="Fraction concepts">Konsep pecahan</span>
+                          <span class="bar"><i style="--w: 86%"></i></span>
+                          <em class="ok" data-en="Mastered">Dikuasai</em>
+                        </li>
+                        <li>
+                          <span data-en="Times tables">Sifir</span>
+                          <span class="bar"><i style="--w: 92%"></i></span>
+                          <em class="ok" data-en="Mastered">Dikuasai</em>
+                        </li>
+                        <li>
+                          <span data-en="Word problems">Ayat soalan</span>
+                          <span class="bar is-low"><i style="--w: 38%"></i></span>
+                          <em class="help" data-en="Needs help">Perlu bantuan</em>
+                        </li>
+                      </ul>
+                      <div class="trend">
+                        <span class="mono-label" data-en="Monthly tests">Ujian bulanan</span>
+                        <div class="trend-bars">
+                          <span style="--h: 42%"><b data-en="Jan">Jan</b></span>
+                          <span style="--h: 50%"><b data-en="Feb">Feb</b></span>
+                          <span style="--h: 61%"><b data-en="Mar">Mac</b></span>
+                          <span style="--h: 70%" class="is-last"><b data-en="Apr">Apr</b></span>
+                        </div>
+                      </div>
+                    </section>
+
+                    <!-- 3. Bantu: help plan -->
+                    <section class="pane" id="demo-pane-3" role="tabpanel" aria-labelledby="demo-tab-3" hidden>
+                      <div class="pane-head">
+                        <div>
+                          <span class="mono-label" data-en="Help plan">Pelan bantuan</span>
+                          <h4 data-en="Focus: word problems">Fokus: ayat soalan</h4>
+                        </div>
+                      </div>
+                      <ol class="plan">
+                        <li>
+                          <strong data-en="Targeted practice">Latihan bersasar</strong>
+                          <span data-en="3 sets of fraction word problems, with worked examples">3 set soalan ayat pecahan, dengan contoh jalan kerja</span>
+                        </li>
+                        <li>
+                          <strong data-en="Tuition class">Kelas tuisyen</strong>
+                          <span data-en="The teacher goes through how to read the question, step by step">Guru terangkan cara memahami soalan, langkah demi langkah</span>
+                        </li>
+                        <li>
+                          <strong data-en="Test again">Uji semula</strong>
+                          <span data-en="Progress is checked again in the next monthly test">Perkembangan disemak semula dalam ujian bulanan seterusnya</span>
+                        </li>
+                      </ol>
+                      <div class="toast">
+                        <span class="toast-icon" aria-hidden="true"></span>
+                        <span data-en="Report shared with parents">Laporan dikongsi dengan ibu bapa</span>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
             </div>
-          </article>
-
-          <article class="bento-card bento-help reveal">
-            <span class="step-chip">02</span>
-            <h3 data-en="Help">Bantu</h3>
-            <p data-en="Teachers plan practice and support that fit each student, using modules with notes, worked examples and bilingual exercises.">Guru merancang latihan dan intervensi yang sesuai untuk setiap pelajar, dengan modul yang mengandungi nota, contoh jalan kerja dan latihan dwibahasa.</p>
-            <div class="stack" aria-hidden="true">
-              <span data-en="Notes">Nota</span>
-              <span data-en="Worked examples">Contoh jalan kerja</span>
-              <span>BM · EN</span>
-            </div>
-          </article>
-
-          <article class="bento-card bento-track reveal">
-            <span class="step-chip">03</span>
-            <h3 data-en="Track">Pantau</h3>
-            <p data-en="We check progress again after each round of support, so the next step is based on what actually changed.">Kami semak semula perkembangan selepas setiap intervensi, supaya langkah seterusnya berdasarkan apa yang benar-benar berubah.</p>
-            <svg class="spark" viewBox="0 0 320 90" aria-hidden="true">
-              <defs>
-                <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#5eb6ff" stop-opacity="0.35"/>
-                  <stop offset="1" stop-color="#5eb6ff" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0 72 L64 66 L128 58 L192 40 L256 30 L312 16 L312 90 L0 90 Z" fill="url(#spark-fill)"/>
-              <path d="M0 72 L64 66 L128 58 L192 40 L256 30 L312 16" fill="none" stroke="#5eb6ff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-              <circle cx="312" cy="16" r="5" fill="#ebc35b"/>
-            </svg>
-            <span class="mono-label spark-label" data-en="Illustration only">Ilustrasi sahaja</span>
-          </article>
-
-          <article class="bento-card bento-parents reveal">
-            <h3 data-en="For parents">Untuk ibu bapa</h3>
-            <p data-en="More useful than “just do more practice”: which practice, and why.">Lebih berguna daripada “kena banyakkan latihan”: latihan apa, dan kenapa.</p>
-            <ul class="update" aria-hidden="true">
-              <li><b data-en="Mastered">Dikuasai</b> <span data-en="Fraction concepts, times tables">Konsep pecahan, sifir</span></li>
-              <li><b data-en="Still challenging">Masih mencabar</b> <span data-en="Word problems">Ayat soalan</span></li>
-              <li><b data-en="Next step">Seterusnya</b> <span data-en="Targeted practice">Latihan bersasar</span></li>
-            </ul>
-          </article>
+            <div class="laptop-base" aria-hidden="true"><span></span></div>
+          </div>
         </div>
       </div>
     </section>

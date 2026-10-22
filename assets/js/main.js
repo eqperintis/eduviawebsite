@@ -117,9 +117,65 @@ tabs.forEach((tab, i) => {
 });
 
 // ---------------------------------------------------------------------------
+// Approach demo: Uji, Semak, Bantu on the laptop screen.
+// Plays through the steps on its own once visible; any click stops it.
+
+const demo = document.getElementById("demo");
+if (demo) {
+  const STEP_MS = 5000;
+  const demoTabs = [...demo.querySelectorAll('[role="tab"]')];
+  const appNav = [...demo.querySelectorAll(".app-nav")];
+  let current = 0, timer = null;
+
+  const showStep = (index) => {
+    current = index;
+    demoTabs.forEach((tab, i) => {
+      const selected = i === index;
+      tab.setAttribute("aria-selected", String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      const pane = document.getElementById(tab.getAttribute("aria-controls"));
+      pane.hidden = !selected;
+      pane.classList.toggle("is-active", selected);
+    });
+    appNav.forEach((item, i) => item.classList.toggle("is-active", i === index));
+  };
+
+  const stop = () => { clearInterval(timer); timer = null; demo.classList.remove("is-playing"); };
+  const play = () => {
+    if (timer || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    demo.style.setProperty("--demo-ms", `${STEP_MS}ms`);
+    demo.classList.add("is-playing");
+    timer = setInterval(() => showStep((current + 1) % demoTabs.length), STEP_MS);
+  };
+
+  demoTabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => { stop(); showStep(i); });
+    tab.addEventListener("keydown", (event) => {
+      const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+      if (!step) return;
+      event.preventDefault();
+      stop();
+      const next = (i + step + demoTabs.length) % demoTabs.length;
+      showStep(next);
+      demoTabs[next].focus();
+    });
+  });
+
+  showStep(0);
+  if ("IntersectionObserver" in window) {
+    let started = false;
+    new IntersectionObserver((entries) => {
+      if (!started && entries.some((e) => e.isIntersecting)) { started = true; play(); }
+    }, { threshold: 0.4 }).observe(demo);
+  } else {
+    play();
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Soft spotlight that follows the pointer over cards
 
-const spotCards = document.querySelectorAll(".bento-card, .module, .programme, .price-card, .stepper");
+const spotCards = document.querySelectorAll(".module, .programme, .price-card, .stepper");
 spotCards.forEach((card) => {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();

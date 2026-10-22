@@ -1,7 +1,8 @@
 /* Eduvia
    Layout: light product site. White page with navy type, floating glass nav,
-   centred hero with a sample Learning DNA report, bento grid, click-through
-   example. Navy is kept for the founder band and the footer (.on-dark). */
+   hero photo that fades into the page, levels strip, Uji / Semak / Bantu demo on
+   a laptop, click-through Learning DNA example, timetable. Navy is kept for the
+   founder band and the footer (.on-dark). */
 
 /* Brand display font (single weight) */
 @font-face {
@@ -311,7 +312,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .section-head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
 
 /* Cards share one look; the pointer spotlight comes from main.js (--mx / --my) */
-.bento-card, .module, .programme, .price-card, .stepper {
+.module, .programme, .price-card, .stepper {
   position: relative; border-radius: var(--radius); border: 1px solid var(--line);
   background:
     radial-gradient(420px circle at var(--mx, -500px) var(--my, -500px), var(--spot), transparent 45%),
@@ -319,21 +320,133 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   box-shadow: var(--shadow);
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
-.bento-card:hover, .module:hover, .programme:hover, .price-card:hover { border-color: var(--line-strong); }
+.module:hover, .programme:hover, .price-card:hover { border-color: var(--line-strong); }
 
-/* Bento */
-.bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
-.bento-card { padding: 30px; overflow: hidden; min-width: 0; display: flex; flex-direction: column; }
-.bento-card .chips, .bento-card .stack, .bento-card .update, .bento-card .spark { margin-top: auto; padding-top: 24px; }
-.bento-identify, .bento-help { grid-column: span 3; }
-.bento-track { grid-column: span 4; }
-.bento-parents { grid-column: span 2; background: var(--help-bg); border-color: rgba(235, 195, 91, 0.5); }
-.bento-card h3 { font-size: 1.9rem; margin: 18px 0 10px; }
-.bento-card .step-chip { align-self: flex-start; }
-.bento-parents h3 { margin-top: 0; }
-.bento-card p { color: var(--muted); margin: 0; }
-.step-chip { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--muted); }
+/* Approach: Uji, Semak, Bantu on a laptop */
+.demo { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: center; }
 
+.demo-steps { display: grid; gap: 12px; }
+.demo-steps button {
+  position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+  text-align: left; padding: 18px 20px 20px; border-radius: 18px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); font: inherit; color: inherit;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.demo-steps button:hover { border-color: var(--line-strong); }
+.demo-steps button[aria-selected="true"] { border-color: var(--navy); box-shadow: var(--shadow-lg); transform: translateX(6px); }
+.demo-num {
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px;
+  font-family: var(--font-mono); font-size: 0.8rem; background: var(--inset); color: var(--muted);
+}
+.demo-steps button[aria-selected="true"] .demo-num { background: var(--yellow); color: var(--navy); }
+.demo-step-text { display: grid; gap: 4px; }
+.demo-step-text strong { font-family: var(--font-display); font-weight: 400; font-size: 1.45rem; color: var(--fg); }
+.demo-step-text span { color: var(--muted); font-size: 0.93rem; }
+.demo-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: transparent; }
+.demo-progress i { display: block; height: 100%; width: 0; background: var(--yellow); }
+.demo.is-playing .demo-steps button[aria-selected="true"] .demo-progress i { animation: demo-fill var(--demo-ms, 5000ms) linear forwards; }
+@keyframes demo-fill { to { width: 100%; } }
+
+/* Laptop frame */
+.laptop { min-width: 0; }
+.laptop-screen { padding: 14px 14px 18px; border-radius: 22px 22px 6px 6px; background: #10153f; box-shadow: var(--shadow-lg); }
+.laptop-base {
+  position: relative; height: 16px; margin: 0 -5%; border-radius: 2px 2px 18px 18px;
+  background: linear-gradient(180deg, #e4e6ee, #b9bdcc); box-shadow: 0 18px 30px -18px rgba(18, 25, 95, 0.5);
+}
+.laptop-base span { position: absolute; left: 50%; top: 0; width: 16%; height: 6px; transform: translateX(-50%); border-radius: 0 0 8px 8px; background: #a8adbf; }
+
+/* App inside the screen */
+.app { display: flex; flex-direction: column; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: var(--white); color: var(--text); }
+.app-bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--bg-alt); }
+.app-dots { display: flex; gap: 6px; }
+.app-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
+.app-url { flex: 1; font-family: var(--font-mono); font-size: 0.72rem; color: var(--faint); padding: 4px 10px; border-radius: 6px; background: var(--white); border: 1px solid var(--line); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tag {
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+  padding: 3px 9px; border-radius: 999px; color: var(--help-ink); background: var(--help-bg);
+}
+.app-body { flex: 1; min-height: 0; display: grid; grid-template-columns: 150px 1fr; }
+.app-side { display: grid; align-content: start; gap: 6px; padding: 16px 12px; border-right: 1px solid var(--line); background: var(--bg-alt); }
+.app-side img { height: 20px; width: auto; margin: 0 6px 12px; }
+.app-nav { padding: 8px 10px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; color: var(--muted); transition: background 0.25s, color 0.25s; }
+.app-nav.is-active { background: var(--navy); color: var(--white); }
+.app-main { position: relative; min-width: 0; padding: clamp(14px, 2.2vw, 24px); overflow: hidden; }
+
+.pane { display: grid; gap: 14px; align-content: start; height: 100%; }
+.pane[hidden] { display: none; }
+.pane.is-active { animation: pane-in 0.45s ease both; }
+@keyframes pane-in { from { opacity: 0; transform: translateY(10px); } }
+.pane-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.pane-head h4 { margin: 4px 0 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(1.1rem, 1.8vw, 1.4rem); color: var(--fg); }
+.pill-soft { font-family: var(--font-mono); font-size: 0.7rem; padding: 4px 10px; border-radius: 999px; background: var(--ok-bg); color: var(--ok-ink); white-space: nowrap; }
+.pane-foot { margin: 0; font-family: var(--font-mono); font-size: 0.72rem; color: var(--faint); display: flex; align-items: center; gap: 8px; }
+.pane-foot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+
+/* 1. Uji */
+.q-progress { height: 6px; border-radius: 99px; background: var(--track); overflow: hidden; }
+.q-progress i { display: block; height: 100%; width: 30%; border-radius: inherit; background: var(--blue); }
+.pane.is-active .q-progress i { animation: q-grow 1s 0.2s ease both; }
+@keyframes q-grow { from { width: 20%; } }
+.q-card { padding: clamp(14px, 2vw, 22px); border-radius: 14px; border: 1px solid var(--line); background: var(--bg-alt); }
+.q-text { margin: 0 0 14px; font-family: var(--font-display); font-size: clamp(1.3rem, 2.4vw, 1.9rem); color: var(--fg); }
+.q-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.q-options span {
+  padding: 10px 14px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--white);
+  font-family: var(--font-mono); font-size: 0.95rem; color: var(--fg);
+}
+.pane.is-active .q-options .is-picked { animation: pick 0.4s 1.2s ease both; }
+@keyframes pick { to { background: var(--ok-bg); border-color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); } }
+
+/* 2. Semak */
+.score-big { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1; color: var(--fg); }
+.score-big small { font-size: 0.5em; color: var(--faint); }
+.skill-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.skill-rows li { display: grid; grid-template-columns: 8.5rem 1fr auto; gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--fg); }
+.skill-rows .bar { height: 7px; border-radius: 99px; background: var(--track); overflow: hidden; }
+.skill-rows .bar i { display: block; height: 100%; width: var(--w); border-radius: inherit; background: linear-gradient(90deg, #8ccbff, var(--blue)); }
+.skill-rows .bar.is-low i { background: linear-gradient(90deg, #f3d891, var(--yellow)); }
+.pane.is-active .skill-rows .bar i { animation: bar-grow 1s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes bar-grow { from { width: 0; } }
+.skill-rows em { font-style: normal; font-family: var(--font-mono); font-size: 0.66rem; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+.skill-rows .ok { color: var(--ok-ink); background: var(--ok-bg); }
+.skill-rows .help { color: var(--help-ink); background: var(--help-bg); }
+.trend { display: grid; gap: 8px; }
+.trend-bars { display: flex; align-items: flex-end; gap: 10px; height: 70px; }
+.trend-bars span { position: relative; flex: 1; height: var(--h); border-radius: 8px 8px 4px 4px; background: var(--ok-bg); }
+.trend-bars span.is-last { background: var(--blue); }
+.pane.is-active .trend-bars span { animation: trend-grow 0.8s ease both; transform-origin: bottom; }
+.pane.is-active .trend-bars span:nth-child(2) { animation-delay: 0.1s; }
+.pane.is-active .trend-bars span:nth-child(3) { animation-delay: 0.2s; }
+.pane.is-active .trend-bars span:nth-child(4) { animation-delay: 0.3s; }
+@keyframes trend-grow { from { transform: scaleY(0); } }
+.trend-bars b { position: absolute; left: 0; right: 0; bottom: -18px; text-align: center; font-family: var(--font-mono); font-size: 0.64rem; font-weight: 400; color: var(--faint); }
+.trend { padding-bottom: 18px; }
+
+/* 3. Bantu */
+.plan { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: plan; }
+.plan li {
+  position: relative; display: grid; gap: 2px; padding: 12px 14px 12px 52px; border-radius: 14px;
+  border: 1px solid var(--line); background: var(--bg-alt); counter-increment: plan;
+}
+.plan li::before {
+  content: counter(plan); position: absolute; left: 14px; top: 12px; width: 26px; height: 26px; border-radius: 8px;
+  display: grid; place-items: center; font-family: var(--font-mono); font-size: 0.75rem; background: var(--yellow); color: var(--navy);
+}
+.plan strong { font-size: 0.95rem; color: var(--fg); }
+.plan span { font-size: 0.84rem; color: var(--muted); }
+.pane.is-active .plan li { animation: pane-in 0.4s ease both; }
+.pane.is-active .plan li:nth-child(2) { animation-delay: 0.12s; }
+.pane.is-active .plan li:nth-child(3) { animation-delay: 0.24s; }
+.toast {
+  justify-self: end; display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px;
+  background: var(--navy); color: var(--white); font-size: 0.85rem; font-weight: 600; box-shadow: var(--shadow-lg);
+}
+.toast-icon { width: 18px; height: 18px; border-radius: 50%; background: #22c55e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.pane.is-active .toast { animation: toast-in 0.5s 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(12px) scale(0.96); } }
+
+/* Shared small tags (used by the Learning DNA example) */
 .chips, .causes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
 .chip {
   font-family: var(--font-mono); font-size: 0.76rem; padding: 6px 12px; border-radius: 999px;
@@ -342,26 +455,24 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .chip.ok { color: var(--ok-ink); border-color: rgba(94, 182, 255, 0.5); background: var(--ok-bg); }
 .chip.help { color: var(--help-ink); border-color: rgba(235, 195, 91, 0.6); background: var(--help-bg); }
 
-.stack { display: grid; gap: 8px; }
-.stack span { padding: 10px 14px; border-radius: 12px; background: var(--bg-alt); border: 1px solid var(--line); font-size: 0.9rem; color: var(--fg); }
-.stack span:nth-child(2) { margin-left: 18px; }
-.stack span:nth-child(3) { margin-left: 36px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--ok-ink); }
-
-.spark { width: 100%; height: auto; }
-.spark-label { display: block; margin-top: 8px; }
-
-.update { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.update li { display: grid; gap: 2px; padding: 12px 14px; border-radius: 12px; background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(235, 195, 91, 0.45); }
-.update b { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--help-ink); }
-.update span { font-size: 0.93rem; color: var(--fg); }
-
-@media (max-width: 960px) {
-  .bento-identify, .bento-help, .bento-track, .bento-parents { grid-column: span 3; }
+@media (max-width: 1000px) {
+  .demo { grid-template-columns: 1fr; gap: 28px; }
+  .demo-steps { grid-template-columns: repeat(3, 1fr); }
+  .demo-steps button { grid-template-columns: 1fr; gap: 8px; padding: 14px; }
+  .demo-steps button[aria-selected="true"] { transform: none; }
+  .demo-step-text span { display: none; }
 }
-@media (max-width: 640px) {
-  .bento { grid-template-columns: 1fr; }
-  .bento-identify, .bento-help, .bento-track, .bento-parents { grid-column: auto; }
-  .bento-card { padding: 24px; }
+@media (max-width: 700px) {
+  .app { aspect-ratio: auto; }
+  .app-body { grid-template-columns: 1fr; }
+  .app-side { display: none; }
+  .app-main { min-height: 360px; }
+  .laptop-screen { padding: 8px 8px 12px; border-radius: 14px 14px 4px 4px; }
+  .laptop-base { height: 12px; margin: 0 -3%; }
+  .skill-rows li { grid-template-columns: 1fr auto; row-gap: 6px; }
+  .skill-rows .bar { grid-column: 1 / -1; grid-row: 2; }
+  .demo-num { width: 32px; height: 32px; }
+  .demo-step-text strong { font-size: 1.2rem; }
 }
 
 /* Learning DNA */
