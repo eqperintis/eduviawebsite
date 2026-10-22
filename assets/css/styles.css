@@ -215,9 +215,6 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   .site-nav ul { flex-direction: column; }
   .site-nav a { padding: 12px 14px; font-size: 1rem; color: var(--fg); }
 }
-@media (max-width: 560px) {
-  .nav-cta { display: none; }
-}
 
 /* ---------- Hero ---------- */
 
@@ -721,25 +718,6 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   .faq-layout { grid-template-columns: 1fr; gap: 24px; }
   .faq-head { position: static; }
 }
-
-/* Contact */
-.contact-card {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
-  padding: clamp(24px, 5vw, 56px); border-radius: 32px; border: 1px solid var(--line);
-  background:
-    radial-gradient(600px 320px at 0% 0%, rgba(94, 182, 255, 0.12), transparent 60%),
-    radial-gradient(500px 320px at 100% 100%, rgba(235, 195, 91, 0.18), transparent 60%),
-    var(--bg-alt);
-}
-.contact-info { min-width: 0; }
-.contact-cta { margin-top: 28px; }
-.contact-list {
-  display: grid; gap: 18px; margin: 0; padding: clamp(20px, 3vw, 28px); min-width: 0;
-  border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
-}
-.contact-list dt { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
-.contact-list dd { margin: 4px 0 0; font-weight: 600; color: var(--fg); }
-@media (max-width: 900px) { .contact-card { grid-template-columns: 1fr; gap: 36px; } }
 
 /* Footer (navy band) */
 .site-footer { padding-block: 64px 32px; overflow: hidden; }

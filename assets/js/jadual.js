@@ -164,9 +164,8 @@ function render() {
   const cls = findClass(state.classId);
   const groups = Object.keys(cls.groups);
   const sessions = cls.groups[state.group];
-  // The button opens WhatsApp with this class filled in (see main.js)
-  const message = t.message(className(cls, groups.length > 1 ? state.group : "", lang));
-  const link = window.EduviaContact ? window.EduviaContact.link(message) : 'href="#contact"';
+  // The button opens WhatsApp with this class filled in (main.js sets up EduviaContact before rendering)
+  const link = window.EduviaContact.link(t.message(className(cls, groups.length > 1 ? state.group : "", lang)));
 
   const options = CLASSES.map((c) =>
     `<option value="${c.id}"${c.id === cls.id ? " selected" : ""}>${c.name[lang]}</option>`).join("");

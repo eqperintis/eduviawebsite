@@ -85,7 +85,7 @@
     const message = fee
       ? t.message(level.name[lang], picked.map((s) => subjectName(s, lang)).join(", "), first, fee)
       : t.messageLevel(level.name[lang]);
-    const link = window.EduviaContact ? window.EduviaContact.link(message) : 'href="#contact"';
+    const link = window.EduviaContact.link(message); // set up by main.js before it renders this
 
     view.innerHTML = `
       <div class="fc-inputs">

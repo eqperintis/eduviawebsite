@@ -234,7 +234,7 @@ spotCards.forEach((card) => {
 });
 
 // ---------------------------------------------------------------------------
-// WhatsApp links: the floating button, the hero and the contact section
+// WhatsApp links: the floating button and the hero
 
 function updateContactLinks() {
   document.querySelectorAll("[data-contact]").forEach((link) => {

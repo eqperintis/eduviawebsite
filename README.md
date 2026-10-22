@@ -65,13 +65,12 @@ The fee calculator reads the fees at the top of `assets/js/yuran.js`: `REGISTRAT
 fees: { 2: 200, 3: 260, 4: 300 },   // 2 subjects RM200, 3 subjects RM260, ...
 ```
 
-The first month is the registration fee plus the monthly fee. Asas 3M is a single class (`fees: { 1: 250 }`), so the calculator ticks it automatically.
+The first month is the registration fee plus the monthly fee. The FAQ answer on fees in `index.html` quotes the registration fees and the lowest monthly fee, so update it too when they change. Asas 3M is a single class (`fees: { 1: 250 }`), so the calculator ticks it automatically.
 
 ## Before going live
 
 Replace the placeholders:
 
-- `index.html`: every `[ ... ]` value in the **Hubungi kami** (contact) section: address, phone, email, opening hours.
 - `assets/js/main.js`: set `WHATSAPP_NUMBER` (digits only, e.g. `60123456789`). Until it is set, the WhatsApp buttons open an email to `ENQUIRY_EMAIL` instead.
 
 ## Preview locally
