@@ -90,6 +90,47 @@ onScroll();
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // ---------------------------------------------------------------------------
+// Learning DNA example: tabs for the three steps
+
+const tabs = [...document.querySelectorAll('.stepper-tabs [role="tab"]')];
+
+function selectTab(tab) {
+  for (const t of tabs) {
+    const selected = t === tab;
+    t.setAttribute("aria-selected", String(selected));
+    t.tabIndex = selected ? 0 : -1;
+    document.getElementById(t.getAttribute("aria-controls")).hidden = !selected;
+  }
+}
+
+tabs.forEach((tab, i) => {
+  tab.addEventListener("click", () => selectTab(tab));
+  tab.addEventListener("keydown", (event) => {
+    const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+    if (!step) return;
+    const next = tabs[(i + step + tabs.length) % tabs.length];
+    selectTab(next);
+    next.focus();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Soft spotlight that follows the pointer over cards
+
+const spotCards = document.querySelectorAll(".bento-card, .module, .programme, .price-card, .compare-card, .stepper");
+spotCards.forEach((card) => {
+  card.addEventListener("pointermove", (event) => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  });
+  card.addEventListener("pointerleave", () => {
+    card.style.removeProperty("--mx");
+    card.style.removeProperty("--my");
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Floating WhatsApp button
 
 function updateWhatsAppButton() {
