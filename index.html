@@ -64,7 +64,16 @@
   <main id="main">
     <!-- Hero -->
     <section class="hero" id="top">
-      <div class="hero-bg" aria-hidden="true"></div>
+      <!-- Photo fills the right side and fades into the page -->
+      <div class="hero-media">
+        <img class="hero-photo"
+             src="assets/img/hero-students-1536.webp"
+             srcset="assets/img/hero-students-900.webp 900w, assets/img/hero-students-1536.webp 1536w"
+             sizes="(max-width: 900px) 100vw, 64vw"
+             width="1536" height="1024" fetchpriority="high"
+             alt="Sekumpulan pelajar sekolah berpakaian seragam berbual dan tersenyum di kawasan sekolah"
+             data-en-alt="A group of students in school uniform chatting and smiling in a school courtyard">
+      </div>
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="pill">
@@ -85,34 +94,6 @@
             <li data-en="Diagnostics &amp; monthly tests">Diagnostik &amp; ujian bulanan</li>
             <li data-en="Bilingual modules">Modul dwibahasa</li>
           </ul>
-        </div>
-
-        <!-- Photo in an arch frame, with shapes from the logo and one sample report card -->
-        <div class="hero-visual">
-          <span class="shape shape-square" aria-hidden="true"></span>
-          <svg class="shape shape-chevron" viewBox="0 0 54 57" aria-hidden="true"><path d="M50 4 6 24.5a4 4 0 0 0 0 7.3L50 52" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <div class="photo-frame">
-            <img class="hero-photo"
-                 src="assets/img/hero-students-1536.webp"
-                 srcset="assets/img/hero-students-900.webp 900w, assets/img/hero-students-1536.webp 1536w"
-                 sizes="(max-width: 900px) calc(100vw - 32px), 560px"
-                 width="1536" height="1024" fetchpriority="high"
-                 alt="Sekumpulan pelajar sekolah berpakaian seragam berbual dan tersenyum di kawasan sekolah"
-                 data-en-alt="A group of students in school uniform chatting and smiling in a school courtyard">
-          </div>
-
-          <!-- Sample report (illustration, not real student data) -->
-          <div class="mini-report" aria-label="Contoh laporan Learning DNA" data-en-aria-label="Sample Learning DNA report" role="img">
-            <div class="mini-head">
-              <strong>Learning DNA</strong>
-              <span class="tag" data-en="Sample">Contoh</span>
-            </div>
-            <ul class="mini-skills">
-              <li><span data-en="Fraction concepts">Konsep pecahan</span> <em class="ok" data-en="Mastered">Dikuasai</em></li>
-              <li><span data-en="Times tables">Sifir</span> <em class="ok" data-en="Mastered">Dikuasai</em></li>
-              <li><span data-en="Word problems">Ayat soalan</span> <em class="help" data-en="Needs help">Perlu bantuan</em></li>
-            </ul>
-          </div>
         </div>
       </div>
     </section>

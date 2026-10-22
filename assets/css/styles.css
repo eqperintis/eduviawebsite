@@ -206,29 +206,33 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 
 /* ---------- Hero ---------- */
 
-.hero { position: relative; overflow: hidden; padding: calc(var(--nav-top) + 112px) 0 104px; }
-.hero-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(640px 520px at 80% 45%, rgba(235, 195, 91, 0.16), transparent 70%);
+/* Photo on the right that fades into the white page (left and bottom edges) */
+.hero {
+  position: relative; overflow: hidden; display: flex; align-items: center;
+  min-height: min(800px, 100svh); padding: calc(var(--nav-top) + 104px) 0 112px;
 }
-.hero-bg::before {
-  content: ""; position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(18, 25, 95, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 25, 95, 0.05) 1px, transparent 1px);
-  background-size: 64px 64px;
-  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 30% 40%, #000 20%, transparent 75%);
-  mask-image: radial-gradient(ellipse 60% 70% at 30% 40%, #000 20%, transparent 75%);
+.hero-media { position: absolute; top: 0; right: 0; bottom: 0; width: 62%; pointer-events: none; }
+.hero-photo {
+  width: 100%; height: 100%; object-fit: cover; object-position: 58% 30%;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 14%, rgba(0, 0, 0, 0.8) 32%, #000 46%),
+    linear-gradient(180deg, #000 58%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.25) 14%, rgba(0, 0, 0, 0.8) 32%, #000 46%),
+    linear-gradient(180deg, #000 58%, transparent 100%);
+  mask-composite: intersect;
+  animation: fade-in 1.2s ease both;
 }
+@keyframes fade-in { from { opacity: 0; transform: scale(1.03); } }
 
-.hero-inner { position: relative; display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: center; }
-.hero-copy { min-width: 0; }
-.hero-copy > *, .hero-visual { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero-inner { position: relative; width: min(1160px, 100% - 32px); }
+.hero-copy { max-width: 540px; }
+.hero-copy > * { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .hero-copy > :nth-child(2) { animation-delay: 0.08s; }
 .hero-copy > :nth-child(3) { animation-delay: 0.16s; }
 .hero-copy > :nth-child(4) { animation-delay: 0.24s; }
 .hero-copy > :nth-child(5) { animation-delay: 0.32s; }
-.hero-visual { animation-delay: 0.2s; }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
 
 .pill {
@@ -239,9 +243,9 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .pill-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 0 rgba(235, 195, 91, 0.6); animation: pulse 2.4s infinite; }
 @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(235, 195, 91, 0); } 100% { box-shadow: 0 0 0 0 rgba(235, 195, 91, 0); } }
 
-.hero-title { font-size: clamp(2.6rem, 5.4vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; }
+.hero-title { font-size: clamp(2.6rem, 5vw, 4.3rem); line-height: 1.05; letter-spacing: -0.02em; }
 .hero-title > span:first-child { display: block; }
-.hero-lead { max-width: 34rem; margin: 24px 0 0; font-size: 1.12rem; color: var(--muted); }
+.hero-lead { max-width: 32rem; margin: 24px 0 0; font-size: 1.12rem; color: var(--muted); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .hero-points { list-style: none; padding: 0; margin: 32px 0 0; display: flex; flex-wrap: wrap; gap: 10px 22px; }
 .hero-points li { display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 600; color: var(--fg); }
@@ -250,52 +254,24 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   background: var(--help-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2312195f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 12px no-repeat;
 }
 
-/* Photo in an arch, a yellow arch offset behind it, and the logo's square and chevron */
-.hero-visual { position: relative; padding: 34px 30px 44px 24px; min-width: 0; }
-.hero-visual::before {
-  content: ""; position: absolute; top: 34px; right: 30px; bottom: 44px; left: 24px; z-index: 0;
-  border-radius: 999px 999px 36px 36px; background: var(--yellow); transform: translate(20px, 18px);
+@media (max-width: 1200px) and (min-width: 901px) {
+  .hero-copy { max-width: 440px; }
+  .hero-title { font-size: clamp(2.4rem, 4.6vw, 3.4rem); }
+  .hero-media { width: 58%; }
+  .hero-photo { object-position: 72% 30%; }
 }
-.photo-frame {
-  position: relative; z-index: 1; aspect-ratio: 5 / 5.8; overflow: hidden;
-  border-radius: 999px 999px 36px 36px; background: var(--bg-alt); box-shadow: var(--shadow-lg);
-}
-.hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
 
-.shape { position: absolute; z-index: 2; animation: bob 6s ease-in-out infinite alternate; }
-.shape-square { top: 8px; left: 0; width: 58px; height: 58px; border-radius: 17px; background: var(--blue); }
-.shape-chevron { top: 0; right: 4px; width: 56px; height: auto; color: var(--yellow); animation-delay: -2s; }
-@keyframes bob { to { transform: translateY(-8px); } }
-
-.mini-report {
-  position: absolute; z-index: 3; left: -18px; bottom: 6px; width: 272px;
-  padding: 14px 16px 8px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line);
-  box-shadow: var(--shadow-lg); animation: bob 6s ease-in-out -3s infinite alternate;
-}
-.mini-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-.mini-head strong { font-family: var(--font-display); font-weight: 400; font-size: 1.08rem; color: var(--fg); }
-.tag {
-  margin-left: auto; font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 999px; color: var(--help-ink); background: var(--help-bg);
-}
-.mini-skills { list-style: none; margin: 0; padding: 0; }
-.mini-skills li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--fg); }
-.mini-skills em { font-style: normal; font-family: var(--font-mono); font-size: 0.66rem; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
-.mini-skills .ok { color: var(--ok-ink); background: var(--ok-bg); }
-.mini-skills .help { color: var(--help-ink); background: var(--help-bg); }
-
+/* Tablet and phone: photo across the top, fading down into the text */
 @media (max-width: 900px) {
-  .hero { padding-top: calc(var(--nav-top) + 96px); }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-visual { width: 100%; max-width: 460px; margin-inline: auto; }
-  .mini-report { left: 0; }
-}
-@media (max-width: 520px) {
-  .hero-visual { padding: 26px 22px 36px 14px; }
-  .hero-visual::before { top: 26px; right: 22px; bottom: 36px; left: 14px; transform: translate(12px, 12px); }
-  .shape-square { width: 44px; height: 44px; border-radius: 13px; }
-  .shape-chevron { width: 44px; }
-  .mini-report { width: 240px; bottom: 0; }
+  .hero { display: block; min-height: 0; padding: 0 0 80px; }
+  .hero-media { position: relative; width: 100%; height: clamp(300px, 62vw, 460px); }
+  .hero-photo {
+    object-position: 50% 35%;
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  }
+  .hero-inner { margin-top: -56px; }
+  .hero-copy { max-width: none; }
 }
 
 /* ---------- Levels marquee ---------- */
