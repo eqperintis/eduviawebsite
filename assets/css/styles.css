@@ -124,11 +124,15 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 }
 
 /* Highlighter mark in the brand yellow */
+/* Highlighter band in a yellow-to-blue brand gradient; the hero one sweeps in on load */
 .display .mark, .hero-title .mark {
-  display: inline; padding: 0 0.08em;
-  background: linear-gradient(transparent 56%, var(--mark) 56%, var(--mark) 90%, transparent 90%);
+  display: inline; padding: 0 0.1em; border-radius: 0.12em;
+  background-image: linear-gradient(90deg, rgba(235, 195, 91, 0.95) 0%, rgba(243, 214, 138, 0.9) 45%, rgba(94, 182, 255, 0.55) 100%);
+  background-repeat: no-repeat; background-size: 100% 0.46em; background-position: 0 86%;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
+.hero-title .mark { animation: sweep 1.1s 0.55s cubic-bezier(0.6, 0, 0.2, 1) both; }
+@keyframes sweep { from { background-size: 0% 0.46em; } }
 
 /* ---------- Buttons ---------- */
 
