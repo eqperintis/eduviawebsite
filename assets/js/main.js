@@ -56,6 +56,7 @@ function setLanguage(next) {
     btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
   });
   updateWhatsAppButton();
+  window.EduviaJadual?.render(lang);
   try { localStorage.setItem("eduvia-lang", lang); } catch (e) { /* storage unavailable */ }
 }
 

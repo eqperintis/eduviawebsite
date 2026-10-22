@@ -6,6 +6,7 @@ The website for **eduvia.my**, the Eduvia tuition centre (Standard 2 to SPM): a 
 index.html            page content
 assets/css/styles.css styles
 assets/js/main.js     BM / EN switch, mobile menu and the WhatsApp enquiry form
+assets/js/jadual.js   Jadual 2027: the class timetable data and its interactive view
 assets/img/           logos, favicon, home-screen icon and social share image
 assets/fonts/         Claston brand font (WOFF2)
 ```
@@ -44,6 +45,16 @@ Bahasa Melayu is the default. Every piece of text in `index.html` is written in 
 Placeholders and accessibility labels use `data-en-placeholder` and `data-en-aria-label`. When you edit a sentence, update both. Text that the script writes itself (the form's error message and the WhatsApp message) is in the `STRINGS` object at the top of `assets/js/main.js`.
 
 The visitor's choice is remembered, and `https://eduvia.my/?lang=en` opens the English version directly.
+
+## Timetable (Jadual 2027)
+
+The timetable is a list at the top of `assets/js/jadual.js`. Each class has one or more groups (Kumpulan), and each session is one line:
+
+```js
+["tue", "20:00", "21:15", "bm"],   // day, start, end (24-hour), subject
+```
+
+Days are `mon tue wed thu fri sat sun`; subjects are the keys in `SUBJECTS` (`3m bm eng sej math sci addm acc`). The page works out the Malay and English time wording (pagi, tengah hari, petang, malam), the weekly hours, and which class is on now or next (Malaysia time).
 
 ## Before going live
 
