@@ -625,6 +625,54 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 @media (max-width: 860px) { .fee-calc { grid-template-columns: 1fr; max-width: 560px; } }
 @media (max-width: 560px) { .fc-levels { grid-template-columns: repeat(2, 1fr); } }
 
+/* Registration gifts background: soft brand glow, a faint dot grid, the logo's V behind the
+   products and its square and chevron mirrored on each side */
+.gifts-section {
+  position: relative; overflow: hidden; isolation: isolate;
+  background:
+    radial-gradient(ellipse 46% 40% at 50% 64%, rgba(94, 182, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 30% 22% at 50% 86%, rgba(235, 195, 91, 0.18), transparent 70%),
+    var(--bg);
+}
+.gifts-section > .container { position: relative; z-index: 1; }
+.gifts-deco { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.gifts-deco::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(18, 25, 95, 0.09) 1.3px, transparent 1.4px);
+  background-size: 24px 24px; background-position: center;
+  -webkit-mask-image: radial-gradient(ellipse 55% 60% at 50% 55%, #000 10%, transparent 75%);
+  mask-image: radial-gradient(ellipse 55% 60% at 50% 55%, #000 10%, transparent 75%);
+}
+.deco-v {
+  position: absolute; left: 50%; top: 58%; width: min(780px, 96vw); transform: translate(-50%, -50%);
+  fill: none; stroke: rgba(94, 182, 255, 0.13); stroke-width: 20; stroke-linecap: round; stroke-linejoin: round;
+}
+.deco { position: absolute; animation: deco-drift 7s ease-in-out infinite alternate; }
+.deco-square { width: 34px; height: 34px; border-radius: 10px; background: var(--blue); opacity: 0.85; }
+.deco-outline { width: 46px; height: 46px; border-radius: 13px; border: 3px solid rgba(94, 182, 255, 0.55); }
+.deco-chevron { width: 44px; height: 44px; fill: none; stroke: var(--yellow); stroke-width: 4.5; stroke-linecap: round; stroke-linejoin: round; }
+/* Left and right are mirror images: same height, same distance from the edge, opposite turn */
+.deco-l1, .deco-r1 { top: 16%; }
+.deco-l1 { left: 9%; --turn: -14deg; }
+.deco-r1 { right: 9%; --turn: 14deg; }
+.deco-l2, .deco-r2 { top: 48%; }
+.deco-l2 { left: 6%; --turn: -16deg; }
+.deco-r2 { right: 6%; --turn: 16deg; }
+.deco-l3, .deco-r3 { bottom: 14%; }
+.deco-l3 { left: 13%; --turn: 18deg; }
+.deco-r3 { right: 13%; --turn: -18deg; }
+.deco-l1, .deco-r1, .deco-l2, .deco-r2, .deco-l3, .deco-r3 { transform: rotate(var(--turn)); }
+@keyframes deco-drift { to { translate: 0 -10px; } }
+@media (max-width: 900px) {
+  .deco-l2 { left: 2%; } .deco-r2 { right: 2%; }
+  .deco-l1 { left: 4%; } .deco-r1 { right: 4%; }
+}
+@media (max-width: 640px) {
+  .deco-l1, .deco-r1 { top: 3%; width: 24px; height: 24px; border-radius: 7px; }
+  .deco-l2, .deco-r2 { display: none; }
+  .deco-l3, .deco-r3 { bottom: 4%; width: 32px; height: 32px; border-radius: 10px; }
+}
+
 /* Registration gifts: the tote bag and tumbler float side by side, leaning away from each other
    (the images are tilted to mirror one another), and bob together over a soft shadow */
 .gifts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; max-width: 820px; margin: 0 auto; }
