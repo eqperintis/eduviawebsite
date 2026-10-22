@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <!-- Doodle tile for the registration gifts section: the logo's blue square and yellow V, repeated.
+       The page mirrors it left and right of the centre. -->
+  <g fill="none" stroke="#ebc35b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 0 L9 15 L18 0" transform="translate(126 30) rotate(-6 9 7)"/>
+    <path d="M0 0 L8 13 L16 0" transform="translate(40 150) rotate(8 8 6)"/>
+    <path d="M0 0 L9 15 L18 0" transform="translate(250 196) rotate(-8 9 7)"/>
+    <path d="M0 0 L6 10 L12 0" transform="translate(30 272) rotate(5 6 5)"/>
+    <path d="M0 0 L6 10 L12 0" transform="translate(200 96) rotate(10 6 5)"/>
+    <path d="M0 0 L7 12 L14 0" transform="translate(146 254) rotate(-4 7 6)"/>
+  </g>
+  <g fill="none" stroke="#5eb6ff" stroke-width="3.5">
+    <rect x="236" y="40" width="22" height="22" rx="6" transform="rotate(-16 247 51)"/>
+    <rect x="96" y="200" width="16" height="16" rx="5" transform="rotate(12 104 208)"/>
+    <rect x="282" y="282" width="14" height="14" rx="4" transform="rotate(20 289 289)"/>
+  </g>
+  <g fill="#5eb6ff">
+    <rect x="34" y="40" width="18" height="18" rx="5" transform="rotate(14 43 49)"/>
+    <rect x="160" y="156" width="12" height="12" rx="3.5" transform="rotate(30 166 162)"/>
+    <rect x="276" y="128" width="15" height="15" rx="4.5" transform="rotate(-12 283 135)"/>
+    <rect x="96" y="96" width="10" height="10" rx="3" transform="rotate(22 101 101)"/>
+  </g>
+</svg>
