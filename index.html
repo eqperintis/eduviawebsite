@@ -41,7 +41,6 @@
       <nav class="site-nav" id="site-nav" aria-label="Utama" data-en-aria-label="Main">
         <ul>
           <li><a href="#approach" data-en="Approach">Pendekatan</a></li>
-          <li><a href="#learning-dna">Learning DNA</a></li>
           <li><a href="#programmes" data-en="Programmes">Program</a></li>
           <li><a href="#jadual" data-en="Timetable">Jadual</a></li>
           <li><a href="#fees" data-en="Fees">Yuran</a></li>
@@ -144,11 +143,11 @@
               <div class="app">
                 <div class="app-bar">
                   <span class="app-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                  <span class="app-url">eduvia.my/learning-dna</span>
+                  <span class="app-url">eduvia.my/pelajar</span>
                 </div>
                 <div class="app-body">
                   <nav class="app-side" aria-hidden="true">
-                    <img src="assets/img/logo-wordmark.svg" alt="" width="80" height="21">
+                    <img src="assets/img/logo-wordmark-light.svg" alt="" width="80" height="21">
                     <span class="app-nav" data-step="0" data-en="Test">Uji</span>
                     <span class="app-nav" data-step="1" data-en="Review">Semak</span>
                     <span class="app-nav" data-step="2" data-en="Help">Bantu</span>
@@ -167,14 +166,18 @@
                       <div class="q-progress"><i></i></div>
                       <div class="q-card">
                         <p class="q-text">1/2 + 1/4 = ?</p>
-                        <div class="q-options">
-                          <span>2/6</span>
-                          <span class="is-picked">3/4</span>
-                          <span>1/8</span>
-                          <span>2/4</span>
+                        <div class="q-options" id="q-options">
+                          <button type="button" class="q-opt">2/6</button>
+                          <button type="button" class="q-opt" data-correct>3/4</button>
+                          <button type="button" class="q-opt">1/8</button>
+                          <button type="button" class="q-opt">2/4</button>
                         </div>
                       </div>
-                      <p class="pane-foot" data-en="Answer saved · next question">Jawapan disimpan · soalan seterusnya</p>
+                      <p class="q-feedback" aria-live="polite">
+                        <span class="q-msg is-shown" data-state="ask" data-en="Tap an answer">Tekan satu jawapan</span>
+                        <span class="q-msg" data-state="wrong" data-en="Not quite. Try again!">Belum tepat. Cuba lagi!</span>
+                        <span class="q-msg" data-state="right" data-en="Correct! 1/2 + 1/4 = 3/4">Betul! 1/2 + 1/4 = 3/4</span>
+                      </p>
                     </section>
 
                     <!-- 2. Semak: results -->
@@ -251,7 +254,7 @@
                       <ol class="plan">
                         <li>
                           <strong data-en="Specific Practice">Latihan Spesifik</strong>
-                          <span data-en="3 sets of fraction questions on understanding the question, with worked examples">3 set latihan pemahaman soalan pecahan, dengan contoh jalan kerja</span>
+                          <span data-en="3 sets of fraction practice, with worked examples">3 set latihan pemahaman soalan pecahan, dengan contoh jalan kerja</span>
                         </li>
                         <li>
                           <strong data-en="Tuition Class">Kelas Tuisyen</strong>
@@ -273,58 +276,6 @@
             </div>
             <div class="laptop-base" aria-hidden="true"><span></span></div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Learning DNA: click-through example -->
-    <section class="section" id="learning-dna">
-      <div class="container split">
-        <div class="split-copy reveal">
-          <p class="eyebrow">Eduvia Learning DNA</p>
-          <h2 class="display" data-en="Find the cause, not just the score">Cari puncanya, bukan sekadar markahnya</h2>
-          <p class="body-lg" data-en="If a student is still struggling after doing the same exercises again and again, we need to find out why. Have they not understood the concept? Are the basics from the previous year still shaky? Or is it the wording of the question?">Kalau seorang pelajar masih lemah selepas berulang kali membuat latihan, kita perlu mencari puncanya. Adakah dia belum faham konsep? Adakah asas tahun sebelumnya masih belum kukuh? Atau dia sukar memahami ayat soalan?</p>
-          <p data-en="Learning DNA connects diagnostics, monthly tests, reports and follow-up support, so teachers plan more precise practice and parents understand their child's progress.">Learning DNA menghubungkan diagnostik, ujian bulanan, laporan dan intervensi, supaya guru merancang latihan yang lebih tepat dan ibu bapa memahami perkembangan anak mereka.</p>
-        </div>
-
-        <div class="stepper reveal">
-          <p class="stepper-label">
-            <span class="mono-label" data-en="Example">Contoh</span>
-            <strong data-en="A student who struggles with fraction questions">Pelajar yang sukar menjawab soalan pecahan</strong>
-          </p>
-          <div class="stepper-tabs" role="tablist" aria-label="Langkah" data-en-aria-label="Steps">
-            <button type="button" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true"><span>1</span> <em data-en="Check">Semak</em></button>
-            <button type="button" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1"><span>2</span> <em data-en="Practise">Latih</em></button>
-            <button type="button" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1"><span>3</span> <em data-en="Review">Semak semula</em></button>
-          </div>
-          <div class="stepper-panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
-            <h3 data-en="Check first">Semak dahulu</h3>
-            <p data-en="Is the problem the fraction concept, times tables, or understanding the question?">Adakah masalahnya pada konsep pecahan, sifir atau pemahaman ayat soalan?</p>
-            <div class="causes">
-              <span class="chip" data-en="Fraction concept">Konsep pecahan</span>
-              <span class="chip" data-en="Times tables">Sifir</span>
-              <span class="chip help" data-en="Understanding the question">Pemahaman Soalan</span>
-            </div>
-          </div>
-          <div class="stepper-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
-            <h3 data-en="Give the right practice">Beri latihan yang sesuai</h3>
-            <p data-en="Practice that targets the actual cause, with worked examples and bilingual exercises, not just more of the same.">Latihan yang menyasarkan punca sebenar, dengan contoh jalan kerja dan latihan dwibahasa, bukan sekadar lebih banyak latihan yang sama.</p>
-            <div class="causes">
-              <span class="chip" data-en="Worked examples">Contoh jalan kerja</span>
-              <span class="chip" data-en="Guided practice">Latihan berpandu</span>
-              <span class="chip">BM · EN</span>
-            </div>
-          </div>
-          <div class="stepper-panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
-            <h3 data-en="Check progress again">Semak semula perkembangan</h3>
-            <p data-en="See whether the gap has closed, share it with parents, then plan the next step.">Lihat sama ada jurang itu sudah dirapatkan, kongsikan dengan ibu bapa, kemudian rancang langkah seterusnya.</p>
-            <div class="causes">
-              <span class="chip ok" data-en="Monthly test">Ujian bulanan</span>
-              <span class="chip ok" data-en="Parent update">Makluman ibu bapa</span>
-              <span class="chip" data-en="Next step">Langkah seterusnya</span>
-            </div>
-          </div>
-          <p class="stepper-note" data-en="This illustrates our approach; it is not a real student's result.">Ini contoh pendekatan, bukan keputusan pelajar sebenar.</p>
         </div>
       </div>
     </section>
@@ -560,7 +511,6 @@
         <p class="footer-tagline" data-en="One path to help children learn better, step by step.">Satu laluan untuk membantu anak belajar dengan lebih baik, langkah demi langkah.</p>
         <nav class="footer-links" aria-label="Pautan" data-en-aria-label="Links">
           <a href="#approach" data-en="Approach">Pendekatan</a>
-          <a href="#learning-dna">Learning DNA</a>
           <a href="#programmes" data-en="Programmes">Program</a>
           <a href="#jadual" data-en="Timetable">Jadual</a>
           <a href="#contact" data-en="Contact">Hubungi</a>

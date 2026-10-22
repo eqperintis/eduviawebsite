@@ -92,31 +92,6 @@ onScroll();
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // ---------------------------------------------------------------------------
-// Learning DNA example: tabs for the three steps
-
-const tabs = [...document.querySelectorAll('.stepper-tabs [role="tab"]')];
-
-function selectTab(tab) {
-  for (const t of tabs) {
-    const selected = t === tab;
-    t.setAttribute("aria-selected", String(selected));
-    t.tabIndex = selected ? 0 : -1;
-    document.getElementById(t.getAttribute("aria-controls")).hidden = !selected;
-  }
-}
-
-tabs.forEach((tab, i) => {
-  tab.addEventListener("click", () => selectTab(tab));
-  tab.addEventListener("keydown", (event) => {
-    const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
-    if (!step) return;
-    const next = tabs[(i + step + tabs.length) % tabs.length];
-    selectTab(next);
-    next.focus();
-  });
-});
-
-// ---------------------------------------------------------------------------
 // Approach demo: Uji, Semak, Bantu on the laptop screen.
 // Plays through the steps on its own once visible; any click stops it.
 
@@ -161,6 +136,30 @@ if (demo) {
     });
   });
 
+  // Using anything on the laptop screen stops the auto-play
+  demo.querySelector(".laptop").addEventListener("pointerdown", stop);
+
+  // Uji screen: tap an answer; wrong turns red (try again), correct turns green
+  const quiz = document.getElementById("q-options");
+  if (quiz) {
+    const setMessage = (state) => demo.querySelectorAll(".q-msg").forEach((m) => m.classList.toggle("is-shown", m.dataset.state === state));
+    quiz.addEventListener("click", (event) => {
+      const option = event.target.closest(".q-opt");
+      if (!option || option.disabled) return;
+      stop();
+      if (option.hasAttribute("data-correct")) {
+        option.classList.add("is-right");
+        quiz.querySelectorAll(".q-opt").forEach((o) => { o.disabled = true; });
+        setMessage("right");
+      } else {
+        option.classList.remove("is-wrong");
+        void option.offsetWidth; // restart the shake if tapped again
+        option.classList.add("is-wrong");
+        setMessage("wrong");
+      }
+    });
+  }
+
   showStep(0);
   if ("IntersectionObserver" in window) {
     let started = false;
@@ -175,7 +174,7 @@ if (demo) {
 // ---------------------------------------------------------------------------
 // Soft spotlight that follows the pointer over cards
 
-const spotCards = document.querySelectorAll(".module, .programme, .price-card, .stepper");
+const spotCards = document.querySelectorAll(".module, .programme, .price-card");
 spotCards.forEach((card) => {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();
