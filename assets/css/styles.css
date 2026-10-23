@@ -753,14 +753,28 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
     radial-gradient(ellipse 40% 50% at 82% 30%, rgba(94, 182, 255, 0.16), transparent 70%),
     radial-gradient(ellipse 34% 40% at 8% 90%, rgba(235, 195, 91, 0.18), transparent 70%);
 }
-.trial-layout { position: relative; display: grid; grid-template-columns: 1fr minmax(0, 520px); gap: clamp(32px, 5vw, 72px); align-items: start; }
-.trial-copy { padding-top: 12px; }
-.trial-copy > * { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-.trial-copy > :nth-child(2) { animation-delay: 0.08s; }
-.trial-copy > :nth-child(3) { animation-delay: 0.16s; }
-.trial-copy > :nth-child(4) { animation-delay: 0.24s; }
+/* Wide screens: heading, then photo and reasons on the left; the form stays in view on the right.
+   Phones: heading, form, then photo and reasons. */
+.trial-layout {
+  position: relative; display: grid; grid-template-columns: 1fr minmax(0, 520px);
+  grid-template-areas: "intro card" "more card"; column-gap: clamp(32px, 5vw, 72px); row-gap: 32px; align-items: start;
+}
+.trial-intro { grid-area: intro; padding-top: 12px; }
+.trial-more { grid-area: more; }
+.trial-card { grid-area: card; }
+/* Only stays in view when the window is tall enough to show the whole card */
+@media (min-width: 901px) and (min-height: 920px) { .trial-card { position: sticky; top: calc(var(--nav-top) + 86px); } }
+.trial-intro > *, .trial-more { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.trial-intro > :nth-child(2) { animation-delay: 0.08s; }
+.trial-intro > :nth-child(3) { animation-delay: 0.16s; }
+.trial-more { animation-delay: 0.24s; }
 .trial-title > span { display: block; }
-.trial-perks { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 18px; max-width: 30rem; }
+.trial-intro .hero-lead { max-width: 28rem; font-size: 1.22rem; color: var(--text); }
+.trial-photo {
+  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 40%;
+  border-radius: var(--radius); box-shadow: var(--shadow-lg);
+}
+.trial-perks { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 18px; max-width: 34rem; }
 .trial-perks li { position: relative; display: grid; gap: 2px; padding-left: 40px; }
 .trial-perks li::before {
   content: ""; position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 8px;
@@ -777,8 +791,9 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 
 @media (max-width: 900px) {
   .trial-hero { padding-top: calc(var(--nav-top) + 92px); }
-  .trial-layout { grid-template-columns: 1fr; }
+  .trial-layout { grid-template-columns: 1fr; grid-template-areas: "intro" "card" "more"; }
   .trial-card { max-width: 560px; width: 100%; margin-inline: auto; }
+  .trial-more { max-width: 560px; width: 100%; margin-inline: auto; padding-top: 16px; }
 }
 
 /* Form: fields, chips and choices */
