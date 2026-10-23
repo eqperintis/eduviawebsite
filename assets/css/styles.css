@@ -757,6 +757,9 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 @keyframes promo-pulse { 50% { opacity: 0.35; } }
 .promo-bar span { color: #d9ddf6; }
 .has-promo-bar { --promo-h: 42px; --nav-top: calc(env(safe-area-inset-top, 0px) + var(--promo-h) + 12px); }
+/* With the bar, the floating navigation scrolls away with the page; only the bar stays */
+.has-promo-bar .site-header { position: absolute; }
+.has-promo-bar .trial-card { scroll-margin-top: calc(var(--promo-h) + 20px); }
 @media (max-width: 640px) {
   .has-promo-bar { --promo-h: 50px; }
   .promo-bar { flex-direction: column; font-size: 0.8rem; }
@@ -781,6 +784,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .trial-card { grid-area: card; }
 /* Only stays in view when the window is tall enough to show the whole card */
 @media (min-width: 901px) and (min-height: 920px) { .trial-card { position: sticky; top: calc(var(--nav-top) + 86px); } }
+@media (min-width: 901px) and (min-height: 920px) { .has-promo-bar .trial-card { top: calc(var(--promo-h) + 24px); } }
 .trial-intro > *, .trial-photo, .trial-more { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .trial-intro > :nth-child(2) { animation-delay: 0.08s; }
 .trial-intro > :nth-child(3) { animation-delay: 0.16s; }
