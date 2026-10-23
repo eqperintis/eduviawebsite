@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20261023c">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20261023d">
   <!-- Adds where the visitor came from (came_from, utm_*) to the form as hidden fields -->
   <script src="https://marketing.eduvia.my/utm.js" defer></script>
 </head>
@@ -64,7 +64,7 @@
   </header>
 
   <main id="main">
-    <!-- Offer on the left, the form on the right (on phones: heading, form, then photo and reasons) -->
+    <!-- Offer on the left, the form on the right (on phones: heading, photo, form, then reasons) -->
     <section class="trial-hero" id="top">
       <div class="trial-glow" aria-hidden="true"></div>
       <div class="container trial-layout">
@@ -76,6 +76,15 @@
           </h1>
           <p class="hero-lead" data-en="Join our classes free for 1 week before you register!">Join kelas secara percuma dahulu untuk 1 minggu sebelum anda daftar!</p>
         </div>
+
+        <!-- Under the heading on wide screens; on phones it takes the subheadline's place -->
+        <img class="trial-photo"
+             src="../assets/img/trial/cikgu-pelajar-1200.webp"
+             srcset="../assets/img/trial/cikgu-pelajar-720.webp 720w, ../assets/img/trial/cikgu-pelajar-1200.webp 1200w"
+             sizes="(max-width: 900px) 100vw, 560px"
+             width="1200" height="900"
+             alt="Seorang cikgu berbual dengan sekumpulan pelajar sekolah menengah berpakaian seragam di kawasan sekolah"
+             data-en-alt="A teacher talking with a group of secondary school students in uniform in a school courtyard">
 
         <div class="trial-card" id="form">
           <!-- Without JavaScript all three steps show at once; trial.js turns them into steps -->
@@ -224,15 +233,8 @@
           </div>
         </div>
 
-        <!-- Photo and reasons: beside the form on wide screens, under it on phones -->
+        <!-- Reasons: beside the form on wide screens, under it on phones -->
         <div class="trial-more">
-          <img class="trial-photo"
-               src="../assets/img/trial/cikgu-pelajar-1200.webp"
-               srcset="../assets/img/trial/cikgu-pelajar-720.webp 720w, ../assets/img/trial/cikgu-pelajar-1200.webp 1200w"
-               sizes="(max-width: 900px) 100vw, 560px"
-               width="1200" height="900" loading="lazy"
-               alt="Seorang cikgu berbual dengan sekumpulan pelajar sekolah menengah berpakaian seragam di kawasan sekolah"
-               data-en-alt="A teacher talking with a group of secondary school students in uniform in a school courtyard">
           <ul class="trial-perks">
             <li>
               <strong data-en="National &amp; private school teachers">Cikgu Sekolah Kebangsaan &amp; Private School</strong>
@@ -303,7 +305,7 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>
   </a>
 
-  <script src="../assets/js/trial.js?v=20261023c" defer></script>
-  <script src="../assets/js/main.js?v=20261023c" defer></script>
+  <script src="../assets/js/trial.js?v=20261023d" defer></script>
+  <script src="../assets/js/main.js?v=20261023d" defer></script>
 </body>
 </html>
