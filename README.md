@@ -77,7 +77,7 @@ The homepage's "Join Free Trial Class" buttons open this page. Its form has thre
 - Parent's name: letters, spaces and ' - . / @ (e.g. "Muthu a/l Rajan").
 - Email: a full address; common misspellings such as `gmial.com` get a "Did you mean" fix.
 - Phone number: a mobile number for the chosen country, Malaysia (+60) by default. The countries and their number rules are `COUNTRIES` at the top of `assets/js/trial.js`.
-- Child's level (5 Tahun, 6 Tahun, Darjah 1 – 6, Tingkatan 1 – 5; sent as `child_age` 5 to 17 and `school_year`) and the subjects offered for it, the same levels as the fee calculator.
+- Child's level (5 Tahun, 6 Tahun, Darjah 1 – 6, Tingkatan 1 – 5; sent as `child_age` 5 to 17 and `school_year`) and the subjects offered for it, the same levels as the fee calculator: at least 2 subjects, except Asas 3M (one class, ticked for them).
 - Whether they live near Eco Grandeur (Yes / No).
 
 The form is sent to the Eduvia form backend, `https://marketing.eduvia.my/f/eduvia-enquiry` (form "Free: 1-Week Trial Class"), which saves each sign-up and emails a notification. The fields it receives:
@@ -110,7 +110,7 @@ Open `index.html` in a browser, or run `python3 -m http.server` in this folder a
 
 ## Deploying
 
-The pages load the CSS and JavaScript with a version on the end (`styles.css?v=20261023h`). When you change a file in `assets/css` or `assets/js`, change that version in `index.html` and `free-trial-class/index.html` (e.g. to the day's date), or browsers and Hostinger's CDN may keep showing the old file.
+The pages load the CSS and JavaScript with a version on the end (`styles.css?v=20261023i`). When you change a file in `assets/css` or `assets/js`, change that version in `index.html` and `free-trial-class/index.html` (e.g. to the day's date), or browsers and Hostinger's CDN may keep showing the old file.
 
 
 The site is hosted on the Hostinger Business plan. Upload the contents of this repository (not the `.git` folder) to the website's `public_html` directory, either through hPanel's File Manager or Hostinger's Git deployment.

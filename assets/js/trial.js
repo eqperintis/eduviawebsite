@@ -59,6 +59,7 @@
       phoneInvalid: (example) => `Nombor ini tidak sah untuk negara yang dipilih. Contoh: ${example}`,
       ageRequired: "Sila pilih umur anak anda.",
       subjectsRequired: "Sila pilih sekurang-kurangnya satu subjek.",
+      subjectsTwo: "Sila pilih sekurang-kurangnya 2 subjek.",
       nearRequired: "Sila pilih Ya atau Tidak.",
       review: { parent_name: "Nama", email: "E-mel", phone: "Telefon", child_age: "Umur anak", subjects: "Subjek", near: "Dekat Eco Grandeur" },
       edit: "Ubah",
@@ -81,6 +82,7 @@
       phoneInvalid: (example) => `This number isn't valid for the chosen country. Example: ${example}`,
       ageRequired: "Please choose your child's age.",
       subjectsRequired: "Please choose at least one subject.",
+      subjectsTwo: "Please choose at least 2 subjects.",
       nearRequired: "Please choose Yes or No.",
       review: { parent_name: "Name", email: "Email", phone: "Phone", child_age: "Child's age", subjects: "Subjects", near: "Near Eco Grandeur" },
       edit: "Edit",
@@ -161,7 +163,12 @@
       return null;
     },
     child_age() { return ageSelect.value ? null : ["ageRequired"]; },
-    subjects() { return selectedSubjects().length ? null : ["subjectsRequired"]; },
+    // At least 2, like the fee calculator; Asas 3M (a single class) needs just its one
+    subjects() {
+      const count = selectedSubjects().length;
+      if (!count) return ["subjectsRequired"];
+      return count < 2 && subjectsForAge(Number(ageSelect.value)).length > 1 ? ["subjectsTwo"] : null;
+    },
     near_eco_grandeur() { return nearValue() ? null : ["nearRequired"]; },
   };
 
@@ -282,6 +289,7 @@
     });
     if (offered.length === 1) chips.find((c) => c.dataset.subject === offered[0]).checked = true;
     document.getElementById("tf-subjects-empty").hidden = Boolean(age);
+    document.getElementById("tf-subjects-hint").hidden = offered.length === 1;
   }
   ageSelect.addEventListener("change", () => {
     touched.add("child_age");
@@ -289,7 +297,8 @@
     updateSubjects();
     if (touched.has("subjects")) check("subjects");
   });
-  chips.forEach((chip) => chip.addEventListener("change", () => { touched.add("subjects"); check("subjects"); }));
+  // Re-checked only once an error shows, so "at least 2" doesn't appear after the first tick
+  chips.forEach((chip) => chip.addEventListener("change", () => { if (errors.subjects) check("subjects"); }));
   nearInputs.forEach((input) => input.addEventListener("change", () => { touched.add("near_eco_grandeur"); check("near_eco_grandeur"); }));
 
   // ---------------------------------------------------------------------------
