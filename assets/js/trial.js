@@ -48,7 +48,6 @@
 
   const T = {
     ms: {
-      step: (n, total) => `Langkah ${n} daripada ${total}`,
       nameRequired: "Sila masukkan nama anda.",
       nameShort: "Sila masukkan nama penuh anda.",
       nameInvalid: "Nama hanya boleh mengandungi huruf, ruang dan tanda ' - . / @",
@@ -71,7 +70,6 @@
       doneBody: (phone) => `Kami telah terima maklumat anda. Kami akan hubungi anda di ${phone} untuk aturkan kelas percubaan anak anda.`,
     },
     en: {
-      step: (n, total) => `Step ${n} of ${total}`,
       nameRequired: "Please enter your name.",
       nameShort: "Please enter your full name.",
       nameInvalid: "Names can only have letters, spaces and the marks ' - . / @",
@@ -97,7 +95,6 @@
 
   const $ = (selector) => form.querySelector(selector);
   const steps = [...form.querySelectorAll(".tf-step")];
-  const stepMarks = [...form.querySelectorAll(".tf-steps li")];
   const nameInput = $("#tf-name");
   const emailInput = $("#tf-email");
   const phoneInput = $("#tf-phone");
@@ -299,16 +296,11 @@
   function showStep(index, focus = true) {
     current = index;
     steps.forEach((step, i) => { step.hidden = i !== index; });
-    stepMarks.forEach((mark, i) => {
-      mark.classList.toggle("is-current", i === index);
-      mark.classList.toggle("is-done", i < index);
-    });
     backBtn.hidden = index === 0;
     const last = index === steps.length - 1;
     nextBtn.querySelector(".tf-label-next").hidden = last;
     nextBtn.querySelector(".tf-label-submit").hidden = !last;
     if (last) renderReview();
-    renderCount();
     status.hidden = true;
     if (focus) {
       firstControl(steps[index])?.focus({ preventScroll: true });
@@ -316,8 +308,6 @@
       if (card.getBoundingClientRect().top < 80) card.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
-
-  const renderCount = () => { document.getElementById("tf-count").textContent = T[lang].step(current + 1, steps.length); };
 
   // Summary of the answers on the last step, each with a link back to its step
   function renderReview() {
@@ -448,7 +438,6 @@
     render(next) {
       lang = next === "en" ? "en" : "ms";
       Object.keys(errors).forEach(showError);
-      renderCount();
       updateTypoHint();
       if (current === steps.length - 1) renderReview();
       if (!status.hidden) showFailure(failureMessage);

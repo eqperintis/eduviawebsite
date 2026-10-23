@@ -781,26 +781,10 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   .trial-card { max-width: 560px; width: 100%; margin-inline: auto; }
 }
 
-/* Form: step marks, fields, chips and choices */
+/* Form: fields, chips and choices */
 .tf { display: grid; gap: 24px; }
 .tf[hidden] { display: none; }
-.tf-head { display: grid; gap: 10px; }
-.tf-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.tf-steps li {
-  display: flex; align-items: center; gap: 8px; padding-top: 12px; border-top: 4px solid var(--track);
-  font-size: 0.88rem; font-weight: 600; color: var(--faint); transition: border-color 0.3s, color 0.3s;
-}
-.tf-num {
-  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 8px; flex: none;
-  font-family: var(--font-mono); font-size: 0.72rem; background: var(--inset); color: var(--muted); transition: background 0.3s, color 0.3s;
-}
-.tf-steps li.is-current { border-color: var(--yellow); color: var(--fg); }
-.tf-steps li.is-current .tf-num { background: var(--yellow); color: var(--navy); }
-.tf-steps li.is-done { border-color: var(--navy); color: var(--fg); }
-.tf-steps li.is-done .tf-num { background: var(--navy); color: var(--white); font-size: 0; }
-.tf-steps li.is-done .tf-num::before { content: "✓"; font-family: var(--font); font-size: 0.8rem; font-weight: 700; }
-.tf-count { margin: 0; }
-.tf:not(.is-stepped) .tf-head, .tf:not(.is-stepped) .tf-label-next { display: none; }
+.tf:not(.is-stepped) .tf-label-next { display: none; }
 
 .tf-step { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 20px; }
 .tf-step[hidden] { display: none; }
