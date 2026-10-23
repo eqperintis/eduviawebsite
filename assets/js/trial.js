@@ -305,7 +305,7 @@
     if (focus) {
       firstControl(steps[index])?.focus({ preventScroll: true });
       const card = document.getElementById("form");
-      if (card.getBoundingClientRect().top < 80) card.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (card.getBoundingClientRect().top < parseFloat(getComputedStyle(card).scrollMarginTop)) card.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
 
