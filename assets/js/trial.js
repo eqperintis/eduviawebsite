@@ -196,7 +196,9 @@
     const bad = fields.filter((f) => !check(f));
     if (bad.length) {
       const wrap = form.querySelector(`[data-field="${bad[0]}"]`);
-      firstControl(wrap)?.focus({ preventScroll: true });
+      // A select is not focused: on phones that opens its list on its own
+      const control = firstControl(wrap);
+      if (control && control.tagName !== "SELECT") control.focus({ preventScroll: true });
       wrap.scrollIntoView({ block: "center", behavior: "smooth" });
     }
     return bad.length === 0;
@@ -303,7 +305,8 @@
     if (last) renderReview();
     status.hidden = true;
     if (focus) {
-      firstControl(steps[index])?.focus({ preventScroll: true });
+      // The heading, not the first field: focusing a field opens the keyboard or a list on phones
+      steps[index].querySelector(".tf-legend").focus({ preventScroll: true });
       const card = document.getElementById("form");
       if (card.getBoundingClientRect().top < parseFloat(getComputedStyle(card).scrollMarginTop)) card.scrollIntoView({ behavior: "smooth", block: "start" });
     }
