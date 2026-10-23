@@ -1,5 +1,5 @@
 /* Eduvia
-   Layout: light product site. White page with navy type, floating glass nav,
+   Layout: light product site. White page with navy type, floating glass nav (scrolls with the page),
    hero photo that fades into the page, levels strip, Uji / Semak / Bantu demo on
    a laptop, timetable. Navy is kept for the
    levels strip and the footer (.on-dark). */
@@ -76,7 +76,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
 
 body {
   margin: 0;
@@ -165,7 +165,8 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 
 /* ---------- Floating navigation ---------- */
 
-.site-header { position: fixed; top: var(--nav-top); left: 16px; right: 16px; z-index: 50; }
+/* Sits over the top of the page and scrolls away with it */
+.site-header { position: absolute; top: var(--nav-top); left: 16px; right: 16px; z-index: 50; }
 .nav-shell {
   position: relative; max-width: 1120px; margin: 0 auto;
   display: flex; align-items: center; gap: 16px;
@@ -173,9 +174,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   background: rgba(255, 255, 255, 0.72); border: 1px solid var(--line);
   backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%);
   box-shadow: 0 8px 30px -18px rgba(18, 25, 95, 0.35);
-  transition: background 0.25s, box-shadow 0.25s;
 }
-.site-header.is-scrolled .nav-shell { background: rgba(255, 255, 255, 0.92); box-shadow: 0 14px 40px -20px rgba(18, 25, 95, 0.45); }
 
 .brand { display: inline-flex; flex: none; }
 .brand img { height: 26px; width: auto; }
@@ -757,8 +756,6 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 @keyframes promo-pulse { 50% { opacity: 0.35; } }
 .promo-bar span { color: #d9ddf6; }
 .has-promo-bar { --promo-h: 42px; --nav-top: calc(env(safe-area-inset-top, 0px) + var(--promo-h) + 12px); }
-/* With the bar, the floating navigation scrolls away with the page; only the bar stays */
-.has-promo-bar .site-header { position: absolute; }
 .has-promo-bar .trial-card { scroll-margin-top: calc(var(--promo-h) + 20px); }
 @media (max-width: 640px) {
   .has-promo-bar { --promo-h: 50px; }
@@ -783,7 +780,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .trial-more { grid-area: more; }
 .trial-card { grid-area: card; }
 /* Only stays in view when the window is tall enough to show the whole card */
-@media (min-width: 901px) and (min-height: 920px) { .trial-card { position: sticky; top: calc(var(--nav-top) + 86px); } }
+@media (min-width: 901px) and (min-height: 920px) { .trial-card { position: sticky; top: 24px; } }
 @media (min-width: 901px) and (min-height: 920px) { .has-promo-bar .trial-card { top: calc(var(--promo-h) + 24px); } }
 .trial-intro > *, .trial-photo, .trial-more { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .trial-intro > :nth-child(2) { animation-delay: 0.08s; }
@@ -806,7 +803,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .trial-perks span { color: var(--muted); font-size: 0.95rem; }
 
 .trial-card {
-  scroll-margin-top: calc(var(--nav-top) + 80px); padding: clamp(22px, 3.5vw, 36px); border-radius: var(--radius);
+  scroll-margin-top: 20px; padding: clamp(22px, 3.5vw, 36px); border-radius: var(--radius);
   background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-lg);
   animation: rise 0.9s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
@@ -960,17 +957,10 @@ fieldset.tf-field { border: 0; margin: 0; padding: 0; }
   box-shadow: 0 10px 26px -12px rgba(201, 150, 30, 0.75);
 }
 
-/* How it works */
-.trial-how { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.trial-how li { padding: 28px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); }
-.trial-how .demo-num { background: var(--yellow); color: var(--navy); }
-.trial-how h3 { font-size: 1.5rem; margin: 18px 0 8px; }
-.trial-how p { margin: 0; color: var(--muted); }
-@media (max-width: 860px) { .trial-how { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; } }
 
 /* FAQ */
 .faq-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: start; }
-.faq-head { position: sticky; top: 120px; }
+.faq-head { position: sticky; top: 32px; }
 .faq details { border-bottom: 1px solid var(--line); }
 .faq details:first-child { border-top: 1px solid var(--line); }
 .faq summary {

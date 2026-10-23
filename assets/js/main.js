@@ -96,12 +96,6 @@ nav.addEventListener("click", (event) => {
   }
 });
 
-// Header shadow once the page scrolls
-const header = document.querySelector(".site-header");
-const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
-window.addEventListener("scroll", onScroll, { passive: true });
-onScroll();
-
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // ---------------------------------------------------------------------------
