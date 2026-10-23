@@ -10,7 +10,6 @@ assets/js/jadual.js   Jadual 2027: the class timetable data and its interactive 
 assets/js/yuran.js    Yuran 2027: the fees and the fee calculator
 assets/js/trial.js    the Free 1-Week Trial Class form: its steps and checks
 free-trial-class/     the Free 1-Week Trial Class landing page (eduvia.my/free-trial-class/)
-                      and submit.php, which receives its form
 assets/img/           logos, favicon, home-screen icon and social share image
 assets/img/flags/     country flags for the phone number (from flag-icons, MIT licence)
 assets/fonts/         Claston brand font (WOFF2)
@@ -81,18 +80,23 @@ The homepage's "Join Free Trial Class" buttons open this page. Its form has thre
 - Child's age (5 to 17) and the subjects offered for that age, the same levels as the fee calculator.
 - Whether they live near Eco Grandeur (Yes / No).
 
-`free-trial-class/submit.php` checks every answer again on the server, then:
+The form is sent to the Eduvia form backend, `https://marketing.eduvia.my/f/eduvia-enquiry` (form "Free: 1-Week Trial Class"), which saves each sign-up and emails a notification. The fields it receives:
 
-1. adds a row to `free-trial-class.csv` in an `eduvia-data` folder **next to** `public_html` (so it can't be opened from the web). Download it from hPanel's File Manager and open it in Excel or Google Sheets.
-2. emails the details to `hello@eduvia.my`.
+| Field | Example |
+| ----- | ------- |
+| `parent_name` | Nur Aisyah binti Ahmad |
+| `email` | aisyah@gmail.com |
+| `phone` | +60123456789 (international format) |
+| `child_age` | 10 |
+| `school_year` | Darjah 4 |
+| `subjects` | Mathematics, Science (a list) |
+| `near_eco_grandeur` | Yes / No |
+| `language` | BM / EN (the language the visitor used) |
+| `came_from`, `utm_*` | where the visitor came from, added by `utm.js` |
 
-To send the email elsewhere, create `eduvia-config.php` next to `public_html` (not in this repository):
+The backend only accepts forms sent from eduvia.my, so the form can only be tried on the live site (on localhost it answers 403). If an automation on the backend returns a `next` link, the visitor is taken there; otherwise the thank-you message shows in place. `marketing.eduvia.my/utm.js` is loaded on the homepage and the trial class page, so a visitor who arrives on the homepage from an ad keeps their UTM tags when they go on to the form.
 
-```php
-<?php return ['notify_email' => 'someone@example.com'];
-```
-
-The countries and subjects are listed in both `trial.js` and `submit.php`; change both together.
+The form has to pass the checks above in the browser; the backend saves what it is sent as it is.
 
 ## Before going live
 
@@ -102,7 +106,7 @@ Replace the placeholders:
 
 ## Preview locally
 
-Open `index.html` in a browser, or run `python3 -m http.server` in this folder and visit http://localhost:8000. To try the trial class form end to end, run `php -S localhost:8000` instead, so `submit.php` works.
+Open `index.html` in a browser, or run `python3 -m http.server` in this folder and visit http://localhost:8000.
 
 ## Deploying
 

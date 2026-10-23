@@ -1,8 +1,8 @@
 // Eduvia — Free 1-Week Trial Class form (free-trial-class/index.html)
 //
 // Three steps: the parent, the child, the location. A step must be complete and in
-// the right format before the next one opens; submit.php checks everything again.
-// COUNTRIES and SUBJECTS_BY_AGE are repeated in free-trial-class/submit.php: change both.
+// the right format before the next one opens. The form is sent to the Eduvia form
+// backend (the form's action), which saves the fields as they are sent.
 
 (() => {
   const form = document.getElementById("trial-form");
@@ -23,7 +23,10 @@
     us: { code: "1", pattern: /^[2-9]\d{2}[2-9]\d{6}$/, example: "201 555 0123" },
   };
 
-  // Subjects offered for each age (the same levels as the fee calculator)
+  // School year as the centre writes it, sent with the age
+  const schoolYear = (age) => (age <= 6 ? "Prasekolah" : age <= 12 ? `Darjah ${age - 6}` : `Tingkatan ${age - 12}`);
+
+  // Subjects offered for each age (the same levels as the fee calculator), by data-subject
   const subjectsForAge = (age) =>
     age <= 7 ? ["3m"]
     : age <= 12 ? ["bm", "eng", "math", "sci"]
@@ -100,7 +103,7 @@
   const phoneInput = $("#tf-phone");
   const countrySelect = $("#tf-country");
   const ageSelect = $("#tf-age");
-  const chips = [...form.querySelectorAll('input[name="subjects[]"]')];
+  const chips = [...form.querySelectorAll('input[name="subjects"]')];
   const nearInputs = [...form.querySelectorAll('input[name="near_eco_grandeur"]')];
   const backBtn = $("#tf-back");
   const nextBtn = $("#tf-next");
@@ -138,7 +141,7 @@
     return number.replace(/(\d{3,4})(?=(\d{3,4})+$)/g, "$1 ").trim();
   }
 
-  const selectedSubjects = () => chips.filter((c) => c.checked && !c.closest(".tf-chip").hidden).map((c) => c.value);
+  const selectedSubjects = () => chips.filter((c) => c.checked && !c.closest(".tf-chip").hidden).map((c) => c.dataset.subject);
   const nearValue = () => nearInputs.find((i) => i.checked)?.value || "";
 
   const CHECKS = {
@@ -274,11 +277,11 @@
     const age = Number(ageSelect.value);
     const offered = age ? subjectsForAge(age) : [];
     chips.forEach((chip) => {
-      const show = offered.includes(chip.value);
+      const show = offered.includes(chip.dataset.subject);
       chip.closest(".tf-chip").hidden = !show;
       if (!show) chip.checked = false;
     });
-    if (offered.length === 1) chips.find((c) => c.value === offered[0]).checked = true;
+    if (offered.length === 1) chips.find((c) => c.dataset.subject === offered[0]).checked = true;
     document.getElementById("tf-subjects-empty").hidden = Boolean(age);
   }
   ageSelect.addEventListener("change", () => {
@@ -320,7 +323,7 @@
   function renderReview() {
     const t = T[lang];
     const ageOption = ageSelect.selectedOptions[0];
-    const subjectNames = selectedSubjects().map((v) => chips.find((c) => c.value === v).closest(".tf-chip").textContent.trim());
+    const subjectNames = selectedSubjects().map((v) => chips.find((c) => c.dataset.subject === v).closest(".tf-chip").textContent.trim());
     const rows = [
       [t.review.parent_name, cleanName(), 0],
       [t.review.email, cleanEmail(), 0],
@@ -370,31 +373,45 @@
     form.setAttribute("aria-busy", String(on));
   }
 
+  // Sends the form as FormData, so the hidden fields utm.js adds (came_from, utm_*) go too
   async function send() {
     const data = new FormData(form);
     data.set("parent_name", cleanName());
     data.set("email", cleanEmail());
-    data.set("phone", nationalNumber());
-    data.set("lang", lang);
+    data.set("phone", `+${country().code}${nationalNumber()}`);
+    data.delete("phone_country"); // already part of the phone number
+    data.set("school_year", schoolYear(Number(ageSelect.value)));
+    data.set("language", lang === "en" ? "EN" : "BM");
+    data.set("_subject", `Free 1-Week Trial Class: ${cleanName()}`);
     setSending(true);
     status.hidden = true;
     try {
       const response = await fetch(form.action, { method: "POST", body: data, headers: { Accept: "application/json" } });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok || !result.ok) throw new Error(result.error || `HTTP ${response.status}`);
+      if (!result.ok) {
+        showFailure(result.error);
+        setSending(false);
+        return;
+      }
+      // An automation on the backend can choose where this visitor goes next
+      if (result.next) {
+        window.location.assign(result.next);
+        return;
+      }
       showDone();
+      setSending(false);
     } catch (error) {
       showFailure();
-    } finally {
       setSending(false);
     }
   }
 
-  function showFailure() {
+  // The backend's own message when it gives one (e.g. too many tries), else ours
+  let failureMessage = "";
+  function showFailure(message = "") {
     const t = T[lang];
-    status.textContent = `${t.failed} `;
-    const link = document.createElement("a");
-    link.textContent = t.failedContact;
+    failureMessage = message;
+    status.textContent = `${message || t.failed} `;
     // Same WhatsApp (or email) link as the rest of the site, with the details filled in
     const details = `${t.contactMessage}\n\n${t.review.parent_name}: ${cleanName()}\n${t.review.phone}: +${country().code} ${formatNational(nationalNumber())}`;
     const attrs = window.EduviaContact ? window.EduviaContact.link(details) : `href="mailto:hello@eduvia.my"`;
@@ -434,7 +451,7 @@
       renderCount();
       updateTypoHint();
       if (current === steps.length - 1) renderReview();
-      if (!status.hidden) showFailure();
+      if (!status.hidden) showFailure(failureMessage);
       renderDone();
     },
   };

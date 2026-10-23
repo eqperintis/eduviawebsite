@@ -23,12 +23,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css">
+  <!-- Adds where the visitor came from (came_from, utm_*) to the form as hidden fields -->
+  <script src="https://marketing.eduvia.my/utm.js" defer></script>
 </head>
 <body>
   <!--
     Free 1-Week Trial Class landing page. Same conventions as ../index.html:
     Bahasa Melayu in the HTML, English in data-en attributes.
-    The form steps and checks are in assets/js/trial.js; submit.php receives the form.
+    The form steps and checks are in assets/js/trial.js; the form is sent to the
+    Eduvia form backend (marketing.eduvia.my), form "Free: 1-Week Trial Class".
   -->
   <a class="skip-link" href="#main" data-en="Skip to content">Langkau ke kandungan</a>
 
@@ -90,7 +93,7 @@
 
         <div class="trial-card" id="form">
           <!-- Without JavaScript all three steps show at once; trial.js turns them into steps -->
-          <form class="tf" id="trial-form" action="submit.php" method="post" novalidate>
+          <form class="tf" id="trial-form" action="https://marketing.eduvia.my/f/eduvia-enquiry" method="POST" novalidate>
             <div class="tf-head">
               <ol class="tf-steps" aria-hidden="true">
                 <li data-step="1"><span class="tf-num">1</span><span data-en="You">Anda</span></li>
@@ -180,14 +183,14 @@
                 <p class="tf-hint" id="tf-subjects-hint" data-en="Choose one or more.">Pilih satu atau lebih.</p>
                 <!-- trial.js shows only the subjects offered for the chosen age -->
                 <div class="tf-chips">
-                  <label class="tf-chip"><input type="checkbox" name="subjects[]" value="3m"><span class="tf-tick" aria-hidden="true"></span><span data-en="3M · Reading, Writing, Arithmetic">3M · Membaca, Menulis, Mengira</span></label>
-                  <label class="tf-chip"><input type="checkbox" name="subjects[]" value="bm"><span class="tf-tick" aria-hidden="true"></span><span>Bahasa Melayu</span></label>
-                  <label class="tf-chip"><input type="checkbox" name="subjects[]" value="eng"><span class="tf-tick" aria-hidden="true"></span><span>English</span></label>
-                  <label class="tf-chip"><input type="checkbox" name="subjects[]" value="sej"><span class="tf-tick" aria-hidden="true"></span><span>Sejarah</span></label>
-                  <label class="tf-chip"><input type="checkbox" name="subjects[]" value="math"><span class="tf-tick" aria-hidden="true"></span><span>Mathematics</span></label>
-                  <label class="tf-chip"><input type="checkbox" name="subjects[]" value="sci"><span class="tf-tick" aria-hidden="true"></span><span>Science</span></label>
-                  <label class="tf-chip"><input type="checkbox" name="subjects[]" value="addm"><span class="tf-tick" aria-hidden="true"></span><span>Add Maths</span></label>
-                  <label class="tf-chip"><input type="checkbox" name="subjects[]" value="acc"><span class="tf-tick" aria-hidden="true"></span><span>Accounting</span></label>
+                  <label class="tf-chip"><input type="checkbox" name="subjects" value="3M (Membaca, Menulis, Mengira)" data-subject="3m"><span class="tf-tick" aria-hidden="true"></span><span data-en="3M · Reading, Writing, Arithmetic">3M · Membaca, Menulis, Mengira</span></label>
+                  <label class="tf-chip"><input type="checkbox" name="subjects" value="Bahasa Melayu" data-subject="bm"><span class="tf-tick" aria-hidden="true"></span><span>Bahasa Melayu</span></label>
+                  <label class="tf-chip"><input type="checkbox" name="subjects" value="English" data-subject="eng"><span class="tf-tick" aria-hidden="true"></span><span>English</span></label>
+                  <label class="tf-chip"><input type="checkbox" name="subjects" value="Sejarah" data-subject="sej"><span class="tf-tick" aria-hidden="true"></span><span>Sejarah</span></label>
+                  <label class="tf-chip"><input type="checkbox" name="subjects" value="Mathematics" data-subject="math"><span class="tf-tick" aria-hidden="true"></span><span>Mathematics</span></label>
+                  <label class="tf-chip"><input type="checkbox" name="subjects" value="Science" data-subject="sci"><span class="tf-tick" aria-hidden="true"></span><span>Science</span></label>
+                  <label class="tf-chip"><input type="checkbox" name="subjects" value="Add Maths" data-subject="addm"><span class="tf-tick" aria-hidden="true"></span><span>Add Maths</span></label>
+                  <label class="tf-chip"><input type="checkbox" name="subjects" value="Accounting" data-subject="acc"><span class="tf-tick" aria-hidden="true"></span><span>Accounting</span></label>
                 </div>
                 <p class="tf-empty" id="tf-subjects-empty" hidden data-en="Choose your child's age first to see the subjects.">Pilih umur anak dahulu untuk lihat subjek.</p>
                 <p class="tf-error" id="tf-subjects-error"></p>
@@ -201,8 +204,8 @@
               <fieldset class="tf-field tf-group" data-field="near_eco_grandeur" aria-describedby="tf-near-error">
                 <legend data-en="Do you live near Eco Grandeur?">Adakah anda tinggal berdekatan Eco Grandeur?</legend>
                 <div class="tf-choices">
-                  <label class="tf-choice"><input type="radio" name="near_eco_grandeur" value="yes" required><span data-en="Yes">Ya</span></label>
-                  <label class="tf-choice"><input type="radio" name="near_eco_grandeur" value="no"><span data-en="No">Tidak</span></label>
+                  <label class="tf-choice"><input type="radio" name="near_eco_grandeur" value="Yes" required><span data-en="Yes">Ya</span></label>
+                  <label class="tf-choice"><input type="radio" name="near_eco_grandeur" value="No"><span data-en="No">Tidak</span></label>
                 </div>
                 <p class="tf-error" id="tf-near-error"></p>
               </fieldset>
@@ -213,11 +216,12 @@
               </div>
             </fieldset>
 
-            <!-- Hidden from people; bots that fill it in are ignored by submit.php -->
+            <!-- Spam trap: hidden from people; the form backend drops bots that fill it in -->
             <div class="tf-hp" aria-hidden="true">
-              <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+              <label>Website <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
             </div>
-            <input type="hidden" name="lang" value="ms">
+            <!-- Notification email subject (trial.js adds the parent's name) -->
+            <input type="hidden" name="_subject" value="Free 1-Week Trial Class">
 
             <p class="tf-status" id="tf-status" role="alert" hidden></p>
 
