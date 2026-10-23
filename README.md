@@ -8,8 +8,9 @@ assets/css/styles.css styles
 assets/js/main.js     BM / EN switch, mobile menu and the WhatsApp links
 assets/js/jadual.js   Jadual 2027: the class timetable data and its interactive view
 assets/js/yuran.js    Yuran 2027: the fees and the fee calculator
-assets/js/trial.js    the Free 1-Week Trial Class form: its steps and checks
+assets/js/signup-form.js  the sign-up form on the landing pages: its steps and checks
 free-trial-class/     the Free 1-Week Trial Class landing page (eduvia.my/free-trial-class/)
+biasiswa/             the Biasiswa Giveaway landing page, pre-registration for 2027 (eduvia.my/biasiswa/)
 assets/img/           logos, favicon, home-screen icon and social share image
 assets/img/flags/     country flags for the phone number (from flag-icons, MIT licence)
 assets/fonts/         Claston brand font (WOFF2)
@@ -76,7 +77,7 @@ The homepage's "Join Free Trial Class" buttons open this page. Its form has thre
 
 - Parent's name: letters, spaces and ' - . / @ (e.g. "Muthu a/l Rajan").
 - Email: a full address; common misspellings such as `gmial.com` get a "Did you mean" fix.
-- Phone number: a mobile number for the chosen country, Malaysia (+60) by default. The countries and their number rules are `COUNTRIES` at the top of `assets/js/trial.js`.
+- Phone number: a mobile number for the chosen country, Malaysia (+60) by default. The countries and their number rules are `COUNTRIES` at the top of `assets/js/signup-form.js`.
 - Child's level (5 Tahun, 6 Tahun, Darjah 1 – 6, Tingkatan 1 – 5; sent as `child_age` 5 to 17 and `school_year`) and the subjects offered for it, the same levels as the fee calculator: at least 2 subjects, except Asas 3M (one class, ticked for them).
 - Whether they live near Eco Grandeur (Yes / No).
 
@@ -94,9 +95,13 @@ The form is sent to the Eduvia form backend, `https://marketing.eduvia.my/f/eduv
 | `language` | BM / EN (the language the visitor used) |
 | `came_from`, `utm_*` | where the visitor came from, added by `utm.js` |
 
-The backend only accepts forms sent from eduvia.my, so the form can only be tried on the live site (on localhost it answers 403). If an automation on the backend returns a `next` link, the visitor is taken there; otherwise the thank-you message shows in place. `marketing.eduvia.my/utm.js` is loaded on the homepage and the trial class page, so a visitor who arrives on the homepage from an ad keeps their UTM tags when they go on to the form.
+The backend only accepts forms sent from eduvia.my, so the form can only be tried on the live site (on localhost it answers 403). If an automation on the backend returns a `next` link, the visitor is taken there; otherwise the thank-you message shows in place. `marketing.eduvia.my/utm.js` is loaded on the homepage and both landing pages, so a visitor who arrives on the homepage from an ad keeps their UTM tags when they go on to the form.
 
 The form has to pass the checks above in the browser; the backend saves what it is sent as it is.
+
+## Biasiswa Giveaway (biasiswa/)
+
+"Giveaway Biasiswa: Free 1-Tahun Pembelajaran bersama Eduvia": students who pre-register for 2027 (RM50) enter the giveaway, and the winner is announced on 28 December 2026. The page has the same layout and the same form as the trial class page (`data-page="biasiswa"` on the `<form>` picks its thank-you text), and it sends the same fields to its own form on the backend, `https://marketing.eduvia.my/f/gdfnzpee` ("Pre-Reg 2027: Biasiswa Giveaway"). The email subject starts with the page's hidden `_subject` field. Its link preview image is `assets/img/biasiswa/og-image.jpg`.
 
 ## Before going live
 
@@ -110,7 +115,7 @@ Open `index.html` in a browser, or run `python3 -m http.server` in this folder a
 
 ## Deploying
 
-The pages load the CSS and JavaScript with a version on the end (`styles.css?v=20261023i`). When you change a file in `assets/css` or `assets/js`, change that version in `index.html` and `free-trial-class/index.html` (e.g. to the day's date), or browsers and Hostinger's CDN may keep showing the old file.
+The pages load the CSS and JavaScript with a version on the end (`styles.css?v=20261023k`). When you change a file in `assets/css` or `assets/js`, change that version in `index.html`, `free-trial-class/index.html` and `biasiswa/index.html` (e.g. to the day's date), or browsers and Hostinger's CDN may keep showing the old file.
 
 
 The site is hosted on the Hostinger Business plan. Upload the contents of this repository (not the `.git` folder) to the website's `public_html` directory, either through hPanel's File Manager or Hostinger's Git deployment.

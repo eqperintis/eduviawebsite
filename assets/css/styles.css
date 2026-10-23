@@ -742,7 +742,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   .jv-groups button { flex: 1; }
 }
 
-/* ---------- Free 1-Week Trial Class (free-trial-class/) ---------- */
+/* ---------- Landing pages with the sign-up form: free-trial-class/ and biasiswa/ ---------- */
 
 /* Pinned bar at the top of the screen; pages with it move the floating navigation below it */
 .promo-bar {
@@ -761,6 +761,8 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   .has-promo-bar { --promo-h: 50px; }
   .promo-bar { flex-direction: column; font-size: 0.8rem; }
 }
+/* Small phones: room for a longer message to wrap onto a third line */
+@media (max-width: 360px) { .has-promo-bar { --promo-h: 64px; } }
 
 /* Offer on the left, form card on the right, over a soft brand glow */
 .trial-hero { position: relative; overflow: hidden; padding: calc(var(--nav-top) + 112px) 0 clamp(64px, 8vw, 104px); }
@@ -788,11 +790,14 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 .trial-photo { animation-delay: 0.2s; }
 .trial-more { animation-delay: 0.24s; }
 .trial-title > span { display: block; }
+.trial-title-long { font-size: clamp(2.3rem, 4.2vw, 3.6rem); }
 .trial-intro .hero-lead { max-width: 28rem; font-size: 1.22rem; color: var(--text); }
 .trial-photo {
   grid-area: photo; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 40%;
   border-radius: var(--radius); box-shadow: var(--shadow-lg);
 }
+/* Biasiswa photo: shown whole (3:2) */
+.trial-photo-wide { aspect-ratio: 3 / 2; }
 .trial-perks { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; max-width: 34rem; }
 .trial-perks li { position: relative; display: grid; gap: 2px; padding-left: 40px; }
 .trial-perks li::before {
@@ -811,7 +816,7 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
 @media (max-width: 900px) {
   .trial-hero { padding-top: calc(var(--nav-top) + 92px); }
   .trial-layout { grid-template-columns: 1fr; grid-template-areas: "intro" "photo" "card" "more"; row-gap: 24px; }
-  .trial-intro .hero-lead { display: none; }
+  .trial-intro .hide-on-phone { display: none; }
   .trial-photo { max-width: 560px; margin-inline: auto; }
   .trial-card { max-width: 560px; width: 100%; margin-inline: auto; }
   .trial-more { max-width: 560px; width: 100%; margin-inline: auto; padding-top: 16px; }

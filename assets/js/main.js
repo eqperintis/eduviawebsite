@@ -69,7 +69,7 @@ function setLanguage(next) {
   updateContactLinks();
   window.EduviaJadual?.render(lang);
   window.EduviaYuran?.render(lang);
-  window.EduviaTrial?.render(lang);
+  window.EduviaSignup?.render(lang);
   try { localStorage.setItem("eduvia-lang", lang); } catch (e) { /* storage unavailable */ }
 }
 

@@ -1,11 +1,14 @@
-// Eduvia — Free 1-Week Trial Class form (free-trial-class/index.html)
+// Eduvia — sign-up form, shared by the landing pages:
+//   free-trial-class/index.html (Free 1-Week Trial Class)    data-page="trial"
+//   biasiswa/index.html (Pre-Reg 2027: Biasiswa Giveaway)    data-page="biasiswa"
 //
 // Three steps: the parent, the child, the location. A step must be complete and in
 // the right format before the next one opens. The form is sent to the Eduvia form
-// backend (the form's action), which saves the fields as they are sent.
+// backend (the form's action), which saves the fields as they are sent. The email
+// subject starts with the form's hidden _subject field.
 
 (() => {
-  const form = document.getElementById("trial-form");
+  const form = document.querySelector("form.tf");
   if (!form) return;
 
   // Phone numbers: dial code, and the national number without its leading 0 (mobile numbers)
@@ -66,9 +69,7 @@
       yes: "Ya", no: "Tidak",
       failed: "Maaf, borang tidak dapat dihantar. Sila cuba lagi.",
       failedContact: "Atau hubungi kami terus",
-      contactMessage: "Hai Eduvia, saya nak daftar kelas percubaan percuma 1 minggu.",
       doneTitle: (name) => `Terima kasih, ${name}!`,
-      doneBody: (phone) => `Kami telah terima maklumat anda. Kami akan hubungi anda di ${phone} untuk aturkan kelas percubaan anak anda.`,
     },
     en: {
       nameRequired: "Please enter your name.",
@@ -89,11 +90,35 @@
       yes: "Yes", no: "No",
       failed: "Sorry, the form couldn't be sent. Please try again.",
       failedContact: "Or contact us directly",
-      contactMessage: "Hi Eduvia, I'd like to book the free 1-week trial class.",
       doneTitle: (name) => `Thank you, ${name}!`,
-      doneBody: (phone) => `We've received your details. We'll contact you at ${phone} to arrange your child's trial class.`,
     },
   };
+
+  // What differs between the pages (the form's data-page): the WhatsApp message offered
+  // when sending fails, and the thank-you text
+  const PAGES = {
+    trial: {
+      ms: {
+        contactMessage: "Hai Eduvia, saya nak daftar kelas percubaan percuma 1 minggu.",
+        doneBody: (phone) => `Kami telah terima maklumat anda. Kami akan hubungi anda di ${phone} untuk aturkan kelas percubaan anak anda.`,
+      },
+      en: {
+        contactMessage: "Hi Eduvia, I'd like to book the free 1-week trial class.",
+        doneBody: (phone) => `We've received your details. We'll contact you at ${phone} to arrange your child's trial class.`,
+      },
+    },
+    biasiswa: {
+      ms: {
+        contactMessage: "Hai Eduvia, saya nak pra-daftar anak saya untuk 2027 (Giveaway Biasiswa).",
+        doneBody: (phone) => `Kami telah terima maklumat anda. Kami akan hubungi anda di ${phone} untuk bayaran pra-pendaftaran RM50. Pemenang akan diumumkan pada 28 Disember 2026.`,
+      },
+      en: {
+        contactMessage: "Hi Eduvia, I'd like to pre-register my child for 2027 (Scholarship Giveaway).",
+        doneBody: (phone) => `We've received your details. We'll contact you at ${phone} about the RM50 pre-registration payment. The winner will be announced on 28 December 2026.`,
+      },
+    },
+  };
+  const page = PAGES[form.dataset.page] || PAGES.trial;
 
   const $ = (selector) => form.querySelector(selector);
   const steps = [...form.querySelectorAll(".tf-step")];
@@ -384,7 +409,7 @@
     data.delete("phone_country"); // already part of the phone number
     data.set("school_year", schoolYear(Number(ageSelect.value)));
     data.set("language", lang === "en" ? "EN" : "BM");
-    data.set("_subject", `Free 1-Week Trial Class: ${cleanName()}`);
+    data.set("_subject", `${form.elements._subject.value}: ${cleanName()}`);
     setSending(true);
     status.hidden = true;
     try {
@@ -415,7 +440,7 @@
     failureMessage = message;
     status.textContent = `${message || t.failed} `;
     // Same WhatsApp (or email) link as the rest of the site, with the details filled in
-    const details = `${t.contactMessage}\n\n${t.review.parent_name}: ${cleanName()}\n${t.review.phone}: +${country().code} ${formatNational(nationalNumber())}`;
+    const details = `${page[lang].contactMessage}\n\n${t.review.parent_name}: ${cleanName()}\n${t.review.phone}: +${country().code} ${formatNational(nationalNumber())}`;
     const attrs = window.EduviaContact ? window.EduviaContact.link(details) : `href="mailto:hello@eduvia.my"`;
     const holder = document.createElement("span");
     holder.innerHTML = `<a ${attrs}></a>`;
@@ -440,13 +465,13 @@
   function renderDone() {
     if (!doneDetails) return;
     document.getElementById("tf-done-title").textContent = T[lang].doneTitle(doneDetails.name);
-    document.getElementById("tf-done-body").textContent = T[lang].doneBody(doneDetails.phone);
+    document.getElementById("tf-done-body").textContent = page[lang].doneBody(doneDetails.phone);
   }
 
   // ---------------------------------------------------------------------------
   // Language: main.js calls render() whenever BM / EN changes
 
-  window.EduviaTrial = {
+  window.EduviaSignup = {
     render(next) {
       lang = next === "en" ? "en" : "ms";
       Object.keys(errors).forEach(showError);
