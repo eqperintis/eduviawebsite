@@ -110,4 +110,7 @@ Open `index.html` in a browser, or run `python3 -m http.server` in this folder a
 
 ## Deploying
 
+The pages load the CSS and JavaScript with a version on the end (`styles.css?v=20261023`). When you change a file in `assets/css` or `assets/js`, change that version in `index.html` and `free-trial-class/index.html` (e.g. to the day's date), or browsers and Hostinger's CDN may keep showing the old file.
+
+
 The site is hosted on the Hostinger Business plan. Upload the contents of this repository (not the `.git` folder) to the website's `public_html` directory, either through hPanel's File Manager or Hostinger's Git deployment.
