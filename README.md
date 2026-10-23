@@ -8,7 +8,11 @@ assets/css/styles.css styles
 assets/js/main.js     BM / EN switch, mobile menu and the WhatsApp links
 assets/js/jadual.js   Jadual 2027: the class timetable data and its interactive view
 assets/js/yuran.js    Yuran 2027: the fees and the fee calculator
+assets/js/trial.js    the Free 1-Week Trial Class form: its steps and checks
+free-trial-class/     the Free 1-Week Trial Class landing page (eduvia.my/free-trial-class/)
+                      and submit.php, which receives its form
 assets/img/           logos, favicon, home-screen icon and social share image
+assets/img/flags/     country flags for the phone number (from flag-icons, MIT licence)
 assets/fonts/         Claston brand font (WOFF2)
 ```
 
@@ -67,6 +71,29 @@ fees: { 2: 200, 3: 260, 4: 300 },   // 2 subjects RM200, 3 subjects RM260, ...
 
 The first month is the registration fee plus the monthly fee. The FAQ answer on fees in `index.html` quotes the lowest monthly fee (RM200), so update it too if that changes. Asas 3M is a single class (`fees: { 1: 250 }`), so the calculator ticks it automatically.
 
+## Free 1-Week Trial Class (free-trial-class/)
+
+The homepage's "Join Free Trial Class" buttons open this page. Its form has three steps (the parent, the child, the location), and each step must be complete and in the right format before the next one opens:
+
+- Parent's name: letters, spaces and ' - . / @ (e.g. "Muthu a/l Rajan").
+- Email: a full address; common misspellings such as `gmial.com` get a "Did you mean" fix.
+- Phone number: a mobile number for the chosen country, Malaysia (+60) by default. The countries and their number rules are `COUNTRIES` at the top of `assets/js/trial.js`.
+- Child's age (5 to 17) and the subjects offered for that age, the same levels as the fee calculator.
+- Whether they live near Eco Grandeur (Yes / No).
+
+`free-trial-class/submit.php` checks every answer again on the server, then:
+
+1. adds a row to `free-trial-class.csv` in an `eduvia-data` folder **next to** `public_html` (so it can't be opened from the web). Download it from hPanel's File Manager and open it in Excel or Google Sheets.
+2. emails the details to `hello@eduvia.my`.
+
+To send the email elsewhere, create `eduvia-config.php` next to `public_html` (not in this repository):
+
+```php
+<?php return ['notify_email' => 'someone@example.com'];
+```
+
+The countries and subjects are listed in both `trial.js` and `submit.php`; change both together.
+
 ## Before going live
 
 Replace the placeholders:
@@ -75,7 +102,7 @@ Replace the placeholders:
 
 ## Preview locally
 
-Open `index.html` in a browser, or run `python3 -m http.server` in this folder and visit http://localhost:8000.
+Open `index.html` in a browser, or run `python3 -m http.server` in this folder and visit http://localhost:8000. To try the trial class form end to end, run `php -S localhost:8000` instead, so `submit.php` works.
 
 ## Deploying
 

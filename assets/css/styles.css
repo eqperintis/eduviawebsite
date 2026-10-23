@@ -39,6 +39,8 @@
   --help-ink: #8a6410;        /* brand yellow, darkened for small text on white */
   --help-bg: #fcf2d6;
   --accent-ink: #1b6bc0;
+  --error-ink: #c8323b;       /* form errors */
+  --error-bg: #fdeeef;
   --mark: rgba(235, 195, 91, 0.55);
   --shadow: 0 1px 2px rgba(18, 25, 95, 0.04), 0 14px 34px -16px rgba(18, 25, 95, 0.16);
   --shadow-lg: 0 2px 6px rgba(18, 25, 95, 0.05), 0 40px 90px -36px rgba(18, 25, 95, 0.3);
@@ -740,6 +742,208 @@ h1, h2, h3 { margin: 0; color: var(--fg); font-family: var(--font-display); font
   .jv-select, .jv-groups { width: 100%; }
   .jv-groups button { flex: 1; }
 }
+
+/* ---------- Free 1-Week Trial Class (free-trial-class/) ---------- */
+
+/* Offer on the left, form card on the right, over a soft brand glow */
+.trial-hero { position: relative; overflow: hidden; padding: calc(var(--nav-top) + 112px) 0 clamp(64px, 8vw, 104px); }
+.trial-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 50% at 82% 30%, rgba(94, 182, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 34% 40% at 8% 90%, rgba(235, 195, 91, 0.18), transparent 70%);
+}
+.trial-layout { position: relative; display: grid; grid-template-columns: 1fr minmax(0, 520px); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.trial-copy { padding-top: 12px; }
+.trial-copy > * { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.trial-copy > :nth-child(2) { animation-delay: 0.08s; }
+.trial-copy > :nth-child(3) { animation-delay: 0.16s; }
+.trial-copy > :nth-child(4) { animation-delay: 0.24s; }
+.trial-title > span { display: block; }
+.trial-perks { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 18px; max-width: 30rem; }
+.trial-perks li { position: relative; display: grid; gap: 2px; padding-left: 40px; }
+.trial-perks li::before {
+  content: ""; position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 8px;
+  background: var(--yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2312195f' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+.trial-perks strong { color: var(--fg); font-size: 1.02rem; }
+.trial-perks span { color: var(--muted); font-size: 0.95rem; }
+
+.trial-card {
+  scroll-margin-top: 100px; padding: clamp(22px, 3.5vw, 36px); border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-lg);
+  animation: rise 0.9s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (max-width: 900px) {
+  .trial-hero { padding-top: calc(var(--nav-top) + 92px); }
+  .trial-layout { grid-template-columns: 1fr; }
+  .trial-card { max-width: 560px; width: 100%; margin-inline: auto; }
+}
+
+/* Form: step marks, fields, chips and choices */
+.tf { display: grid; gap: 24px; }
+.tf[hidden] { display: none; }
+.tf-head { display: grid; gap: 10px; }
+.tf-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.tf-steps li {
+  display: flex; align-items: center; gap: 8px; padding-top: 12px; border-top: 4px solid var(--track);
+  font-size: 0.88rem; font-weight: 600; color: var(--faint); transition: border-color 0.3s, color 0.3s;
+}
+.tf-num {
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 8px; flex: none;
+  font-family: var(--font-mono); font-size: 0.72rem; background: var(--inset); color: var(--muted); transition: background 0.3s, color 0.3s;
+}
+.tf-steps li.is-current { border-color: var(--yellow); color: var(--fg); }
+.tf-steps li.is-current .tf-num { background: var(--yellow); color: var(--navy); }
+.tf-steps li.is-done { border-color: var(--navy); color: var(--fg); }
+.tf-steps li.is-done .tf-num { background: var(--navy); color: var(--white); font-size: 0; }
+.tf-steps li.is-done .tf-num::before { content: "✓"; font-family: var(--font); font-size: 0.8rem; font-weight: 700; }
+.tf-count { margin: 0; }
+.tf:not(.is-stepped) .tf-head, .tf:not(.is-stepped) .tf-label-next { display: none; }
+
+.tf-step { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 20px; }
+.tf-step[hidden] { display: none; }
+.tf.is-stepped .tf-step:not([hidden]) { animation: pane-in 0.35s ease both; }
+.tf-legend { padding: 0; margin-bottom: 20px; font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2rem); line-height: 1.1; color: var(--fg); }
+
+.tf-field { display: grid; gap: 8px; min-width: 0; }
+fieldset.tf-field { border: 0; margin: 0; padding: 0; }
+.tf-field > label, .tf-group > legend { padding: 0; font-size: 0.9rem; font-weight: 600; color: var(--fg); }
+.tf-group > legend { margin-bottom: 8px; }
+.tf-hint { margin: 0; font-size: 0.84rem; color: var(--muted); }
+.tf-group > .tf-hint { margin-top: -6px; }
+
+.tf input[type="text"], .tf input[type="email"], .tf input[type="tel"], .tf-select {
+  width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line-strong);
+  font: inherit; font-size: 1rem; color: var(--fg); background: var(--surface);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.tf input::placeholder { color: var(--faint); }
+.tf input[type="text"]:focus, .tf input[type="email"]:focus, .tf-select:focus, .tf-phone:focus-within {
+  outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(94, 182, 255, 0.22);
+}
+.tf-select {
+  appearance: none; -webkit-appearance: none; cursor: pointer; padding-right: 46px; font-weight: 600;
+  background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2312195f' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 16px center / 18px no-repeat;
+}
+.tf-select:invalid { color: var(--faint); font-weight: 500; }
+.tf-select option { color: var(--fg); }
+
+/* Phone: country (flag + dial code, native select on top) joined to the number */
+.tf-phone {
+  display: flex; align-items: stretch; border-radius: 14px; border: 1px solid var(--line-strong);
+  background: var(--surface); transition: border-color 0.2s, box-shadow 0.2s;
+}
+.tf-country {
+  position: relative; flex: none; display: flex; align-items: center; gap: 8px; padding: 0 12px 0 14px;
+  border-right: 1px solid var(--line); border-radius: 14px 0 0 14px; background: var(--bg-alt);
+}
+.tf-flag { width: 24px; height: 18px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(18, 25, 95, 0.12); }
+.tf-dial { font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; }
+.tf-country svg { width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.tf-country select { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; font-size: 1rem; }
+.tf-country:has(select:focus-visible) { box-shadow: inset 0 0 0 2px var(--blue); }
+.tf .tf-phone input[type="tel"] { flex: 1; min-width: 0; border: 0; border-radius: 0 14px 14px 0; background: transparent; box-shadow: none; }
+.tf .tf-phone input[type="tel"]:focus { outline: none; }
+
+/* Subjects as tickable chips */
+.tf-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.tf-chip {
+  position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px 8px 8px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line-strong); background: var(--surface); font-size: 0.95rem; font-weight: 600; color: var(--fg);
+  transition: border-color 0.2s, background 0.2s;
+}
+.tf-chip[hidden] { display: none; }
+.tf-chip:hover { border-color: var(--navy); }
+.tf-chip input, .tf-choice input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.tf-tick {
+  width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--line-strong); flex: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.tf-chip:has(input:checked) { background: var(--help-bg); border-color: var(--yellow); }
+.tf-chip:has(input:checked) .tf-tick {
+  border-color: var(--yellow);
+  background: var(--yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2312195f' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+.tf-chip:has(input:focus-visible), .tf-choice:has(input:focus-visible) { outline: 2px solid var(--blue); outline-offset: 3px; }
+.tf-empty { margin: 0; padding: 14px 16px; border-radius: 14px; border: 1px dashed var(--line-strong); font-size: 0.9rem; color: var(--muted); }
+
+/* Yes / No as two large choices */
+.tf-choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.tf-choice {
+  position: relative; display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 16px; cursor: pointer;
+  border: 1px solid var(--line-strong); background: var(--surface); font-weight: 700; color: var(--fg);
+  transition: border-color 0.2s, background 0.2s;
+}
+.tf-choice::before {
+  content: ""; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line-strong); flex: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.tf-choice:hover { border-color: var(--navy); }
+.tf-choice:has(input:checked) { border-color: var(--navy); background: var(--ok-bg); }
+.tf-choice:has(input:checked)::before { border-color: var(--navy); box-shadow: inset 0 0 0 5px var(--white); background: var(--navy); }
+
+/* Errors: red outline and a message under the field */
+.tf-error { margin: 0; font-size: 0.86rem; font-weight: 600; color: var(--error-ink); }
+.tf-error:empty { display: none; }
+.tf-error::before { content: "!"; display: inline-grid; place-items: center; width: 17px; height: 17px; margin-right: 7px; border-radius: 50%; background: var(--error-ink); color: var(--white); font-size: 0.7rem; vertical-align: 1px; }
+.tf-field.is-invalid input[type="text"], .tf-field.is-invalid input[type="email"], .tf-field.is-invalid .tf-select,
+.tf-field.is-invalid .tf-phone, .tf-field.is-invalid .tf-tick, .tf-field.is-invalid .tf-choice { border-color: var(--error-ink); }
+.tf-field.is-invalid input[type="text"]:focus, .tf-field.is-invalid input[type="email"]:focus,
+.tf-field.is-invalid .tf-select:focus, .tf-field.is-invalid .tf-phone:focus-within { box-shadow: 0 0 0 4px rgba(200, 50, 59, 0.16); }
+.tf-typo { color: var(--fg); }
+.tf-typo button { border: 0; padding: 0; background: none; font: inherit; font-weight: 700; color: var(--accent-ink); text-decoration: underline; cursor: pointer; }
+
+/* Summary before sending */
+.tf-review { padding: 16px 18px; border-radius: 16px; background: var(--bg-alt); border: 1px solid var(--line); }
+.tf-review .mono-label { display: block; margin-bottom: 8px; }
+.tf-review dl { margin: 0; display: grid; }
+.tf-review dl > div { display: grid; grid-template-columns: 8.5rem 1fr auto; gap: 4px 12px; align-items: baseline; padding: 8px 0; border-top: 1px solid var(--line); font-size: 0.92rem; }
+.tf-review dl > div:first-child { border-top: 0; }
+.tf-review dt { color: var(--muted); }
+.tf-review dd { margin: 0; font-weight: 600; color: var(--fg); overflow-wrap: anywhere; }
+.tf-edit { border: 0; padding: 0; background: none; font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--accent-ink); cursor: pointer; text-decoration: underline; }
+@media (max-width: 480px) {
+  .tf-review dl > div { grid-template-columns: 1fr auto; }
+  .tf-review dd { grid-column: 1; }
+  .tf-review .tf-edit { grid-row: 1; grid-column: 2; }
+}
+
+.tf-status { margin: 0; padding: 14px 16px; border-radius: 14px; background: var(--error-bg); color: var(--error-ink); font-size: 0.92rem; font-weight: 600; }
+.tf-status a { color: inherit; }
+
+.tf-nav { display: flex; justify-content: space-between; gap: 12px; }
+.tf-nav #tf-next { margin-left: auto; }
+.tf-nav .btn:disabled { opacity: 0.7; cursor: progress; transform: none; }
+.tf-nav [hidden] { display: none; }
+@media (max-width: 480px) {
+  .tf-nav { flex-direction: column-reverse; }
+  .tf-nav .btn { width: 100%; }
+}
+
+/* Bots fill this in; people never see it */
+.tf-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Sent */
+.tf-done { display: grid; justify-items: center; gap: 14px; padding: 24px 0 8px; text-align: center; animation: pane-in 0.4s ease both; }
+.tf-done:focus { outline: none; }
+.tf-done[hidden] { display: none; }
+.tf-done h2 { font-size: clamp(1.8rem, 3.4vw, 2.3rem); }
+.tf-done p { margin: 0 0 8px; max-width: 34ch; color: var(--muted); }
+.tf-done-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2312195f' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 30px no-repeat;
+  box-shadow: 0 10px 26px -12px rgba(201, 150, 30, 0.75);
+}
+
+/* How it works */
+.trial-how { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.trial-how li { padding: 28px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); }
+.trial-how .demo-num { background: var(--yellow); color: var(--navy); }
+.trial-how h3 { font-size: 1.5rem; margin: 18px 0 8px; }
+.trial-how p { margin: 0; color: var(--muted); }
+@media (max-width: 860px) { .trial-how { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; } }
 
 /* FAQ */
 .faq-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: start; }
